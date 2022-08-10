@@ -1,0 +1,54 @@
+@import "../../assets/css/constants.css";
+
+.darkMenu{
+    padding: 30px var(--paddingTotal);
+    background-color: var(--darkModeLightBlack) !important;
+    .nav-link{
+        color: var(--darkModeGray) !important;
+    }
+}
+.lightMenu{
+    padding: 30px var(--paddingTotal);
+    background-color: var(--white) !important;
+    .nav-link{
+        color: var(--black) !important;
+    }
+}
+#mainMenu{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .iconsMenu{
+        font-size: 25px;
+    }
+    #leftMenu{
+        #titleImage{
+            margin-left: 30px;
+        }
+    }
+    #rightMenu{
+        display: flex;
+        flex-direction: row;
+        align-items: center ;
+        justify-content: space-between;
+        gap: 30px;
+        #menus{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 25px;
+            margin: 0;
+            list-style-type: none;
+            padding: 0;
+        }
+        #iconsMenu{
+            padding: 0;
+            display: flex;
+            align-items: center;
+            margin: 0;
+            gap: 13px;
+        }
+    }
+}
+
+

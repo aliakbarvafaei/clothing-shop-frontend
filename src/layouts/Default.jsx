@@ -1,5 +1,6 @@
 // import { Footer, Header, ProtectedRoute, Sidebar } from '../components'
 import Header from '../components/Header/Header'
+import MainMenu from '../components/mainMenu/mainMenu'
 import React from 'react'
 import { Redirect, Route, Switch  } from 'react-router-dom'
 import AppRoutes from '../routes'
@@ -16,6 +17,7 @@ const DefaultLayout = (props) => {
       data-boxed-layout="full"
     >
       <Header />
+      <MainMenu />
       {/* <Sidebar {...props} routes={AppRoutes} /> */}
       <div className="page-wrapper d-block">
         <div className="page-content container-fluid">
