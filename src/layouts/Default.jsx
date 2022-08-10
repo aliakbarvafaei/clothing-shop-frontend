@@ -3,6 +3,7 @@ import Header from '../components/Header/Header'
 import React from 'react'
 import { Redirect, Route, Switch  } from 'react-router-dom'
 import AppRoutes from '../routes'
+import ProtectedRoute from '../components/ProtectedRoute'
 
 const DefaultLayout = (props) => {
   return (
@@ -15,7 +16,7 @@ const DefaultLayout = (props) => {
       data-boxed-layout="full"
     >
       <Header />
-      {/* <Sidebar {...props} routes={AppRoutes} />
+      {/* <Sidebar {...props} routes={AppRoutes} /> */}
       <div className="page-wrapper d-block">
         <div className="page-content container-fluid">
           <Switch >
@@ -28,8 +29,8 @@ const DefaultLayout = (props) => {
             })}
           </Switch >
         </div>
-        <Footer />
-      </div> */}
+        {/* <Footer /> */}
+      </div>
     </div>
   )
 }

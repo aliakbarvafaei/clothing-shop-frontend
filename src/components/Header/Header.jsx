@@ -36,7 +36,7 @@ function Header(props) {
               </li>
               <li className="nav-item">
                 <div className="nav-link" onMouseEnter={handleEnter} onMouseLeave={handleOut}><i className="fa fa-user" aria-hidden="true"></i>My Account</div>
-                <div className={open ? "dropdown-menu show":"dropdown-menu"}>
+                <div className={open ? "dropdown-menu show":"dropdown-menu"} onMouseEnter={handleEnter} onMouseLeave={handleOut}>
                     <a className="dropdown-item" href="#">Login</a>
                     <a className="dropdown-item" href="#">Register</a>
                 </div>
