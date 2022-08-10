@@ -1,7 +1,7 @@
 import DefaultLayout from '../layouts/Default'
 // import AddProduct from '../pages/add-product'
 // import ContactUsPage from '../pages/contact-us'
-// import Dashboard from '../pages/dashboard'
+// import Home from '../pages/Home'
 // import EditProduct from '../pages/edit-product'
 // import LoginPage from '../pages/login'
 // import ProductsList from '../pages/products-list'
@@ -9,6 +9,14 @@ import DefaultLayout from '../layouts/Default'
 const indexRoutes = [{ path: '/', component: DefaultLayout }]
 
 const AppRoutes = [
+  // {
+  //   path: '/',
+  //   name: 'اصلی',
+  //   icon: 'fa fa-tachometer-alt',
+  //   component: Home,
+  //   showInNav: true,
+  //   private: false,
+  // },
   // {
   //   path: '/dashboard',
   //   name: 'داشبورد',

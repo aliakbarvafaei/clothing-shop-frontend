@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.rtl.min.css'
 import { AuthProvider } from './contexts/Auth'
 import { ThemeProvider } from './contexts/theme'
 import React from 'react'
-import { BrowserRouter, Route, Routes  } from 'react-router-dom'
+import { BrowserRouter, Switch, Route  } from 'react-router-dom'
 import { indexRoutes } from './routes'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
@@ -12,7 +12,7 @@ const App = () => (
   <BrowserRouter>
     <ThemeProvider>
       <AuthProvider>
-        <Routes >
+        <Switch >
           <TransitionGroup timeout={300} classNames="fade">
             {indexRoutes.map((prop, key) => {
               return (
@@ -26,7 +26,7 @@ const App = () => (
               )
             })}
           </TransitionGroup>
-        </Routes >
+        </Switch >
       </AuthProvider>
     </ThemeProvider>
   </BrowserRouter>

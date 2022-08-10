@@ -1,0 +1,44 @@
+@import "../../assets/css/constants.css";
+
+.dark{
+    padding: 15px var(--paddingTotal);
+    background-color: var(--darkModeBlack) !important;
+    .nav-link{
+        color: var(--darkModeGray) !important;
+    }
+}
+.light{
+    padding: 15px var(--paddingTotal);
+    background-color: var(--gray) !important;
+    .nav-link{
+        color: var(--darkGray) !important;
+    }
+}
+.navbar {
+    padding: 0;
+    justify-content: space-between;
+    background-color: transparent;
+}
+.nav-item {
+    padding: 0 1rem;
+}
+.nav-link{
+    font-size: 14px;
+    padding: 0;
+}
+.nav-link i{
+    color: inherit ;
+    transform: scaleX(-1);
+    font-size: 0.7rem;
+    margin-right: 0.5rem;
+}
+.nav-link i#heart{
+    color: var(--red) !important;
+}
+.nav-link:hover{
+    i{
+    color: var(--red) !important;
+    }
+}
+
+
