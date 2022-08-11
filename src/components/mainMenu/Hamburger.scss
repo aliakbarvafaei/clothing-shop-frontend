@@ -1,8 +1,35 @@
 @import "../../assets/css/constants.css";
 
+.darkNavbar{
+  .nav-menu{
+    background-color: var(--black) !important;
+  }
+  .navbar-toggle {
+    background-color: var(--black) !important;
+  }
+  .nav-text {
+    color: var(--white) !important;
+  }
+  .menu-bars{
+    color: var(--white) !important;
+  }
+}
+.lightNavbar{
+  .nav-menu{
+    background-color: var(--white) !important;
+  }
+  .navbar-toggle {
+    background-color: var(--white) !important;
+  }
+  .nav-text {
+    color: var(--black) !important;
+  }
+  .menu-bars{
+    color: var(--black) !important;
+  }
+}
 #Hamburger{
   .navbar {
-    background-color: var(--navBg);
     height: 80px;
     display: flex;
     justify-content: start;
@@ -14,7 +41,6 @@
     font-size: 2rem;
     background: none;
     text-decoration: none !important;
-    color: var(--black);
     p{
       font-family: var(--font);
       font-size: 18px;
@@ -25,7 +51,6 @@
   }
   
   .nav-menu {
-    background-color: var(--white);
     width: 250px;
     height: 200vh;
     display: flex;
@@ -33,6 +58,7 @@
     position: fixed;
     z-index: 1000;
     top: 0;
+    border: 0.8px var(--darkGray) solid;
     right: -100%;
     transition: 850ms;
     cursor: text;
@@ -44,7 +70,6 @@
   }
   
   .nav-text {
-    color: var(--black);
     font-size: 16px;
     font-weight: bold;
     font-family: var(--font);
@@ -75,7 +100,6 @@
   }
   
   .navbar-toggle {
-    background-color: var(--white);
     width: 100%;
     padding-right: 8%;
     height: 80px;
