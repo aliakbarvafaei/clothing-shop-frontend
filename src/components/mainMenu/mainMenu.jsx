@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTheme } from '../../contexts/theme';
 import Drop from "../Drop"
+import Hamburger from "./Hamburger"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "./style.scss"
 
@@ -14,6 +15,13 @@ const titleMenus=[{title: "HOME", submenu:["New Demos","Clothing","Basic"]},
 
 function MainMenu(props) {
     const {theme} = useTheme();
+    const [isOpen, setIsOpen] = useState(false);
+
+    function handeHamburger()
+    {
+      setIsOpen(old => !old);
+    }
+    
     
     return (
     <div id="mainMenu" className={theme.mode==="LIGHT" ? "lightMenu": "darkMenu"}>
@@ -29,6 +37,10 @@ function MainMenu(props) {
               })
             }
           </ul>
+          <div className="hamburger">
+            <i className="fa fa-bars iconsMenu" aria-hidden="true"  onClick={handeHamburger}></i>
+              <Hamburger isOpen={isOpen} handeHamburger={handeHamburger} items={titleMenus} />
+          </div>
           <ul id="iconsMenu" className="">
             <i className="fa fa-search iconsMenu" aria-hidden="true"></i>
             <i className="fa fa-cog iconsMenu" aria-hidden="true"></i>

@@ -53,5 +53,17 @@
         }
     }
 }
+.hamburger{
+    display: none;
+    color: var(--red) !important;
+    cursor: pointer;
+}
 
-
+@media (max-width : 1200px){
+    #menus{
+        display: none !important;
+    }
+    .hamburger{
+        display: inline !important;
+    }
+}

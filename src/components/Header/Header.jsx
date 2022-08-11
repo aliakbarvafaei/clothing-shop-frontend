@@ -8,7 +8,7 @@ function Header(props) {
     const {theme,toggleThemeMode} = useTheme();
     
     return (
-    <div className={theme.mode==="LIGHT" ? "light": "dark"}>
+    <div id="Header" className={theme.mode==="LIGHT" ? "light": "dark"}>
         <nav className="navbar navbar-expand-lg navbar-dark">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item">
