@@ -28,11 +28,12 @@
     color: var(--black) !important;
   }
 }
+
 #Hamburger{
   .navbar {
     height: 80px;
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: center;
   }
   

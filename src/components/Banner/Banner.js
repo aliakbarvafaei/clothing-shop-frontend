@@ -1,4 +1,6 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
+import banner_1 from "../../assets/images/banner-1.jpg";
+import banner_2 from "../../assets/images/banner-2.jpg";
 import Carousel from 'react-material-ui-carousel'
 import { Paper, Button } from '@mui/material'
 import "./banner.scss"
@@ -8,11 +10,11 @@ export default function Banner(props)
     var items = [
         {
             name: "MEN FASHION",
-            class: "https://multikart-react.vercel.app/assets/images/home-banner/1.jpg"
+            class: banner_1
         },
         {
             name: "WOMEN FASHION",
-            class: "https://multikart-react.vercel.app/assets/images/home-banner/2.jpg"
+            class: banner_2
         }
     ]
     return (
@@ -26,18 +28,6 @@ export default function Banner(props)
 
 function Item(props)
 {
-    const [windowSize, setWindowSize] = useState(getWindowSize());
-
-    useEffect(() => {
-        function handleWindowResize() {
-        setWindowSize(getWindowSize());
-        }
-        window.addEventListener('resize', handleWindowResize);
-
-        return () => {
-        window.removeEventListener('resize', handleWindowResize);
-        };
-    });
 
     return (
         <Paper className="paper" style={{backgroundImage: `url(${props.item.class})`}}>
@@ -52,8 +42,3 @@ function Item(props)
         </Paper>
     )
 }
-
-function getWindowSize() {
-    const {innerWidth, innerHeight} = window;
-    return {innerWidth, innerHeight};
-  }

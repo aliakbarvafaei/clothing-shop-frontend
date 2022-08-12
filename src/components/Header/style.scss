@@ -19,6 +19,10 @@
         padding: 0;
         justify-content: space-between;
         background-color: transparent;
+        .rightHeader{
+            display: flex;
+            flex-direction: row;
+        }
         .nav-item {
             padding: 0 !important;
             margin-right: 1rem;
@@ -52,3 +56,18 @@
     text-align: left;
 }
 
+@media (max-width : 1200px){
+    .leftHeader{
+        display: none !important;
+    }
+    #Header{
+        .navbar {
+            justify-content: flex-end !important;
+        }
+    }
+}
+@media (max-width : 576px){
+    #Header{
+        display: none !important;
+    }
+}

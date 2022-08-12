@@ -5,6 +5,7 @@
     background-position: 50%;
     background-repeat: no-repeat;
     background-size: cover;
+    padding: 0 var(--paddingTotal);
 }
 .textPaper{
     width: 50%;
@@ -21,7 +22,7 @@
         font-weight: bolder;
     }
     h1{
-        font-size: 50px;
+        font-size: 60px;
         font-weight: bold;
         color: var(--black);
     }
@@ -37,5 +38,63 @@
         background-color: var(--white) !important;
         color: var(--black) !important;
         border: 2px var(--red) solid;
+    }
+}
+
+@media (max-width : 1200px){
+    .paper{
+        height: 70vh !important;
+    }
+    .textPaper{
+        h1{
+            font-size:50px !important;
+        }
+    }
+}
+@media (max-width : 991px){
+    .paper{
+        height: 65vh !important;
+    }
+    .textPaper{
+        p{
+            font-size: 16px !important;
+            letter-spacing: 6px !important;
+        }
+        h1{
+            font-size:34px !important;
+        }
+    }
+}
+@media (max-width : 767px){
+    .paper{
+        height: 60vh !important;
+    }
+}
+@media (max-width : 576px){
+    .paper{
+        height: 58vh !important;
+    }
+    .textPaper{
+        p{
+            font-size: 15px !important;
+            letter-spacing: 4px !important;
+        }
+        h1{
+            font-size:30px !important;
+        }
+    }
+}
+@media (max-width : 420px){
+    .paper{
+        height: 55vh !important;
+    }
+    .textPaper{
+        p{
+            font-size: 14px !important;
+            letter-spacing: 3px !important;
+        }
+        h1{
+            font-size:25px !important;
+        }
     }
 }

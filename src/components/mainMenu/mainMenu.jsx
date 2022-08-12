@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useTheme } from '../../contexts/theme';
+import logo from "../../assets/images/logo.png";
 import Drop from "../Drop"
 import Hamburger from "./Hamburger"
 import "bootstrap/dist/css/bootstrap.min.css"
@@ -27,8 +28,9 @@ function MainMenu(props) {
     <div id="mainMenu" className={theme.mode==="LIGHT" ? "lightMenu": "darkMenu"}>
         <div id="leftMenu">
           <i className="fa fa-bars iconsMenu" aria-hidden="true"></i>
-          <img id="titleImage" src="https://multikart-react.vercel.app/assets/images/icon/logo.png" alt="title" />
+          <span><img id="titleImage" src={logo} alt="title" /></span>
         </div>
+        
         <div id="rightMenu">
           <ul id="menus" className="">
             {

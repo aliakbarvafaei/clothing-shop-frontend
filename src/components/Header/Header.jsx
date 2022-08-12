@@ -10,7 +10,7 @@ function Header(props) {
     return (
     <div id="Header" className={theme.mode==="LIGHT" ? "light": "dark"}>
         <nav className="navbar navbar-expand-lg navbar-dark">
-            <ul className="navbar-nav mr-auto">
+            <ul className="navbar-nav mr-auto leftHeader">
               <li className="nav-item">
                 <a className="nav-link" href="signup"> Welcome to Our store Multikart</a>
               </li>
@@ -18,7 +18,7 @@ function Header(props) {
                 <a className="nav-link" href="login"><i id="heart" className="fa fa-phone" aria-hidden="true"></i> Call Us: 123 - 456 - 7890</a>
               </li>
             </ul>
-            <ul className="navbar-nav mr-auto">
+            <ul className="navbar-nav mr-auto rightHeader">
               <li className="nav-item">
                 <a className="nav-link" href="login"><i className="fa fa-heart" aria-hidden="true"></i>Wishlist</a>
               </li>
