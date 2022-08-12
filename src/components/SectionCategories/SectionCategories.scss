@@ -1,0 +1,94 @@
+@import "../../assets/css/constants.css";
+
+#sectionCat{
+    padding: 50px var(--paddingTotal) 0;
+    background-color: var(--white);
+    .cat{
+        position: relative;
+        overflow: hidden;
+        .catImage{
+            width: 100%;
+            background-repeat: no-repeat;
+            background-size: cover;
+            transition: all .5s ease;
+        }
+        .catImage:hover {
+            transform: scale(1.1);
+        }
+        .catContain{
+            position: absolute;
+            z-index: 1;
+            top: 30% !important;
+            left: 55%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            h4{
+                color: var(--red);
+                font-weight: bold;
+                font-size: 18px;
+                margin: 0 !important;
+            }
+            h1{
+                font-weight: bold;
+                font-size: 55px;
+            }
+        }
+    }
+}
+
+
+
+@media (max-width : 1200px){
+    .catContain{
+        h4{
+            font-size: 18px !important;
+        }
+        h1{
+            font-size: 40px !important;
+        }
+    }
+}
+@media (max-width : 991px){
+    .catContain{
+        h4{
+            font-size: 16px !important;
+        }
+        h1{
+            font-size: 25px !important;
+        }
+    }
+}
+@media (max-width : 767px){
+    .cat{
+        padding-top: 10px !important;
+    }
+    .catContain{
+        h4{
+            font-size: 16px !important;
+        }
+        h1{
+            font-size: 35px !important;
+        }
+    }
+}
+@media (max-width : 576px){
+    .catContain{
+        h4{
+            font-size: 16px !important;
+        }
+        h1{
+            font-size: 35px !important;
+        }
+    }
+}
+@media (max-width : 420px){
+    .catContain{
+        h4{
+            font-size: 16px !important;
+        }
+        h1{
+            font-size: 24px !important;
+        }
+    }
+}

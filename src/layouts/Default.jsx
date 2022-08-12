@@ -2,10 +2,11 @@
 import Header from '../components/Header/Header'
 import MainMenu from '../components/mainMenu/mainMenu'
 import React from 'react'
-import { Redirect, Route, Switch  } from 'react-router-dom'
+import {  Route, Switch  } from 'react-router-dom'
 import AppRoutes from '../routes'
 import ProtectedRoute from '../components/ProtectedRoute'
 import Banner from '../components/Banner/Banner'
+import SectionCategories from '../components/SectionCategories/SectionCategories'
 
 const DefaultLayout = (props) => {
   return (
@@ -20,6 +21,7 @@ const DefaultLayout = (props) => {
       <Header />
       <MainMenu />
       <Banner />
+      <SectionCategories />
       {/* <Sidebar {...props} routes={AppRoutes} /> */}
       <div className="page-wrapper d-block">
         <div className="page-content container-fluid">
