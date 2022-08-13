@@ -1,0 +1,29 @@
+@import "../../assets/css/constants.css";
+
+.lightButton{
+    position: fixed;
+    padding: 5px 2px;
+    font-size: 90%;
+    right: 0;
+    top: 60%;
+    z-index: 100;
+    border-top-left-radius: 15%;
+    border-bottom-left-radius: 15%;
+    box-shadow: 0 0 5px 0 hsl(0deg 0% 60% / 54%);
+    background-color: var(--gray);
+    cursor: pointer;
+}
+.darkButton{
+    position: fixed;
+    color: var(--white);
+    padding: 5px 2px;
+    font-size: 90%;
+    right: 0;
+    top: 60%;
+    z-index: 100;
+    border-top-left-radius: 15%;
+    border-bottom-left-radius: 15%;
+    box-shadow: 0 0 5px 0 hsl(0deg 0% 60% / 54%);
+    background-color: var(--black);
+    cursor: pointer;
+}

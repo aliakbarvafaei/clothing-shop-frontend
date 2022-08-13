@@ -5,8 +5,8 @@ import React from 'react'
 import {  Route, Switch  } from 'react-router-dom'
 import AppRoutes from '../routes'
 import ProtectedRoute from '../components/ProtectedRoute'
-import Banner from '../components/Banner/Banner'
-import SectionCategories from '../components/SectionCategories/SectionCategories'
+import Footer from '../components/Footer/Footer'
+import FixedButtonRight from '../components/FixedButtonRight/FixedButtonRight'
 
 const DefaultLayout = (props) => {
   return (
@@ -18,10 +18,9 @@ const DefaultLayout = (props) => {
       data-header-position="fixed"
       data-boxed-layout="full"
     >
+      <FixedButtonRight />
       <Header />
       <MainMenu />
-      <Banner />
-      <SectionCategories />
       {/* <Sidebar {...props} routes={AppRoutes} /> */}
       <div className="page-wrapper d-block">
         <div className="page-content container-fluid">
@@ -35,8 +34,8 @@ const DefaultLayout = (props) => {
             })}
           </Switch >
         </div>
-        {/* <Footer /> */}
       </div>
+      <Footer />
     </div>
   )
 }

@@ -9,15 +9,14 @@ import Home from '../pages/Home'
 const indexRoutes = [{ path: '/', component: DefaultLayout }]
 
 const AppRoutes = [
-  // {
-  //   path: '/',
-  //   name: 'اصلی',
-  //   icon: 'fa fa-tachometer-alt',
-  //   component: Home,
-  //   showInNav: true,
-  //   private: false,
-  // },
-  // {
+  {
+    path: '/',
+    name: 'اصلی',
+    icon: 'fa fa-tachometer-alt',
+    component: Home,
+    showInNav: true,
+    private: false,
+  },
     {
     path: '/dashboard',
     name: 'داشبورد',
@@ -62,7 +61,7 @@ const AppRoutes = [
   //   icon: 'fa fa-phone',
   //   component: ContactUsPage,
   // },
-  // { path: '/', pathTo: '/dashboard', name: 'Dashboard', redirect: true },
+  { path: '/', pathTo: '/dashboard', name: 'Dashboard', redirect: true },
 ]
 
 export default AppRoutes

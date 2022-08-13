@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useTheme } from '../../contexts/theme';
 import logo from "../../assets/images/logo.png";
-import Drop from "../Drop"
+import Drop from "../DropOnHover"
 import Hamburger from "./Hamburger"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "./style.scss"

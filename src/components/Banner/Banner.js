@@ -10,12 +10,16 @@ export default function Banner(props)
 {
     var items = [
         {
+            title: "Welcome To Fashion",
             name: "MEN FASHION",
-            class: banner_1
+            class: banner_1,
+            buttonText: "SHOP NOW",
         },
         {
+            title: "Welcome To Fashion",
             name: "WOMEN FASHION",
-            class: banner_2
+            class: banner_2,
+            buttonText: "SHOP NOW",
         }
     ]
     return (
@@ -33,11 +37,11 @@ function Item(props)
     return (
         <Paper className="paper" style={{backgroundImage: `url(${props.item.class})`}}>
             <div className="textPaper">
-                <p>Welcome To Fashion</p>
+                <p>{props.item.title}</p>
                 <h1>{props.item.name}</h1>
 
                 <Button className="CheckButton btn btn-solid shopButton">
-                    SHOP NOW
+                    {props.item.buttonText}
                 </Button>
             </div>
         </Paper>

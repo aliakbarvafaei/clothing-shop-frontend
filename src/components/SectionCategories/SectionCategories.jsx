@@ -1,30 +1,41 @@
 import React from 'react';
 import men from "../../assets/images/men.jpg";
 import women from "../../assets/images/women.jpg";
+import { useTheme } from '../../contexts/theme';
 import "./SectionCategories.scss"
 
 function SectionCat(props) {
+    const {theme} = useTheme();
+
+    var items = [
+        {
+            h4: "SAVE 30%",
+            h1: "MEN",
+            img: men,
+        },
+        {
+            h4: "SAVE 60%",
+            h1: "WOMEN",
+            img: women,
+        },
+    ]
+
     return (
-        <div id="sectionCat">
+        <div id="sectionCat" style={theme.mode==="DARK" ? {backgroundColor: '#222222'} : {backgroundColor: '#ffffff'} } >
             <div className="row">
-                <div className="col-md-6">
-                    <div className="cat">
-                        <img className="catImage" src={men} alt="Men" />
-                        <div className="catContain">
-                            <h4>SAVE 30%</h4>
-                            <h1>MEN</h1>
+            {
+                items.map((item,index)=>{
+                    return <div className="col-md-6" style={{paddingBottom:"24px"}}>
+                        <div className="cat">
+                            <img className="catImage" src={item.img} alt="Men" />
+                            <div className="catContain">
+                                <h4>{item.h4}</h4>
+                                <h1>{item.h1}</h1>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div className="col-md-6 cat">
-                    <div className="cat">
-                        <img className="catImage" src={women} alt="Women" />
-                        <div className="catContain">
-                            <h4>SAVE 60%</h4>
-                            <h1>WOMEN</h1>
-                        </div>
-                    </div>
-                </div>
+                })
+            }
             </div>
         </div>
     );
