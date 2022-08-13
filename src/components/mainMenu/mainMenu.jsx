@@ -7,6 +7,7 @@ import useSticky from "./useSticky";
 import Hamburger from "./Hamburger/Hamburger";
 import "bootstrap/dist/css/bootstrap.min.css"
 import "./mainMenu.scss"
+import ShopIcon from '../ShopIcon';
 
 const titleMenus=[{title: "HOME", submenu:["New Demos","Clothing","Basics","Beauty","Eelectronic","Furniture","Vegetables","Watch","Lights","Goggles","Shoes","Bagg","Flowers"]},
 {title: "SHOP", submenu:["Left Sidebar","Right Sisebar","No Sidebar","Sidebar Popup","Metro","Full Width","3 Grid","6 Six","List View"]},
@@ -52,7 +53,7 @@ function MainMenu(props) {
           <ul id="iconsMenu" className="">
             <DropOnHover title="" icon="fa fa-search iconsMenu" dir="left"/>
             <DropOnHover title="" submenu={submenuSetting} icon="fa fa-cog iconsMenu" dir="left"/>
-            <DropOnHover title="" submenu={submenuCart} icon="fa fa-shopping-cart iconsMenu" dir="left"/>
+            <ShopIcon submenu={submenuCart} icon="fa fa-shopping-cart iconsMenu" dir="left"/>
           </ul>
         </div>
     </div>
