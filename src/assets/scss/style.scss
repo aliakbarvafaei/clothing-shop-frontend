@@ -16,3 +16,37 @@ body{
 .container-fluid{
   padding: 0 !important;
 }
+.dropdown-menu{
+  border: 1px var(--gray) solid !important;
+  border-radius: 0 !important;
+}
+.dropdown-item{
+  color: var(--black);
+  text-align: left !important;
+}
+.dark{
+  background-color: var(--darkModeLightBlack) !important;
+  color: var(--gray) !important;
+
+  .nav-link{
+      color: var(--darkModeGray) !important;
+  }
+  .iconsMenu{
+      color: var(--darkModeGray) !important;
+  }
+  .nav-menu{
+    background-color: var(--black) !important;
+  }
+  .navbar-toggle {
+    background-color: var(--black) !important;
+  }
+  .nav-text {
+    color: var(--white) !important;
+  }
+  .menu-bars{
+    color: var(--white) !important;
+  }
+  .dropdown-item{
+    color: var(--darkModeGray) !important;
+  }
+}

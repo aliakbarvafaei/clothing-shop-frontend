@@ -1,4 +1,4 @@
-@import "../../assets/css/constants.css";
+@import "../../../assets/css/constants.css";
 
 .darkNavbar{
   .nav-menu{
@@ -14,20 +14,6 @@
     color: var(--white) !important;
   }
 }
-.lightNavbar{
-  .nav-menu{
-    background-color: var(--white) !important;
-  }
-  .navbar-toggle {
-    background-color: var(--white) !important;
-  }
-  .nav-text {
-    color: var(--black) !important;
-  }
-  .menu-bars{
-    color: var(--black) !important;
-  }
-}
 
 #Hamburger{
   .navbar {
@@ -38,6 +24,7 @@
   }
   
   .menu-bars {
+    color: var(--black);
     margin-left: 2rem;
     font-size: 2rem;
     background: none;
@@ -52,6 +39,7 @@
   }
   
   .nav-menu {
+    background-color: var(--white);
     width: 250px;
     height: 200vh;
     display: flex;
@@ -71,6 +59,7 @@
   }
   
   .nav-text {
+    color: var(--black);
     font-size: 16px;
     font-weight: bold;
     font-family: var(--font);
@@ -101,6 +90,7 @@
   }
   
   .navbar-toggle {
+    background-color: var(--white);
     width: 100%;
     padding-right: 8%;
     height: 80px;

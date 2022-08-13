@@ -21,7 +21,7 @@ function SectionCat(props) {
     ]
 
     return (
-        <div id="sectionCat" style={theme.mode==="DARK" ? {backgroundColor: '#222222'} : {backgroundColor: '#ffffff'} } >
+        <div id="sectionCat" className={theme.mode==="DARK" ? "dark" : "" } >
             <div className="row">
             {
                 items.map((item,index)=>{

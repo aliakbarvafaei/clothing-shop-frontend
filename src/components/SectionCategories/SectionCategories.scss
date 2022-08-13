@@ -2,7 +2,7 @@
 
 #sectionCat{
     padding: 50px var(--paddingTotal) 0;
-    // background-color: var(--white);
+    background-color: var(--white);
     .cat{
         position: relative;
         overflow: hidden;
@@ -31,6 +31,7 @@
             }
             h1{
                 font-weight: bold;
+                color: var(--black) !important;
                 font-size: 55px;
             }
         }

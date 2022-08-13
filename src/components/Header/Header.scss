@@ -1,20 +1,8 @@
 @import "../../assets/css/constants.css";
 
-.dark{
-    padding: 15px var(--paddingTotal);
-    background-color: var(--darkModeBlack) !important;
-    .nav-link{
-        color: var(--darkModeGray) !important;
-    }
-}
-.light{
-    padding: 15px var(--paddingTotal);
-    background-color: var(--gray) !important;
-    .nav-link{
-        color: var(--darkGray) !important;
-    }
-}
 #Header{
+    background-color: var(--gray);
+    padding: 15px var(--paddingTotal);
     .navbar {
         padding: 0;
         justify-content: space-between;
@@ -27,6 +15,7 @@
             padding: 0 !important;
             margin-right: 1rem;
             .nav-link{
+                color: var(--darkGray) ;
                 font-size: 14px;
                 padding: 0 !important;
             }
@@ -52,9 +41,6 @@
     }
 }
 
-.dropdown-item{
-    text-align: left;
-}
 
 @media (max-width : 1200px){
     .leftHeader{

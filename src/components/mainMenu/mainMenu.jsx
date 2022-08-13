@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { useTheme } from '../../contexts/theme';
 import logo from "../../assets/images/logo.png";
-import Drop from "../DropOnHover"
-import Hamburger from "./Hamburger"
+import DropOnHover from "../DropOnHover";
+import classNames from "classnames";
+import useSticky from "./useSticky";
+import Hamburger from "./Hamburger/Hamburger";
 import "bootstrap/dist/css/bootstrap.min.css"
-import "./style.scss"
+import "./mainMenu.scss"
 
 const titleMenus=[{title: "HOME", submenu:["New Demos","Clothing","Basic"]},
 {title: "SHOP", submenu:["New Demos","Clothing","Basic"]},
@@ -17,15 +19,17 @@ const titleMenus=[{title: "HOME", submenu:["New Demos","Clothing","Basic"]},
 function MainMenu(props) {
     const {theme} = useTheme();
     const [isOpen, setIsOpen] = useState(false);
+    const { sticky, stickyRef } = useSticky();
+
 
     function handeHamburger()
     {
       setIsOpen(old => !old);
     }
     
-    
     return (
-    <div id="mainMenu" className={theme.mode==="LIGHT" ? "lightMenu": "darkMenu"}>
+    <>
+    <div ref={stickyRef} id="mainMenu" className={classNames({ dark : theme.mode==="DARK" }, { sticky })} >
         <div id="leftMenu">
           <i className="fa fa-bars iconsMenu" aria-hidden="true"></i>
           <span><img id="titleImage" src={logo} alt="title" /></span>
@@ -35,7 +39,7 @@ function MainMenu(props) {
           <ul id="menus" className="">
             {
               titleMenus.map((titleMenu, index)=>{
-                return <Drop title={titleMenu.title} submenu={titleMenu.submenu} key={index}/>
+                return <DropOnHover title={titleMenu.title} submenu={titleMenu.submenu} key={index}/>
               })
             }
           </ul>
@@ -50,6 +54,14 @@ function MainMenu(props) {
           </ul>
         </div>
     </div>
+    {sticky && (
+      <div
+        style={{
+          height: `${stickyRef.current?.clientHeight}px`
+        }}
+      />
+    )}
+    </>
     );
 }
 

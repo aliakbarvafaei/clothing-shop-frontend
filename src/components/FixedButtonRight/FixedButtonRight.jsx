@@ -11,7 +11,10 @@ function FixedButtonRight(props) {
 
     return (
         <>
-            <div className={theme.mode==="LIGHT"? "lightButton" : "darkButton" } onClick={handleClick}>
+            <div id='setting' className={theme.mode==="DARK"? "dark" : "" }>
+            <i class="fa fa-cog fa-spin" aria-hidden="true"></i>
+            </div>
+            <div id='themeMode' className={theme.mode==="DARK"? "dark" : "" } onClick={handleClick}>
                 {theme.mode==="LIGHT"? "Dark":"Light"}
             </div>
         </>

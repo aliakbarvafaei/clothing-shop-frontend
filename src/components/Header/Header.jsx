@@ -2,7 +2,7 @@ import React from 'react';
 import { useTheme } from '../../contexts/theme';
 import Drop from '../DropOnHover'
 import "bootstrap/dist/css/bootstrap.min.css"
-import "./style.scss"
+import "./Header.scss"
 
 function Header(props) {
     const {theme} = useTheme();
@@ -13,7 +13,7 @@ function Header(props) {
     }
 
     return (
-    <div id="Header" className={theme.mode==="LIGHT" ? "light": "dark"}>
+    <div id="Header" className={theme.mode==="DARK" ? "dark": ""}>
         <nav className="navbar navbar-expand-lg navbar-dark">
             <ul className="navbar-nav mr-auto leftHeader">
               <li className="nav-item">

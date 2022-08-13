@@ -1,34 +1,25 @@
 @import "../../assets/css/constants.css";
 
-.darkMenu{
-    padding: 40px var(--paddingTotal);
-    overflow: hidden;
-    -moz-box-sizing:border-box;
-    -webkit-box-sizing:border-box;
-    box-sizing:border-box;
-    background-color: var(--darkModeLightBlack) !important;
-    .nav-link{
-        color: var(--darkModeGray) !important;
-    }
-    .iconsMenu{
-        color: var(--darkModeGray);
-    }
+.sticky {
+    position: fixed;
+    top: 0;
+    z-index: 200;
+    width: 100%;
 }
-.lightMenu{
+
+#mainMenu{
+    background-color: var(--white);
     padding: 40px var(--paddingTotal);
-    overflow: hidden;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing:border-box;
-    background-color: var(--white) !important;
-    .nav-link{
-        color: var(--black) !important;
-    }
-}
-#mainMenu{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    .nav-link{
+        color: var(--black);
+    }
     .iconsMenu{
         font-size: 25px;
     }

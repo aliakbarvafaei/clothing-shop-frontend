@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { IconContext } from "react-icons";
-import { useTheme } from '../../contexts/theme';
+import { useTheme } from '../../../contexts/theme';
 import { Link } from "react-router-dom";
 import "./Hamburger.scss";
 import ItemHamburger from './ItemHamburger';
 
 function Hamburger({isOpen, items, handeHamburger}) {
-    const {theme,toggleThemeMode} = useTheme();
+    const {theme} = useTheme();
 
     return (
         <>
           {isOpen && <IconContext.Provider value={{ color: "black", size: "30px" }}>
-            <div id="Hamburger" className={theme.mode==="LIGHT" ? "lightNavbar": "darkNavbar"}>
+            <div id="Hamburger" className={theme.mode==="DARK" ? "dark": ""}>
                 <nav className={isOpen ? "nav-menu active" : "nav-menu"}>
                     <ul className="nav-menu-items" >
                         <li className="navbar-toggle" onClick={()=>{handeHamburger()}}>
