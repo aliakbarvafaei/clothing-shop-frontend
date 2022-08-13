@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTheme } from '../../contexts/theme';
-import Drop from '../DropOnHover'
+import DropOnHover from '../DropOnHover'
 import "bootstrap/dist/css/bootstrap.min.css"
 import "./Header.scss"
 
@@ -27,7 +27,7 @@ function Header(props) {
               <li className="nav-item">
                 <a className="nav-link" href="login"><i className="fa fa-heart" aria-hidden="true"></i>Wishlist</a>
               </li>
-              <Drop title={"My Account"} submenu={["Login","Register"]} icon={true} key={"My Account"}/>
+              <DropOnHover title={"My Account"} submenu={["Login","Register"]} icon="fa fa-user" dir="left" key={"My Account"}/>
             </ul>
         </nav>
     </div>

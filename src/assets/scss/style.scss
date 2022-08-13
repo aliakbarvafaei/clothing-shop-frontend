@@ -16,13 +16,21 @@ body{
 .container-fluid{
   padding: 0 !important;
 }
+.nav-item{
+  position: relative !important;
+}
 .dropdown-menu{
   border: 1px var(--gray) solid !important;
   border-radius: 0 !important;
 }
+.shiftleft{
+  right: 0 !important;
+}
 .dropdown-item{
   color: var(--black);
   text-align: left !important;
+  font-size: 14px !important;
+  padding: 12px 35px !important;
 }
 .dark{
   background-color: var(--darkModeLightBlack) !important;

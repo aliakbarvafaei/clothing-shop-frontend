@@ -8,13 +8,15 @@ import Hamburger from "./Hamburger/Hamburger";
 import "bootstrap/dist/css/bootstrap.min.css"
 import "./mainMenu.scss"
 
-const titleMenus=[{title: "HOME", submenu:["New Demos","Clothing","Basic"]},
-{title: "SHOP", submenu:["New Demos","Clothing","Basic"]},
-{title: "PRODUCTS", submenu:["New Demos","Clothing","Basic"]},
-{title: "FEATURES", submenu:["New Demos","Clothing","Basic"]},
-{title: "PAGES", submenu:["New Demos","Clothing","Basic"]},
-{title: "BLOGES", submenu:["New Demos","Clothing","Basic"]},
+const titleMenus=[{title: "HOME", submenu:["New Demos","Clothing","Basics","Beauty","Eelectronic","Furniture","Vegetables","Watch","Lights","Goggles","Shoes","Bagg","Flowers"]},
+{title: "SHOP", submenu:["Left Sidebar","Right Sisebar","No Sidebar","Sidebar Popup","Metro","Full Width","3 Grid","6 Six","List View"]},
+{title: "PRODUCTS", submenu:["Sidebar","Thumbnail Image","3-Column","4 Image","Bundle Product","Sticky","Accordian","Image Swatch","Vertical Tab"]},
+{title: "FEATURES", submenu:["Portfolio","Add To Cart","Theme Element","Product Element","Email Template"]},
+{title: "PAGES", submenu:["Vendor","Account","About-Us","Search","Typograohy","Review","Order-Success","Compare","Collection","Lookbook","Site-Map","404","Comming-Soon","FAQ"]},
+{title: "BLOGES", submenu:["Blog Left Sidebar","Blog Right Sidebar","No Sidebar","Blog Detail"]},
 ]
+const submenuSetting=["Language", "Currency"];
+const submenuCart=["Your cart is currently empty."];
 
 function MainMenu(props) {
     const {theme} = useTheme();
@@ -39,7 +41,7 @@ function MainMenu(props) {
           <ul id="menus" className="">
             {
               titleMenus.map((titleMenu, index)=>{
-                return <DropOnHover title={titleMenu.title} submenu={titleMenu.submenu} key={index}/>
+                return <DropOnHover title={titleMenu.title} submenu={titleMenu.submenu} icon="fa fa-caret-down" dir="right" key={index}/>
               })
             }
           </ul>
@@ -48,9 +50,9 @@ function MainMenu(props) {
               <Hamburger isOpen={isOpen} handeHamburger={handeHamburger} items={titleMenus} />
           </div>
           <ul id="iconsMenu" className="">
-            <i className="fa fa-search iconsMenu" aria-hidden="true"></i>
-            <i className="fa fa-cog iconsMenu" aria-hidden="true"></i>
-            <i className="fa fa-shopping-cart iconsMenu" aria-hidden="true"></i>
+            <DropOnHover title="" icon="fa fa-search iconsMenu" dir="left"/>
+            <DropOnHover title="" submenu={submenuSetting} icon="fa fa-cog iconsMenu" dir="left"/>
+            <DropOnHover title="" submenu={submenuCart} icon="fa fa-shopping-cart iconsMenu" dir="left"/>
           </ul>
         </div>
     </div>
