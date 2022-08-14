@@ -1,0 +1,21 @@
+
+.text{
+    color: var(--darkGray);
+    span{
+        font-size: 13px;
+        padding-left: 15px;
+    }
+}
+.icons{
+    text-align: right;
+}
+
+@media (max-width : 767px){
+    .text{
+        text-align: center !important;
+    }
+    .icons{
+        text-align: center !important;
+        padding-top: 15px !important;
+    }
+}

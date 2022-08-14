@@ -1,0 +1,46 @@
+@import "../../assets/css/constants.css";
+
+.dark{
+    background-color: var(--black) !important;
+    color: var(--darkModeGray) !important;
+}
+.dark.Newsletter{
+    border-bottom: 2px var(--darkModeLightBlack) solid !important;
+}
+.dark.CopyRight{
+    background-color: var(--darkModeLightBlack) !important;
+}
+
+.Footer{
+    .Newsletter{
+        border-bottom: 1px var(--darkModeGray) solid;
+        padding: 35px var(--paddingTotal);
+        background-color: var(--gray);
+    }
+    .MainFooter{
+        padding: 45px var(--paddingTotal);
+        background-color: var(--gray);
+    }
+    .CopyRight{
+        padding: 25px var(--paddingTotal);
+        background-color: var(--white);
+    }
+}
+
+@media (max-width : 991px){
+    .Footer{
+        .Newsletter{
+            padding-top: 30px !important;
+            padding-bottom: 30px !important;
+        }
+    }
+}
+
+@media (max-width : 767px){
+    .Footer{
+        .Newsletter{
+            padding-top: 20px !important;
+            padding-bottom: 20px !important;
+        }
+    }
+}
