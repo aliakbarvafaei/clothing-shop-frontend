@@ -3,20 +3,13 @@ import DefaultLayout from '../layouts/Default'
 // import ContactUsPage from '../pages/contact-us'
 import Home from '../pages/Home'
 // import EditProduct from '../pages/edit-product'
-// import LoginPage from '../pages/login'
+import LoginPage from '../pages/Login'
 // import ProductsList from '../pages/products-list'
 
 const indexRoutes = [{ path: '/', component: DefaultLayout }]
 
 const AppRoutes = [
-  {
-    path: '/',
-    name: 'اصلی',
-    icon: 'fa fa-tachometer-alt',
-    component: Home,
-    showInNav: true,
-    private: false,
-  },
+  
     {
     path: '/dashboard',
     name: 'داشبورد',
@@ -48,18 +41,26 @@ const AppRoutes = [
   //   showInNav: false,
   //   private: true,
   // },
-  // {
-  //   path: '/login',
-  //   name: 'ورود',
-  //   icon: 'fa fa-plus',
-  //   component: LoginPage,
-  //   showInNav: false,
-  // },
+  {
+    path: '/login',
+    name: 'ورود',
+    icon: 'fa fa-plus',
+    component: LoginPage,
+    showInNav: false,
+  },
   // {
   //   path: '/contact-us',
   //   name: 'ارتباط با ما',
   //   icon: 'fa fa-phone',
   //   component: ContactUsPage,
+  // },
+  // {
+  //   path: '/',
+  //   name: 'اصلی',
+  //   icon: 'fa fa-tachometer-alt',
+  //   component: Home,
+  //   showInNav: true,
+  //   private: false,
   // },
   { path: '/', pathTo: '/dashboard', name: 'Dashboard', redirect: true },
 ]
