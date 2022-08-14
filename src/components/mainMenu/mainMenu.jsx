@@ -6,8 +6,8 @@ import classNames from "classnames";
 import useSticky from "./useSticky";
 import Hamburger from "./Hamburger/Hamburger";
 import "bootstrap/dist/css/bootstrap.min.css"
-import "./mainMenu.scss"
-import ShopIcon from '../ShopIcon';
+import styles from "./MainMenu.module.scss"
+import ShopIcon from './ShopIcon';
 
 const titleMenus=[{title: "HOME", submenu:["New Demos","Clothing","Basics","Beauty","Eelectronic","Furniture","Vegetables","Watch","Lights","Goggles","Shoes","Bagg","Flowers"]},
 {title: "SHOP", submenu:["Left Sidebar","Right Sisebar","No Sidebar","Sidebar Popup","Metro","Full Width","3 Grid","6 Six","List View"]},
@@ -24,33 +24,35 @@ function MainMenu(props) {
     const [isOpen, setIsOpen] = useState(false);
     const { sticky, stickyRef } = useSticky();
 
+    const themeClass = theme.mode==="DARK" ? styles.dark: "";
 
     function handeHamburger()
     {
       setIsOpen(old => !old);
     }
-    
+    const stickyClass = sticky ? styles.sticky:"";
+
     return (
     <>
-    <div ref={stickyRef} id="mainMenu" className={classNames({ dark : theme.mode==="DARK" }, { sticky })} >
-        <div id="leftMenu">
-          <i className="fa fa-bars iconsMenu" aria-hidden="true"></i>
-          <span><img id="titleImage" src={logo} alt="title" /></span>
+    <div ref={stickyRef} className={classNames(themeClass, stickyClass, styles.mainMenu)} >
+        <div className={styles.leftMenu}>
+          <i className={classNames("fa fa-bars", styles.iconsMenu)} aria-hidden="true"></i>
+          <span><img className={styles.titleImage} src={logo} alt="title" /></span>
         </div>
         
-        <div id="rightMenu">
-          <ul id="menus" className="">
+        <div className={styles.rightMenu}>
+          <ul className={styles.menus}>
             {
               titleMenus.map((titleMenu, index)=>{
                 return <DropOnHover title={titleMenu.title} submenu={titleMenu.submenu} icon="fa fa-caret-down" dir="right" key={index}/>
               })
             }
           </ul>
-          <div className="hamburger">
-            <i className="fa fa-bars iconsMenu" aria-hidden="true"  onClick={handeHamburger}></i>
+          <div className={styles.hamburger}>
+            <i className={classNames("fa fa-bars", styles.iconsMenu)} aria-hidden="true"  onClick={handeHamburger}></i>
               <Hamburger isOpen={isOpen} handeHamburger={handeHamburger} items={titleMenus} />
           </div>
-          <ul id="iconsMenu" className="">
+          <ul className={styles.iconsMenuRight}>
             <DropOnHover title="" icon="fa fa-search iconsMenu" dir="left"/>
             <DropOnHover title="" submenu={submenuSetting} icon="fa fa-cog iconsMenu" dir="left"/>
             <ShopIcon submenu={submenuCart} icon="fa fa-shopping-cart iconsMenu" dir="left"/>

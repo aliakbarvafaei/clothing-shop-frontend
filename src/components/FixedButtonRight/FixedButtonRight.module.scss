@@ -1,6 +1,10 @@
 @import "../../assets/css/constants.css";
 
-#setting{
+.dark{
+    background-color: var(--darkModeLightBlack) !important;
+    color: var(--gray) !important;
+}
+.setting{
     background-color: var(--gray);
     position: fixed;
     width: 37px;
@@ -15,7 +19,7 @@
     box-shadow: 0 0 5px 0 hsl(0deg 0% 60% / 54%);
     cursor: pointer;
 }
-#themeMode{
+.themeMode{
     background-color: var(--gray);
     position: fixed;
     width: 37px;

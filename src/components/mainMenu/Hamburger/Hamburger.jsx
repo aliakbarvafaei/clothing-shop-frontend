@@ -2,20 +2,25 @@ import React from 'react';
 import { IconContext } from "react-icons";
 import { useTheme } from '../../../contexts/theme';
 import { Link } from "react-router-dom";
-import "./Hamburger.scss";
+import classNames from "classnames";
+import styles from "./Hamburger.module.scss";
 import ItemHamburger from './ItemHamburger';
 
 function Hamburger({isOpen, items, handeHamburger}) {
     const {theme} = useTheme();
+    const themeClass = theme.mode==="DARK" ? styles.dark: "";
+    const activeClass = isOpen ? styles.active: "";
+
+    console.log(isOpen);
 
     return (
         <>
           {isOpen && <IconContext.Provider value={{ color: "black", size: "30px" }}>
-            <div id="Hamburger" className={theme.mode==="DARK" ? "dark": ""}>
-                <nav className={isOpen ? "nav-menu active" : "nav-menu"}>
-                    <ul className="nav-menu-items" >
-                        <li className="navbar-toggle" onClick={()=>{handeHamburger()}}>
-                        <Link to="#" className="menu-bars">
+            <div className={classNames(themeClass, styles.Hamburger)}>
+                <nav className={classNames("nav-menu", styles.navMenu, {active: isOpen===true}, activeClass)}>
+                    <ul className={classNames("nav-menu-items", styles.navMenuItems)}>
+                        <li className={classNames("navbar-toggle", styles.navbarToggle)} onClick={()=>{handeHamburger()}}>
+                        <Link to="#" className={classNames("menu-bars", styles.menuBars)}>
                             <p>BACK NAVBAR </p>
                             <i class="fa fa-angle-right" style={{fontSize: "20px"}} aria-hidden="true"></i>
                         </Link>
@@ -23,7 +28,7 @@ function Hamburger({isOpen, items, handeHamburger}) {
             
                         {items.map((item, index) => {
                         return (
-                            <li key={index} className="nav-text">
+                            <li key={index} className={classNames("nav-text", styles.navText)}>
                                 <ItemHamburger item={item} />
                             </li>
                         );

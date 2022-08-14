@@ -1,5 +1,10 @@
 @import "../../assets/css/constants.css";
 
+.dark{
+    background-color: var(--darkModeLightBlack) !important;
+    color: var(--darkModeGray) !important;
+}
+
 .sticky {
     position: fixed;
     top: 0;
@@ -7,7 +12,7 @@
     width: 100%;
 }
 
-#mainMenu{
+.mainMenu{
     background-color: var(--white);
     padding: 40px var(--paddingTotal);
     box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
@@ -17,7 +22,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    .nav-link{
+    .navLink{
         color: var(--black);
         i{
             padding-left: 10px !important;
@@ -27,22 +32,22 @@
         font-size: 25px;
         cursor: pointer;
     }
-    #leftMenu{
+    .leftMenu{
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         gap: 30px;
-        #titleImage{
+        .titleImage{
             width: 100%;
         }
     }
-    #rightMenu{
+    .rightMenu{
         display: flex;
         flex-direction: row;
         align-items: center ;
         justify-content: space-between;
         gap: 30px;
-        #menus{
+        .menus{
             display: flex;
             flex-direction: row;
             align-items: center;
@@ -51,7 +56,7 @@
             list-style-type: none;
             padding: 0;
         }
-        #iconsMenu{
+        .iconsMenuRight{
             padding: 0;
             display: flex;
             align-items: center;
@@ -68,7 +73,7 @@
 }
 
 @media (max-width : 1200px){
-    #menus{
+    .menus{
         display: none !important;
     }
     .hamburger{
@@ -76,14 +81,14 @@
     }
 }
 @media (max-width : 576px){
-    #leftMenu{
-        #titleImage{
+    .leftMenu{
+        .titleImage{
             width: 40% !important;
             position: absolute !important;
             left:30% !important;
         }
     }
-    #iconsMenu{
+    .iconsMenuRight{
         display: none !important;
     }
     .darkMenu{

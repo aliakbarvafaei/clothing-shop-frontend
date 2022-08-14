@@ -13,51 +13,13 @@ body{
   background-repeat: no-repeat;
   background-size: cover;
 }
-.css-jcn4dz-MuiBadge-badge{
-  background-color: #ff4c3b !important;
-}
+
 .container-fluid{
   padding: 0 !important;
 }
-.nav-item{
-  position: relative !important;
+.css-jcn4dz-MuiBadge-badge{
+  background-color: #ff4c3b !important;
 }
-.dropdown-menu{
-  border: 1px var(--gray) solid !important;
-  border-radius: 0 !important;
-}
-.shiftleft{
-  right: 0 !important;
-}
-.dropdown-item{
-  color: var(--black);
-  text-align: left !important;
-  font-size: 14px !important;
-  padding: 12px 35px !important;
-}
-.dark{
-  background-color: var(--darkModeLightBlack) !important;
-  color: var(--gray) !important;
-
-  .nav-link{
-      color: var(--darkModeGray) !important;
-  }
-  .iconsMenu{
-      color: var(--darkModeGray) !important;
-  }
-  .nav-menu{
-    background-color: var(--black) !important;
-  }
-  .navbar-toggle {
-    background-color: var(--black) !important;
-  }
-  .nav-text {
-    color: var(--white) !important;
-  }
-  .menu-bars{
-    color: var(--white) !important;
-  }
-  .dropdown-item{
-    color: var(--darkModeGray) !important;
-  }
+.css-1m9128y {
+  display: none;
 }

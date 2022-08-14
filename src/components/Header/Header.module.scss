@@ -1,6 +1,10 @@
 @import "../../assets/css/constants.css";
 
-#Header{
+.dark{
+    background-color: var(--black) !important;
+    color: var(--gray) !important;
+}
+.Header{
     background-color: var(--gray);
     padding: 15px var(--paddingTotal);
     .navbar {
@@ -11,30 +15,30 @@
             display: flex;
             flex-direction: row;
         }
-        .nav-item {
+        .navItem {
             padding: 0 !important;
             margin-right: 1rem;
-            .nav-link{
+            .navLink{
                 color: var(--darkGray) ;
                 font-size: 14px;
                 padding: 0 !important;
             }
-            .nav-link i{
+            .navLink i{
                 color: inherit ;
                 transform: scaleX(-1);
                 font-size: 0.7rem;
                 margin-right: 0.5rem;
             }
-            .nav-link i#heart{
+            .navLink i.heart{
                 color: var(--red) !important;
             }
-            .nav-link:hover{
+            .navLink:hover{
                 i{
                 color: var(--red) !important;
                 }
             }
         }
-        .nav-item:last-child{
+        .navItem:last-child{
             margin-right: 0 !important;
         }
         
@@ -46,14 +50,14 @@
     .leftHeader{
         display: none !important;
     }
-    #Header{
+    .Header{
         .navbar {
             justify-content: flex-end !important;
         }
     }
 }
 @media (max-width : 576px){
-    #Header{
+    .Header{
         display: none !important;
     }
 }

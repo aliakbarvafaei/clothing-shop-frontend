@@ -1,6 +1,9 @@
 @import "../../assets/css/constants.css";
 
-#sectionCat{
+.dark{
+    background-color: var(--darkModeLightBlack) !important;
+}
+.sectionCat{
     padding: 50px var(--paddingTotal) 0;
     background-color: var(--white);
     .cat{

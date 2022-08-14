@@ -1,10 +1,10 @@
-import React from 'react';
+import React ,{useState} from 'react';
+import { useTheme } from '../../contexts/theme';
+import Badge from '@mui/material/Badge';
 import classNames from "classnames";
-import { useTheme } from '../contexts/theme';
-import { useState } from "react";
-import styles from "./DropOnHover.module.scss"
+import styles from "./ShopIcon.module.scss";
 
-function DropOnHover({title, submenu, icon, dir}) {
+function ShopIcon({submenu, icon, dir}) {
     const [open, setOpen] = useState(false);
     const {theme} = useTheme();
     const themeClass = theme.mode==="DARK" ? styles.dark: "";
@@ -18,17 +18,14 @@ function DropOnHover({title, submenu, icon, dir}) {
       setOpen(false);
     }
 
-    const iconsClass = icon.includes("iconsMenu") ? styles.iconsMenu: "";
     const shiftleftClass = dir==="left" ? styles.shiftleft: "";
-    const personId = dir==="left" && title!=="" ? styles.person: "";
 
     return (
-        <li id={personId} className={classNames("nav-item",styles.person)}>
-            <div className={classNames("nav-link", styles.navLink)} onMouseEnter={handleEnter} onMouseLeave={handleOut} >
-                {icon && dir==="left" &&
-                <i className={classNames(icon, iconsClass)} aria-hidden="true"></i>}
-                {title!=="" ? title: ""}
-                {icon && dir==="right" && <i className={classNames(icon, iconsClass)} aria-hidden="true"></i>}
+        <li className="nav-item">
+            <div className={classNames("nav-link", styles.navLink)} onMouseEnter={handleEnter} onMouseLeave={handleOut}>
+                <Badge badgeContent={0} showZero color="secondary">
+                    <i className={classNames(icon, styles.iconsMenu)} aria-hidden="true"></i>
+                </Badge>
             </div>
             {submenu && <div className={classNames({ show : open }, shiftleftClass, themeClass, "dropdown-menu", styles.dropdownMenu)} onMouseEnter={handleEnter} onMouseLeave={handleOut}>
                 {
@@ -41,4 +38,4 @@ function DropOnHover({title, submenu, icon, dir}) {
     );
 }
 
-export default DropOnHover;
+export default ShopIcon;

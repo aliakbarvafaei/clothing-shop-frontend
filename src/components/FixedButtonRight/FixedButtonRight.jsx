@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTheme } from '../../contexts/theme';
-import "./FixedButtonRight.scss";
+import classNames from "classnames";
+import styles from "./FixedButtonRight.module.scss";
 
 function FixedButtonRight(props) {
     const {theme,toggleThemeMode} = useTheme();
@@ -8,13 +9,13 @@ function FixedButtonRight(props) {
     function handleClick(){
         toggleThemeMode();
     }
-
+    const themeClass = theme.mode==="DARK" ? styles.dark: "";
     return (
         <>
-            <div id='setting' className={theme.mode==="DARK"? "dark" : "" }>
+            <div className={classNames(styles.setting, themeClass)} >
             <i class="fa fa-cog fa-spin" aria-hidden="true"></i>
             </div>
-            <div id='themeMode' className={theme.mode==="DARK"? "dark" : "" } onClick={handleClick}>
+            <div className={classNames(styles.themeMode, themeClass)} onClick={handleClick}>
                 {theme.mode==="LIGHT"? "Dark":"Light"}
             </div>
         </>

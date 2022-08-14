@@ -1,21 +1,21 @@
 @import "../../../assets/css/constants.css";
 
-.darkNavbar{
-  .nav-menu{
+.dark{
+  .navMenu{
     background-color: var(--black) !important;
   }
-  .navbar-toggle {
+  .navbarToggle {
     background-color: var(--black) !important;
   }
-  .nav-text {
+  .navText {
     color: var(--white) !important;
   }
-  .menu-bars{
+  .menuBars{
     color: var(--white) !important;
   }
 }
 
-#Hamburger{
+.Hamburger{
   .navbar {
     height: 80px;
     display: flex;
@@ -23,7 +23,7 @@
     align-items: center;
   }
   
-  .menu-bars {
+  .menuBars {
     color: var(--black);
     margin-left: 2rem;
     font-size: 2rem;
@@ -38,7 +38,7 @@
     }
   }
   
-  .nav-menu {
+  .navMenu {
     background-color: var(--white);
     width: 250px;
     height: 200vh;
@@ -53,12 +53,12 @@
     cursor: text;
   }
   
-  .nav-menu.active {
+  .navMenu.active {
     right: 0;
     transition: 350ms;
   }
   
-  .nav-text {
+  .navText {
     color: var(--black);
     font-size: 16px;
     font-weight: bold;
@@ -71,7 +71,7 @@
     width: 100%;
     cursor: text;
   }
-  .nav-text .title{
+  .navText .title{
     width: 100%;
     display: flex !important;
     flex-direction: row !important;
@@ -80,16 +80,16 @@
     gap: 50px;
   }
   
-  .nav-text:hover {
+  .navText:hover {
     color: var(--red) !important;
   }
   
-  .nav-menu-items {
+  .navMenuItems {
     width: 100%;
     padding: 0;
   }
   
-  .navbar-toggle {
+  .navbarToggle {
     background-color: var(--white);
     width: 100%;
     padding-right: 8%;
@@ -106,7 +106,7 @@
   flex-direction: column;
   align-items: flex-start;
   padding: 0 !important;
-  .nav-text {
+  .navText {
     color: var(--black);
     font-size: 14px !important;
     font-weight: normal !important;
