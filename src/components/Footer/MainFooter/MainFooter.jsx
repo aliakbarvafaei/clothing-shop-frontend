@@ -29,20 +29,20 @@ function MainFooter(props) {
             <div className='col-lg-2 col-md-6 col-sm-12'>
                 <h4>MY ACOOUNT</h4>
                 <ul>
-                    <li>Women</li>
-                    <li>Clothing</li>
-                    <li>Accessories</li>
-                    <li>Featured</li>
+                    <li className={styles.hoverItem}>Women</li><div></div>
+                    <li className={styles.hoverItem}>Clothing</li><div></div>
+                    <li className={styles.hoverItem}>Accessories</li><div></div>
+                    <li className={styles.hoverItem}>Featured</li><div></div>
                 </ul>
             </div>
             <div className='col-lg-2 col-md-6 col-sm-12'>
                 <h4>WHY WE CHOOSE</h4>
                 <ul>
-                    <li>Shipping & Return</li>
-                    <li>Secure Shopping</li>
-                    <li>Gallary</li>
-                    <li>Affiliates</li>
-                    <li>Contacts</li>
+                    <li className={styles.hoverItem}>Shipping & Return</li><div></div>
+                    <li className={styles.hoverItem}>Secure Shopping</li><div></div>
+                    <li className={styles.hoverItem}>Gallary</li><div></div>
+                    <li className={styles.hoverItem}>Affiliates</li><div></div>
+                    <li className={styles.hoverItem}>Contacts</li><div></div>
                 </ul>
             </div>
             <div className='col-lg-3 col-md-6 col-sm-12'>
