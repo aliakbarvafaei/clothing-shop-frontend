@@ -13,7 +13,7 @@ function FixedButtonRight(props) {
     return (
         <>
             <div className={classNames(styles.setting, themeClass)} >
-            <i class="fa fa-cog fa-spin" aria-hidden="true"></i>
+            <i className="fa fa-cog fa-spin" aria-hidden="true"></i>
             </div>
             <div className={classNames(styles.themeMode, themeClass)} onClick={handleClick}>
                 {theme.mode==="LIGHT"? "Dark":"Light"}

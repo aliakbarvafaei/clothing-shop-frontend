@@ -5,18 +5,19 @@ import DropOnHover from "../DropOnHover";
 import classNames from "classnames";
 import useSticky from "./useSticky";
 import Hamburger from "./Hamburger/Hamburger";
+import { Link } from "react-router-dom"
 import "bootstrap/dist/css/bootstrap.min.css"
 import styles from "./MainMenu.module.scss"
 import ShopIcon from './ShopIcon';
 
-const titleMenus=[{title: "HOME", submenu:["New Demos","Clothing","Basics","Beauty","Eelectronic","Furniture","Vegetables","Watch","Lights","Goggles","Shoes","Bagg","Flowers"]},
-{title: "SHOP", submenu:["Left Sidebar","Right Sisebar","No Sidebar","Sidebar Popup","Metro","Full Width","3 Grid","6 Six","List View"]},
-{title: "PRODUCTS", submenu:["Sidebar","Thumbnail Image","3-Column","4 Image","Bundle Product","Sticky","Accordian","Image Swatch","Vertical Tab"]},
-{title: "FEATURES", submenu:["Portfolio","Add To Cart","Theme Element","Product Element","Email Template"]},
-{title: "PAGES", submenu:["Vendor","Account","About-Us","Search","Typograohy","Review","Order-Success","Compare","Collection","Lookbook","Site-Map","404","Comming-Soon","FAQ"]},
-{title: "BLOGES", submenu:["Blog Left Sidebar","Blog Right Sidebar","No Sidebar","Blog Detail"]},
+const titleMenus=[{title: "HOME", submenu:[{title:"New Demos", pathTo:"/"},{title:"Clothing", pathTo:"/"},{title:"Basics", pathTo:"/"},{title:"Beauty", pathTo:"/"},{title:"Eelectronic", pathTo:"/"},{title:"Furniture", pathTo:"/"},{title:"Vegetables", pathTo:"/"},{title:"Watch", pathTo:"/"},{title:"Lights", pathTo:"/"},{title:"Goggles", pathTo:"/"},{title:"Shoes", pathTo:"/"},{title:"Bagg", pathTo:"/"},{title:"Flowers", pathTo:"/"}]},
+{title: "SHOP", submenu:[{title:"Left Sidebar", pathTo:"/"},{title:"Right Sidebar", pathTo:"/"},{title:"No Sidebar", pathTo:"/"},{title:"Sidebar Popup", pathTo:"/"},{title:"Metro", pathTo:"/"},{title:"Full Width", pathTo:"/"},{title:"3 Grid", pathTo:"/"},{title:"6 Six", pathTo:"/"},{title:"List View", pathTo:"/"}]},
+{title: "PRODUCTS", submenu:[{title:"Sidebar", pathTo:"/"},{title:"Thumbnail Image", pathTo:"/"},{title:"3-Column", pathTo:"/"},{title:"4 Image", pathTo:"/"},{title:"Bundle Product", pathTo:"/"},{title:"Sticky", pathTo:"/"},{title:"Accordian", pathTo:"/"},{title:"Image Swatch", pathTo:"/"},{title:"Vertical Tab", pathTo:"/"}]},
+{title: "FEATURES", submenu:[{title:"Portfolio", pathTo:"/"},{title:"Add To Cart", pathTo:"/"},{title:"Theme Element", pathTo:"/"},{title:"Product Element", pathTo:"/"},{title:"Email Template", pathTo:"/"}]},
+{title: "PAGES", submenu:[{title:"Vendor", pathTo:"/"},{title:"Account", pathTo:"/"},{title:"About-Us", pathTo:"/"},{title:"Search", pathTo:"/"},{title:"Typograohy", pathTo:"/"},{title:"Review", pathTo:"/"},{title:"Order-Success", pathTo:"/"},{title:"Compare", pathTo:"/"},{title:"Collection", pathTo:"/"},{title:"Lookbook", pathTo:"/"},{title:"Site-Map", pathTo:"/"},{title:"404", pathTo:"/"},{title:"Comming-Soon", pathTo:"/"},{title:"FAQ", pathTo:"/"}]},
+{title: "BLOGES", submenu:[{title:"Blog Left Sidebar", pathTo:"/"},{title:"Blog Right Sidebar", pathTo:"/"},{title:"No Sidebar", pathTo:"/"},{title:"Blog Detail", pathTo:"/"}]},
 ]
-const submenuSetting=["Language", "Currency"];
+const submenuSetting=[{title: "Language", pathTo:"/"}, {title:"Currency", pathTo: "/"}];
 const submenuCart=["Your cart is currently empty."];
 
 function MainMenu(props) {
@@ -37,7 +38,7 @@ function MainMenu(props) {
     <div ref={stickyRef} className={classNames(themeClass, stickyClass, styles.mainMenu)} >
         <div className={styles.leftMenu}>
           <i className={classNames("fa fa-bars", styles.iconsMenu)} aria-hidden="true"></i>
-          <span><img className={styles.titleImage} src={logo} alt="title" /></span>
+          <span><Link to="/home"><img className={styles.titleImage} src={logo} alt="title" /></Link></span>
         </div>
         
         <div className={styles.rightMenu}>

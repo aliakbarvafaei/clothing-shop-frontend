@@ -11,8 +11,6 @@ function Hamburger({isOpen, items, handeHamburger}) {
     const themeClass = theme.mode==="DARK" ? styles.dark: "";
     const activeClass = isOpen ? styles.active: "";
 
-    console.log(isOpen);
-
     return (
         <>
           {isOpen && <IconContext.Provider value={{ color: "black", size: "30px" }}>
@@ -22,7 +20,7 @@ function Hamburger({isOpen, items, handeHamburger}) {
                         <li className={classNames("navbar-toggle", styles.navbarToggle)} onClick={()=>{handeHamburger()}}>
                         <Link to="#" className={classNames("menu-bars", styles.menuBars)}>
                             <p>BACK NAVBAR </p>
-                            <i class="fa fa-angle-right" style={{fontSize: "20px"}} aria-hidden="true"></i>
+                            <i className="fa fa-angle-right" style={{fontSize: "20px"}} aria-hidden="true"></i>
                         </Link>
                         </li>
             

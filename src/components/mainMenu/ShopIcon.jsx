@@ -30,7 +30,7 @@ function ShopIcon({submenu, icon, dir}) {
             {submenu && <div className={classNames({ show : open }, shiftleftClass, themeClass, "dropdown-menu", styles.dropdownMenu)} onMouseEnter={handleEnter} onMouseLeave={handleOut}>
                 {
                     submenu.map((item,index)=>{
-                        return <a className={classNames("dropdown-item", styles.dropdownItem)} href="/" key={index}>{item}</a>
+                        return <div className={classNames("dropdown-item", styles.dropdownItem)} key={index}>{item}</div>
                     })    
                 }
             </div>}

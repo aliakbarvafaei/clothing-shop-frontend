@@ -4,7 +4,7 @@ import { Route, useHistory } from 'react-router-dom'
 
 const ProtectedRoute = (props) => {
   //TODO
-  const { toggleAuth, user } = useAuth();
+  const { user } = useAuth();
   const history = useHistory();
   if(user.loggedIn){
     return <Route path={props.path} key={props.key} component={props.component} />

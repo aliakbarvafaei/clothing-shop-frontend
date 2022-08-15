@@ -1,20 +1,29 @@
 import React from 'react';
 import classNames from "classnames";
-import { useForm } from 'react-hook-form'
+import { useHistory } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { useTheme } from '../../contexts/theme';
 import styles from "./LoginBox.module.scss";
 
 function LoginBox(props) {
+    const history = useHistory();
+    const {theme} = useTheme();
+    const themeClass = theme.mode==="DARK" ? styles.dark: "";
+
     const {
         register,
         handleSubmit,
-        setValue,
         formState: { errors },
     } = useForm()
 
+    function handleCreate(){
+        history.push("/register");
+    }
+
     return (
-        <div className={classNames('row', styles.content)}>
+        <div className={classNames('row', styles.content, themeClass)}>
             <div className={classNames('col-lg-6')}>
-                <h3>LOGIN</h3>
+                <h3 className={styles.titleBox}>LOGIN</h3>
                 <div className={styles.box}>
                     <form onSubmit={handleSubmit()}>
                         <div>
@@ -55,15 +64,18 @@ function LoginBox(props) {
                                 <div className="invalid-feedback">{errors.password.message}</div>
                             )}
                         </div>
-                        <button type='submit' className={classNames("btn", "btn-solid", styles.subscribeButton)}>LOGIN</button>
+                        <button type='submit' className={classNames("btn", "btn-solid", styles.LoginButton)}>LOGIN</button>
                     </form>
                 </div>
                 
             </div>
             <div className={classNames('col-lg-6')}>
-                <h3>NEW CUSTOMER</h3>
+                <h3 className={styles.titleBox}>NEW CUSTOMER</h3>
                 <div className={styles.box}>
-                a
+                    <h4 className={styles.title}>CREATE AN ACCOUNT</h4>
+                    <p className={styles.content}>Sign up for a free account at our store. Registration is quick and easy.
+                     It allows you to be able to order from our shop. To start shopping click register.</p>
+                    <button type='button' onClick={handleCreate} className={classNames("btn", "btn-solid", styles.LoginButton)}>CREATE AN ACCOUNT</button>
                 </div>
             </div>
         </div>

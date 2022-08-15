@@ -27,7 +27,7 @@ function SectionCat(props) {
             <div className="row">
             {
                 items.map((item,index)=>{
-                    return <div className="col-md-6" style={{paddingBottom:"24px"}}>
+                    return ( <div key={index} className="col-md-6" style={{paddingBottom:"24px"} }>
                         <div className={styles.cat}>
                             <img className={styles.catImage} src={item.img} alt="Men" />
                             <div className={styles.catContain}>
@@ -36,6 +36,7 @@ function SectionCat(props) {
                             </div>
                         </div>
                     </div>
+                    );
                 })
             }
             </div>

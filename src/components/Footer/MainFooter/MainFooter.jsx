@@ -48,10 +48,10 @@ function MainFooter(props) {
             <div className='col-lg-3 col-md-6 col-sm-12'>
                 <h4>STORE INFORMATION</h4>
                 <ul className={styles.information}>
-                    <li><i class="fa fa-map-marker" aria-hidden="true"></i> Multikart Demo Store, Demo Store India 345-659</li>
-                    <li><i class="fa fa-phone" aria-hidden="true"></i> Call Us: 123-456-7898</li>
-                    <li><i class="fa fa-envelope" aria-hidden="true"></i> Email Us: Support@Fiot.Com</li>
-                    <li><i class="fa fa-fax" aria-hidden="true"></i> Fax: 123456</li>
+                    <li><i className="fa fa-map-marker" aria-hidden="true"></i> Multikart Demo Store, Demo Store India 345-659</li>
+                    <li><i className="fa fa-phone" aria-hidden="true"></i> Call Us: 123-456-7898</li>
+                    <li><i className="fa fa-envelope" aria-hidden="true"></i> Email Us: Support@Fiot.Com</li>
+                    <li><i className="fa fa-fax" aria-hidden="true"></i> Fax: 123456</li>
                 </ul>
             </div>
 

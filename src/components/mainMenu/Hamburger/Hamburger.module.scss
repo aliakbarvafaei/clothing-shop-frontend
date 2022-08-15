@@ -70,6 +70,10 @@
     list-style: none;
     width: 100%;
     cursor: text;
+    a{
+      text-decoration: none !important;
+      color: inherit !important;
+    }
   }
   .navText .title{
     width: 100%;
