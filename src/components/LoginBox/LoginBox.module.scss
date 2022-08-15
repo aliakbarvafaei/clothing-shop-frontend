@@ -1,0 +1,44 @@
+.content{
+    padding: 40px var(--paddingTotal);
+    background-color: var(--white);
+    h3{
+        font-size: 24px;
+        font-weight: bolder;
+        margin-bottom: 20px;
+    }
+    .box{
+        min-height: 336px !important;
+        border: 1px var(--darkModeGray) solid;
+        form{
+            padding: 30px;
+            text-align: left !important;
+            div{
+                margin-bottom: 30px;
+                label{
+                    font-size: 14px;
+                    font-weight: bolder;
+                    margin-bottom: 8px;
+                }
+                input{
+                    border-radius: 0 !important;
+                    padding: 17px 25px !important;
+                    font-size: 12px;
+                }
+            }
+            .subscribeButton{
+                padding: 6px 12px;
+                height: 50px;
+                width: 150px;
+                border-radius: 0 !important;
+                background-color: var(--red) !important;
+                color: var(--white) !important;
+                font-weight: bold;
+            }
+            .subscribeButton:hover{
+                background-color: var(--white) !important;
+                color: var(--black) !important;
+                border: 2px var(--red) solid;
+            }
+        }
+    }
+}

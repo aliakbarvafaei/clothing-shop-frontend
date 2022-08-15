@@ -4,6 +4,7 @@ import DefaultLayout from '../layouts/Default'
 import Home from '../pages/Home'
 // import EditProduct from '../pages/edit-product'
 import LoginPage from '../pages/Login'
+import RegisterPage from '../pages/Register'
 // import ProductsList from '../pages/products-list'
 
 const indexRoutes = [{ path: '/', component: DefaultLayout }]
@@ -11,7 +12,7 @@ const indexRoutes = [{ path: '/', component: DefaultLayout }]
 const AppRoutes = [
   
     {
-    path: '/dashboard',
+    path: '/home',
     name: 'داشبورد',
     icon: 'fa fa-tachometer-alt',
     component: Home,
@@ -48,6 +49,13 @@ const AppRoutes = [
     component: LoginPage,
     showInNav: false,
   },
+  {
+    path: '/register',
+    name: 'ثبت نام',
+    icon: 'fa fa-plus',
+    component: RegisterPage,
+    showInNav: false,
+  },
   // {
   //   path: '/contact-us',
   //   name: 'ارتباط با ما',
@@ -62,7 +70,7 @@ const AppRoutes = [
   //   showInNav: true,
   //   private: false,
   // },
-  { path: '/', pathTo: '/dashboard', name: 'Dashboard', redirect: true },
+  { path: '/', pathTo: '/home', name: 'Dashboard', redirect: true },
 ]
 
 export default AppRoutes

@@ -27,7 +27,7 @@ const DefaultLayout = (props) => {
           <Switch >
             {AppRoutes.map((prop, key) => {
               if(prop.redirect===true)
-                return <Redirect to={'/dashboard'} />
+                return <Redirect to={prop.pathTo} />
               if(prop.private)
                 return <ProtectedRoute path={prop.path} key={key} component={prop.component} />
               else{

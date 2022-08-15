@@ -1,0 +1,45 @@
+
+.dark{
+    background-color: var(--black) !important;
+    .text{
+        color: var(--gray) !important;
+    }
+    .path{
+        color: var(--gray) !important;
+    }
+}
+
+
+.TitlePages{
+    padding: 40px var(--paddingTotal) ;
+    background-color: var(--gray);
+    .text{
+        color: var(--black);
+        h2{
+            font-size: 16px;
+            margin: 0 !important;
+            font-weight: bolder;
+        }
+    }
+    .path{
+        font-size: 14px;
+        color: var(--darkModeLightBlack);
+        font-weight: bolder;
+        text-align: right;
+        a{
+            text-decoration: none;
+            color: inherit;
+        }
+    }
+}
+
+
+@media (max-width : 767px){
+    .text{
+        text-align: center !important;
+    }
+    .icons{
+        text-align: center !important;
+        padding-top: 15px !important;
+    }
+}

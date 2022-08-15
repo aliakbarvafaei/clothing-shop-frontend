@@ -1,6 +1,6 @@
 import { useAuth } from '../contexts/Auth'
 import React from 'react'
-import { Redirect, Route, useHistory } from 'react-router-dom'
+import { Route, useHistory } from 'react-router-dom'
 
 const ProtectedRoute = (props) => {
   //TODO
