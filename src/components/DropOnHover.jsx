@@ -34,7 +34,7 @@ function DropOnHover({title, submenu, icon, dir}) {
             {submenu && <div className={classNames({ show : open }, shiftleftClass, themeClass, "dropdown-menu", styles.dropdownMenu)} onMouseEnter={handleEnter} onMouseLeave={handleOut}>
                 {
                     submenu.map((item,index)=>{
-                        return <Link className={classNames("dropdown-item", styles.dropdownItem)} to={item.pathTo} key={index}>{item.title}</Link>
+                        return <Link className={classNames("dropdown-item", styles.dropdownItem, styles.hoverItem)} to={item.pathTo} key={index}>{item.title}</Link>
                     })    
                 }
             </div>}

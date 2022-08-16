@@ -34,6 +34,29 @@
 .dropdownItem:hover{
     background-color: transparent !important;
 }
+.hoverItem{
+    display: block;
+    position: relative;
+}
+        
+.hoverItem:after {
+    content: '';
+    position: absolute;
+    width: 60%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 35px;
+    right: 35px !important;
+    background-color: var(--red);
+    transform-origin: bottom right;
+    transition: transform 0.40s ease-out;
+}
+
+.hoverItem:hover:after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
 .iconsMenu{
     font-size: 25px;
     padding-left: 0 !important;
