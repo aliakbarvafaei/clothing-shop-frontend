@@ -6,7 +6,7 @@ import classNames from "classnames";
 import useSticky from "./useSticky";
 import Hamburger from "./Hamburger/Hamburger";
 import { Link } from "react-router-dom"
-import "bootstrap/dist/css/bootstrap.min.css"
+// import "bootstrap/dist/css/bootstrap.min.css"
 import styles from "./MainMenu.module.scss"
 import ShopIcon from './ShopIcon';
 

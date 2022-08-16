@@ -36,7 +36,7 @@ function Item(props)
 {
 
     return (
-        <Paper className={styles.paper} style={{backgroundImage: `url(${props.item.class})`}}>
+        <Paper className={`h-[75vh] bg-[#ffffff] px-[5%] py-0 bg-[url(${props.item.class}] bg-cover bg-no-repeat`}>
             <div className={styles.textPaper}>
                 <p>{props.item.title}</p>
                 <h1>{props.item.name}</h1>

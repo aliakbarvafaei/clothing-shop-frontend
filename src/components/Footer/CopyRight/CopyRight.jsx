@@ -1,13 +1,11 @@
 import React from 'react';
-import classNames from "classnames";
 import sponser from "../../../assets/images/sponser.png";
-import styles from "./CopyRight.module.scss";
 
 function CopyRight(props) {
     return (
-        <div className='row'>
-            <div className={classNames('col-md-6',styles.text)} ><i className="fa fa-copyright" aria-hidden="true"></i><span>2020-21 themeforest powered by pixelstrap</span></div>
-            <div className={classNames('col-md-6',styles.icons)} > <img src={sponser} alt="sponser" /> </div>
+        <div className='flex mdmin:flex-row md:flex-col justify-between items-center'>
+            <div className="text-[#999999]" ><i className="fa fa-copyright" aria-hidden="true"></i><span className='text-[13px] pl-[15px]'>2020-21 themeforest powered by pixelstrap</span></div>
+            <div className='md:pt-[10px]' > <img src={sponser} alt="sponser" /> </div>
         </div>
     );
 }

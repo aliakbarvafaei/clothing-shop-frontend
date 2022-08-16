@@ -18,7 +18,7 @@ function MainFooter(props) {
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
                  </p>
-                 <div className={styles.icons}>
+                 <div className="flex flex-row justify-between items-center pr-[20%] pb-[20px]">
                     <span><FaFacebookF fontSize={"20px"} /></span>
                     <span><FaGooglePlusG fontSize={"20px"} /></span>
                     <span><FaTwitter fontSize={"20px"} /></span>

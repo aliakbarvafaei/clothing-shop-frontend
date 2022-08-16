@@ -7,6 +7,7 @@ import AppRoutes from '../routes'
 import ProtectedRoute from '../components/ProtectedRoute'
 import Footer from '../components/Footer/Footer'
 import FixedButtonRight from '../components/FixedButtonRight/FixedButtonRight'
+import MobileMenu from '../components/MobileMenu/MobileMenu'
 
 const DefaultLayout = (props) => {
   return (
@@ -21,6 +22,7 @@ const DefaultLayout = (props) => {
       <FixedButtonRight />
       <Header />
       <MainMenu />
+      <MobileMenu />
       {/* <Sidebar {...props} routes={AppRoutes} /> */}
       <div className="page-wrapper d-block">
         <div className="page-content container-fluid">

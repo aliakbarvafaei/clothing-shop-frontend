@@ -1,42 +1,39 @@
 import React from 'react';
 import { useTheme } from '../../contexts/theme';
-import classNames from "classnames";
 import DropOnHover from '../DropOnHover';
 import { Link } from 'react-router-dom'
-import "bootstrap/dist/css/bootstrap.min.css";
-import styles from "./Header.module.scss";
 
 const myAccountDrop={title: "My Account", submenu:[{title: "Login", pathTo: "/login"},{title: "Register", pathTo: "/register"}]}
 
 function Header(props) {
     const {theme} = useTheme();
-    const themeClass = theme.mode==="DARK" ? styles.dark: "";
+    const themeClass = theme.mode==="DARK" ? "bg-[#222222] text-[#f9f9f9]": "";
 
     const information={
       welcome: "Welcome to Our store Multikart",
       call: "Call Us: 123 - 456 - 7890",
     }
 
-    return (
-    <div className={classNames(styles.Header, themeClass)}>
-        <nav className={classNames(styles.navbar,"navbar-expand-lg","navbar-dark","navbar")}>
-            <ul className={classNames(styles.navbarNav,"mr-auto",styles.leftHeader,"navbar-nav")}>
-              <li className={classNames(styles.navItem,"nav-item")}>
-                <Link className={classNames(styles.navLink,"nav-link")} to="/">{information.welcome}</Link>
+    return (<>
+    <div className={`py-[15px] px-[5%] bg-[#f9f9f9] sm:hidden ${themeClass}`}>
+        <nav className="flex flex-row lg:justify-end lgmin:justify-between p-0">
+            <ul className="flex flex-row gap-[1rem] items-center p-0 m-0 lg:hidden">
+              <li>
+                <Link className="text-[14px] text-[#999999] no-underline hover:text-[#999999]" to="/">{information.welcome}</Link>
               </li>
-              <li className={classNames(styles.navItem,"nav-item")}>
-                <Link className={classNames(styles.navLink,"nav-link")} to="/"><i className={classNames(styles.heart,"fa fa-phone")} aria-hidden="true"></i>{information.call}</Link>
+              <li>
+                <Link className="text-[14px] text-[#999999] no-underline hover:text-[#999999]" to="/"><i className="pr-[10px] text-[#ff4c3b] fa fa-phone" aria-hidden="true"></i>{information.call}</Link>
               </li>
             </ul>
-            <ul className={classNames(styles.navbarNav,"mr-auto",styles.rightHeader,"navbar-nav")}>
-              <li className={classNames(styles.navItem,"nav-item")}>
-                <Link className={classNames(styles.navLink,"nav-link")} to="/wishlist"><i className="fa fa-heart" aria-hidden="true"></i>Wishlist</Link>
+            <ul className="flex flex-row gap-[1rem] items-center p-0 m-0 ">
+              <li>
+                <Link className="group text-[14px] text-[#999999] no-underline hover:text-[#999999]" to="/wishlist"><i className="fa fa-heart group-hover:text-[#ff4c3b] pr-[10px]" aria-hidden="true"></i>Wishlist</Link>
               </li>
               <DropOnHover title={myAccountDrop.title} submenu={myAccountDrop.submenu} icon="fa fa-user" dir="left" key={"My Account"}/>
             </ul>
         </nav>
     </div>
-    );
+    </>);
 }
 
 export default Header;
