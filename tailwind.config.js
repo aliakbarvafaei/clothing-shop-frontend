@@ -2,6 +2,11 @@
 module.exports = {
   content: ['./src/**/*.{html,jsx}'],
   theme: {
+    extend: {
+      padding: {
+        'total': '5%',
+      }
+    },
     screens: {
       xl: {max: '1279px'},
       xlmin: {min: '1279px'},
@@ -14,11 +19,19 @@ module.exports = {
 
       sm: {max: '576px'},
       smmin: {min: '576px'},
-      // sm: '640px',
-      // md: '768px',
-      // lg: '1024px',
-      // xl: '1280px',
+
       '2xl': '1536px',
+    },
+    colors: {
+      'gray': '#f9f9f9',
+      'darkGray': '#999999',
+      'white': '#ffffff',
+      'red': '#ff4c3b',
+      'black': '#222222',
+      'darkModeBlack': '#232323',
+      'darkModeLightBlack': '#2b2b2b',
+      'lightestBlak': '#3a3a3a',
+      'darkModeGray': '#cfd4da',
     },
   },
     

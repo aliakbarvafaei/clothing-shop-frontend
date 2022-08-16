@@ -7,7 +7,7 @@ const myAccountDrop={title: "My Account", submenu:[{title: "Login", pathTo: "/lo
 
 function Header(props) {
     const {theme} = useTheme();
-    const themeClass = theme.mode==="DARK" ? "bg-[#222222] text-[#f9f9f9]": "";
+    const themeClass = theme.mode==="DARK" ? "bg-black text-gray": "bg-gray";
 
     const information={
       welcome: "Welcome to Our store Multikart",
@@ -15,19 +15,19 @@ function Header(props) {
     }
 
     return (<>
-    <div className={`py-[15px] px-[5%] bg-[#f9f9f9] sm:hidden ${themeClass}`}>
+    <div className={`py-[15px] px-[5%] sm:hidden ${themeClass}`}>
         <nav className="flex flex-row lg:justify-end lgmin:justify-between p-0">
             <ul className="flex flex-row gap-[1rem] items-center p-0 m-0 lg:hidden">
               <li>
-                <Link className="text-[14px] text-[#999999] no-underline hover:text-[#999999]" to="/">{information.welcome}</Link>
+                <Link className="text-[14px] text-darkGray no-underline hover:text-darkGray" to="/">{information.welcome}</Link>
               </li>
               <li>
-                <Link className="text-[14px] text-[#999999] no-underline hover:text-[#999999]" to="/"><i className="pr-[10px] text-[#ff4c3b] fa fa-phone" aria-hidden="true"></i>{information.call}</Link>
+                <Link className="text-[14px] text-darkGray no-underline hover:text-darkGray" to="/"><i className="pr-[10px] text-red fa fa-phone" aria-hidden="true"></i>{information.call}</Link>
               </li>
             </ul>
             <ul className="flex flex-row gap-[1rem] items-center p-0 m-0 ">
               <li>
-                <Link className="group text-[14px] text-[#999999] no-underline hover:text-[#999999]" to="/wishlist"><i className="fa fa-heart group-hover:text-[#ff4c3b] pr-[10px]" aria-hidden="true"></i>Wishlist</Link>
+                <Link className="group text-[14px] text-darkGray no-underline hover:text-darkGray" to="/wishlist"><i className="fa fa-heart group-hover:text-red pr-[10px]" aria-hidden="true"></i>Wishlist</Link>
               </li>
               <DropOnHover title={myAccountDrop.title} submenu={myAccountDrop.submenu} icon="fa fa-user" dir="left" key={"My Account"}/>
             </ul>

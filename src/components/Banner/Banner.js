@@ -34,9 +34,8 @@ export default function Banner(props)
 
 function Item(props)
 {
-
     return (
-        <Paper className={`h-[75vh] bg-[#ffffff] px-[5%] py-0 bg-[url(${props.item.class}] bg-cover bg-no-repeat`}>
+        <Paper className={styles.paper} style={{backgroundImage: `url(${props.item.class})`}}>
             <div className={styles.textPaper}>
                 <p>{props.item.title}</p>
                 <h1>{props.item.name}</h1>

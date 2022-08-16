@@ -1,14 +1,14 @@
 import './assets/scss/style.scss'
-import "./index.css"
-// import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
 // import 'bootstrap/dist/css/bootstrap.rtl.min.css' 
+import "./index.css"
 import { AuthProvider } from './contexts/Auth'
 import { ThemeProvider } from './contexts/theme'
 import React from 'react'
 import { BrowserRouter, Switch, Route  } from 'react-router-dom'
 import { indexRoutes } from './routes'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
-
+ 
 const App = () => (
   <BrowserRouter>
     <ThemeProvider>
