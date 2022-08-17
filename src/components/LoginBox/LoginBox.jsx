@@ -1,14 +1,13 @@
 import React from 'react';
-import classNames from "classnames";
 import { useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useTheme } from '../../contexts/theme';
-import styles from "./LoginBox.module.scss";
 
 function LoginBox(props) {
     const history = useHistory();
     const {theme} = useTheme();
-    const themeClass = theme.mode==="DARK" ? styles.dark: "";
+    const themeClass = theme.mode==="DARK" ? "bg-darkModeLightBlack text-gray": "bg-white";
+    const themeBorder = theme.mode==="DARK" ? "border-lightestBlak": "border-darkModeGray";
 
     const {
         register,
@@ -20,19 +19,20 @@ function LoginBox(props) {
         history.push("/register");
     }
 
+           
     return (
-        <div className={classNames('row', styles.content, themeClass)}>
-            <div className={classNames('col-lg-6')}>
-                <h3 className={styles.titleBox}>LOGIN</h3>
-                <div className={styles.box}>
-                    <form onSubmit={handleSubmit()}>
-                        <div>
-                            <label htmlFor="email-input" className="form-label">
+        <div className={`${themeClass} py-[40px] px-total flex flex-row flex-wrap justify-between`}>
+            <div className='lg:w-[100%] lgmin:w-[48%] pt-[10px]'>
+                <h3 className="text-[24px] font-black mb-[20px]">LOGIN</h3>
+                <div className={`${themeBorder} min-h-[336px] p-[30px] border-[1px] border-solid`}>
+                    <form className='text-left' onSubmit={handleSubmit()}>
+                        <div className='mb-[30px]'>
+                            <label htmlFor="email-input" className="block text-[14px] font-black mb-[8px]">
                                 Email
                             </label>
                             <input
                                 type="text"
-                                className={`form-control${errors.email ? ' is-invalid' : ''}`}
+                                className={`${themeClass} w-[100%] rounded-none border-solid border-[1px] outline-darkGray py-[17px] px-[25px] text-[12px] ${errors.email ? 'border-red outline-red' : `${themeBorder}`}`}
                                 data-testid="email-input"
                                 placeholder="Email"
                                 {...register('email', {
@@ -40,16 +40,16 @@ function LoginBox(props) {
                                 })}
                             />
                             {errors.email && (
-                                <div className="invalid-feedback">{errors.email.message}</div>
+                                <div className="text-red pt-[5px]"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i><span className='pl-[5px]'>{errors.email.message}</span></div>
                             )}
                         </div>
-                        <div>
-                            <label htmlFor="password-input" className="form-label">
+                        <div className='mb-[30px]'>
+                            <label htmlFor="password-input" className="block text-[14px] font-black mb-[8px]">
                                 Password
                             </label>
                             <input
                                 type="text"
-                                className={`form-control${errors.password ? ' is-invalid' : ''}`}
+                                className={`${themeClass} w-[100%] rounded-none border-solid border-[1px] outline-darkGray py-[17px] px-[25px] text-[12px] ${errors.password ? 'border-red outline-red' : `${themeBorder}`}`}
                                 data-testid="password-input"
                                 placeholder="Password"
                                 {...register('password', {
@@ -61,25 +61,24 @@ function LoginBox(props) {
                                 })}
                             />
                             {errors.password && (
-                                <div className="invalid-feedback">{errors.password.message}</div>
+                                <div className="text-red pt-[5px]"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i><span className='pl-[5px]'>{errors.password.message}</span></div>
                             )}
                         </div>
-                        <button type='submit' className={classNames("btn", "btn-solid", styles.LoginButton)}>LOGIN</button>
+                        <button type='submit' className="h-[50px] min-w-[150px] rounded-none bg-red text-white font-bold text-[14px] hover:bg-white hover:border-red hover:border-[2px] hover:border-solid hover:text-black">LOGIN</button>
                     </form>
                 </div>
                 
             </div>
-            <div className={classNames('col-lg-6')}>
-                <h3 className={styles.titleBox}>NEW CUSTOMER</h3>
-                <div className={styles.box}>
-                    <h4 className={styles.title}>CREATE AN ACCOUNT</h4>
-                    <p className={styles.content}>Sign up for a free account at our store. Registration is quick and easy.
+            <div className='lg:w-[100%] lgmin:w-[48%] pt-[10px]'>
+                <h3 className="text-[24px] font-black mb-[20px]">NEW CUSTOMER</h3>
+                <div className={`${themeBorder} lgmin:min-h-[336px] p-[30px] border-[1px] border-solid`}>
+                    <h4 className="text-[14px] font-black mb-[22px]">CREATE AN ACCOUNT</h4>
+                    <p className="bg-inherit p-0 text-[14px] text-darkGray leading-[26px] mb-[30px]">Sign up for a free account at our store. Registration is quick and easy.
                      It allows you to be able to order from our shop. To start shopping click register.</p>
-                    <button type='button' onClick={handleCreate} className={classNames("btn", "btn-solid", styles.LoginButton)}>CREATE AN ACCOUNT</button>
+                    <button type='button' onClick={handleCreate} className="h-[50px] min-w-fit p-[10px] rounded-none bg-red text-white font-bold text-[14px] hover:bg-white hover:border-red hover:border-[2px] hover:border-solid hover:text-black">CREATE AN ACCOUNT</button>
                 </div>
             </div>
         </div>
     );
 }
-
 export default LoginBox;

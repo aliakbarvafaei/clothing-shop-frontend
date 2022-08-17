@@ -1,7 +1,7 @@
 import React from 'react';
 import Badge from '@mui/material/Badge';
-import ShopIcon from "../mainMenu/ShopIcon"
-const submenuCart=["Your cart is currently empty."];
+
+// const submenuCart=["Your cart is currently empty."];
 
 function MobileMenu(props) {
 

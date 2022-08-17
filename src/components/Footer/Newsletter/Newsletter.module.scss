@@ -24,7 +24,7 @@
     border-right: 1px var(--darkModeGray) solid;
 }
 
-form{
+.x{
     text-align: right;
     input{
         height: 52px;
@@ -52,7 +52,7 @@ form{
 
 
 @media (max-width : 991px){
-    form{
+    .x{
         text-align: center !important;
         padding-top: 10px;
     }
@@ -73,7 +73,7 @@ form{
     }
 }
 @media (max-width : 430px){
-    form{
+    .x{
         input{
             width: 280px !important;
         }

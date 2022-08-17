@@ -19,7 +19,7 @@ function Newsletter(props) {
                 </h4>
             </div>
             <div className='col-lg-6'>
-                <form>
+                <form className={styles.x}>
                     <input type="text" placeholder="Enter your email" />
                     <button className={classNames("btn", "btn-solid", styles.subscribeButton)}>SUBSCRIBE</button>
                 </form>

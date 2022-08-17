@@ -20,6 +20,9 @@ module.exports = {
       sm: {max: '576px'},
       smmin: {min: '576px'},
 
+      mm: {max: '420px'},
+      mmmin: {min: '420px'},
+
       '2xl': '1536px',
     },
     colors: {
@@ -32,6 +35,7 @@ module.exports = {
       'darkModeLightBlack': '#2b2b2b',
       'lightestBlak': '#3a3a3a',
       'darkModeGray': '#cfd4da',
+      'lightestBlak': '#3a3a3a',
     },
   },
     

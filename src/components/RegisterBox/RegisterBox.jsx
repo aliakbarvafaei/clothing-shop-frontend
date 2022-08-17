@@ -1,12 +1,11 @@
 import React from 'react';
-import classNames from "classnames";
 import { useForm } from 'react-hook-form';
 import { useTheme } from '../../contexts/theme';
-import styles from "./RegisterBox.module.scss";
 
 function RegisterBox(props) {
     const {theme} = useTheme();
-    const themeClass = theme.mode==="DARK" ? styles.dark: "";
+    const themeClass = theme.mode==="DARK" ? "bg-darkModeLightBlack text-gray": "bg-white";
+    const themeBorder = theme.mode==="DARK" ? "border-lightestBlak": "border-darkModeGray";
 
     const {
         register,
@@ -15,18 +14,18 @@ function RegisterBox(props) {
     } = useForm()
 
     return (
-        <div className={classNames(styles.content, themeClass)}>
-            <h3 className={styles.titleBox}>CREATE ACCOUNT</h3>
-            <div className={styles.box}>
-                <form onSubmit={handleSubmit()}>
-                    <div className='row'>
-                        <div className='col-md-6'>
-                            <label htmlFor="fname-input" className="form-label">
+        <div className={`${themeClass} py-[40px] px-total`}>
+            <div className='w-[100%] pt-[10px]'>
+                <h3 className="text-[24px] font-black mb-[20px]">CREATE ACCOUNT</h3>
+                <div className={`${themeBorder} min-h-[336px] p-[30px] border-[1px] border-solid`}>
+                    <form className='text-left flex flex-row flex-wrap justify-between' onSubmit={handleSubmit()}>
+                        <div className='mb-[30px] md:w-[100%] mdmin:w-[48%]'>
+                            <label htmlFor="fname-input" className="block text-[14px] font-black mb-[8px]">
                                 First Name
                             </label>
                             <input
                                 type="text"
-                                className={`form-control${errors.fname ? ' is-invalid' : ''}`}
+                                className={`${themeClass} w-[100%] rounded-none border-solid border-[1px] outline-darkGray py-[17px] px-[25px] text-[12px] ${errors.fname ? 'border-red outline-red' : `${themeBorder}`}`}
                                 data-testid="fname-input"
                                 placeholder="First Name"
                                 {...register('fname', {
@@ -34,16 +33,16 @@ function RegisterBox(props) {
                                 })}
                             />
                             {errors.fname && (
-                                <div className="invalid-feedback">{errors.fname.message}</div>
+                                <div className="text-red pt-[5px]"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i><span className='pl-[5px]'>{errors.fname.message}</span></div>
                             )}
                         </div>
-                        <div className='col-md-6'>
-                            <label htmlFor="lname-input" className="form-label">
+                        <div className='mb-[30px] md:w-[100%] mdmin:w-[48%]'>
+                            <label htmlFor="lname-input" className="block text-[14px] font-black mb-[8px]">
                                 Last Name
                             </label>
                             <input
                                 type="text"
-                                className={`form-control${errors.lname ? ' is-invalid' : ''}`}
+                                className={`${themeClass} w-[100%] rounded-none border-solid border-[1px] outline-darkGray py-[17px] px-[25px] text-[12px] ${errors.lname ? 'border-red outline-red' : `${themeBorder}`}`}
                                 data-testid="lname-input"
                                 placeholder="Last Name"
                                 {...register('lname', {
@@ -51,16 +50,16 @@ function RegisterBox(props) {
                                 })}
                             />
                             {errors.lname && (
-                                <div className="invalid-feedback">{errors.lname.message}</div>
+                                <div className="text-red pt-[5px]"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i><span className='pl-[5px]'>{errors.lname.message}</span></div>
                             )}
                         </div>
-                        <div className='col-md-6'>
-                            <label htmlFor="email-input" className="form-label">
+                        <div className='mb-[30px] md:w-[100%] mdmin:w-[48%]'>
+                            <label htmlFor="email-input" className="block text-[14px] font-black mb-[8px]">
                                 Email
                             </label>
                             <input
                                 type="text"
-                                className={`form-control${errors.email ? ' is-invalid' : ''}`}
+                                className={`${themeClass} w-[100%] rounded-none border-solid border-[1px] outline-darkGray py-[17px] px-[25px] text-[12px] ${errors.email ? 'border-red outline-red' : `${themeBorder}`}`}
                                 data-testid="email-input"
                                 placeholder="Email"
                                 {...register('email', {
@@ -68,16 +67,16 @@ function RegisterBox(props) {
                                 })}
                             />
                             {errors.email && (
-                                <div className="invalid-feedback">{errors.email.message}</div>
+                                <div className="text-red pt-[5px]"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i><span className='pl-[5px]'>{errors.email.message}</span></div>
                             )}
                         </div>
-                        <div className='col-md-6'>
-                            <label htmlFor="password-input" className="form-label">
+                        <div className='mb-[30px] md:w-[100%] mdmin:w-[48%]'>
+                            <label htmlFor="password-input" className="block text-[14px] font-black mb-[8px]">
                                 Password
                             </label>
                             <input
                                 type="text"
-                                className={`form-control${errors.password ? ' is-invalid' : ''}`}
+                                className={`${themeClass} w-[100%] rounded-none border-solid border-[1px] outline-darkGray py-[17px] px-[25px] text-[12px] ${errors.password ? 'border-red outline-red' : `${themeBorder}`}`}
                                 data-testid="password-input"
                                 placeholder="Password"
                                 {...register('password', {
@@ -89,13 +88,14 @@ function RegisterBox(props) {
                                 })}
                             />
                             {errors.password && (
-                                <div className="invalid-feedback">{errors.password.message}</div>
+                                <div className="text-red pt-[5px]"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i><span className='pl-[5px]'>{errors.password.message}</span></div>
                             )}
                         </div>
-                    </div>
-                    <button type='submit' className={classNames("btn", "btn-solid", styles.LoginButton)}>CREATE ACCOUNT</button>
-                </form>
-            </div>                
+                        <button type='submit' className="h-[50px] min-w-[150px] rounded-none bg-red text-white font-bold text-[14px] hover:bg-white hover:border-red hover:border-[2px] hover:border-solid hover:text-black">CREATE ACCOUNT</button>
+                    </form>
+                </div>
+                
+            </div>
         </div>
     );
 }

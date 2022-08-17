@@ -11,7 +11,7 @@ function TitlePages({title}) {
     function handleCreate(){
         history.push("/home");
     }
-    return (
+    return ( 
         <div className={`${themeClass} mdmin:py-[40px] md:py-[20px] px-total bg-gray`}>
             <div className='flex mdmin:flex-row md:flex-col justify-between'>
                 <div className="text-center" ><h2 className='text-[16px] m-0 font-black'>{title}</h2></div>
