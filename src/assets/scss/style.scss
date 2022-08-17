@@ -25,3 +25,25 @@ body{
   display: none;
 }
 
+.hoverItem{
+  display: block;
+  position: relative;
+}
+      
+.hoverItem:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 8px;
+  left: 0;
+  background-color: var(--red);
+  transform-origin: bottom right;
+  transition: transform 0.40s ease-out;
+}
+
+.hoverItem:hover:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}

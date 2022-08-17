@@ -1,13 +1,17 @@
 import React from 'react';
 import { useTheme } from '../../contexts/theme';
-import DropOnHover from '../DropOnHover';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+
+function classNames(...classes) {
+  return classes.filter(Boolean).join(' ')
+}
 
 const myAccountDrop={title: "My Account", submenu:[{title: "Login", pathTo: "/login"},{title: "Register", pathTo: "/register"}]}
 
 function Header(props) {
     const {theme} = useTheme();
     const themeClass = theme.mode==="DARK" ? "bg-black text-gray": "bg-gray";
+    const themeAccount = theme.mode==="DARK" ? "bg-darkModeLightBlack text-darkModeGray": "bg-white text-black";
 
     const information={
       welcome: "Welcome to Our store Multikart",
@@ -29,7 +33,18 @@ function Header(props) {
               <li>
                 <Link className="group text-[14px] text-darkGray no-underline hover:text-darkGray" to="/wishlist"><i className="fa fa-heart group-hover:text-red pr-[10px]" aria-hidden="true"></i>Wishlist</Link>
               </li>
-              <DropOnHover title={myAccountDrop.title} submenu={myAccountDrop.submenu} icon="fa fa-user" dir="left" key={"My Account"}/>
+              <li className='group relative text-darkGray'>
+                <i className="fa fa-user text-[14px] pl-0 cursor-pointer group-hover:text-red" aria-hidden="true"></i>
+                <button class="peer text-darkGray pl-[10px] text-[14px]">{myAccountDrop.title}</button>          
+                <div class={`${themeAccount} absolute hidden peer-hover:block hover:flex w-[150%] py-[10px] px-[20px] right-0
+                flex-col drop-shadow-lg z-[200]`}>
+                    {
+                      myAccountDrop.submenu.map((item,index)=>{
+                            return <Link className={classNames("text-left text-[14px] py-[12px] hoverItem")} to={item.pathTo} key={index}>{item.title}</Link>
+                        })    
+                    }
+                </div>
+              </li>
             </ul>
         </nav>
     </div>

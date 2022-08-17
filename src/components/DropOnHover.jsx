@@ -25,7 +25,7 @@ function DropOnHover({title, submenu, icon, dir}) {
 
     return (
         <li id={personId} className={classNames("nav-item",styles.person)}>
-            <div className={classNames("nav-link", styles.navLink)} onMouseEnter={handleEnter} onMouseLeave={handleOut} >
+            <div className={classNames("nav-link", styles.navLink)}  >
                 {icon && dir==="left" &&
                 <i className={classNames(icon, iconsClass)} aria-hidden="true"></i>}
                 {title!=="" ? title: ""}

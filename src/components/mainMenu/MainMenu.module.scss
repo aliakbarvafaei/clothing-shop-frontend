@@ -22,6 +22,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    .navItem{
+        position: relative !important;
+        list-style-type: none;
+    }
     .navLink{
         color: var(--black);
         i{

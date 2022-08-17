@@ -20,8 +20,7 @@ function ShopIcon({submenu, icon, dir}) {
 
     const shiftleftClass = dir==="left" ? styles.shiftleft: "";
 
-    return (
-        <li className="nav-item">
+    return (<>
             <div className={classNames("nav-link", styles.navLink)} onMouseEnter={handleEnter} onMouseLeave={handleOut}>
                 <Badge badgeContent={0} showZero color="secondary">
                     <i className={classNames(icon, styles.iconsMenu)} aria-hidden="true"></i>
@@ -34,7 +33,7 @@ function ShopIcon({submenu, icon, dir}) {
                     })    
                 }
             </div>}
-        </li>
+            </>
     );
 }
 
