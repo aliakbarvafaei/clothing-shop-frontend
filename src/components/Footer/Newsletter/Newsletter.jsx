@@ -1,27 +1,26 @@
 import React from 'react';
-import classNames from "classnames";
 import { useTheme } from '../../../contexts/theme';
-import styles from "./Newsletter.module.scss";
 
 function Newsletter(props) {
     const {theme} = useTheme();
 
-    const themeClass = theme.mode==="DARK" ? styles.dark: "";
+    const themeClass = theme.mode==="DARK" ? "bg-darkModeLightBlack text-gray": "bg-white text-darkGray";
+    const themeBorder = theme.mode==="DARK" ? "border-lightestBlak": "border-darkModeGray";
 
     return (
-        <div className={classNames("row",themeClass)}>
-            <div className={classNames("col-lg-6", styles.text)}>
-                <h1>
+        <div className="flex lgmin:flex-row lg:flex-col justify-between items-center lg:gap-[15px]">
+            <div className={`${themeBorder} lgmin:border-r-[1px] lgmin:border-r-solid lgmin:w-[50%] lg:text-center`}>
+                <h1 className='text-[18px] font-black'>
                     KNOW IT ALL FIRST!
                 </h1>
-                <h4>
+                <h4 className='text-[14px] text-darkGray lg:hidden'>
                     Never Miss Anything From Multikart By Signing Up To Our Newsletter.
                 </h4>
             </div>
-            <div className='col-lg-6'>
-                <form className={styles.x}>
-                    <input type="text" placeholder="Enter your email" />
-                    <button className={classNames("btn", "btn-solid", styles.subscribeButton)}>SUBSCRIBE</button>
+            <div className=''>
+                <form className='lgmin:text-right lg:text-center'>
+                    <input className={`${themeClass} ${themeBorder} h-[52px] w-[222px] border-[1px] border-solid p-[13px]`} type="email" placeholder="Enter your email" />
+                    <button type='submit' className='smmin:ml-[15px] mm:mt-[10px] py-[6px] px-[12px] h-[50px] w-[150px] rounded-none bg-red text-white font-bold hover:bg-white hover:text-black hover:border-[2px] border-red border-solid' >SUBSCRIBE</button>
                 </form>
             </div>
         </div>

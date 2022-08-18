@@ -2,10 +2,6 @@ import React from 'react';
 import { useTheme } from '../../contexts/theme';
 import { Link } from 'react-router-dom';
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
-
 const myAccountDrop={title: "My Account", submenu:[{title: "Login", pathTo: "/login"},{title: "Register", pathTo: "/register"}]}
 
 function Header(props) {
@@ -40,7 +36,7 @@ function Header(props) {
                 flex-col drop-shadow-lg z-[200]`}>
                     {
                       myAccountDrop.submenu.map((item,index)=>{
-                            return <Link className={classNames("text-left text-[14px] py-[12px] hoverItem")} to={item.pathTo} key={index}>{item.title}</Link>
+                            return <Link className="text-left text-[14px] py-[12px] hoverItem" to={item.pathTo} key={index}>{item.title}</Link>
                         })    
                     }
                 </div>
