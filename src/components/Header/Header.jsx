@@ -31,8 +31,8 @@ function Header(props) {
               </li>
               <li className='group relative text-darkGray'>
                 <i className="fa fa-user text-[14px] pl-0 cursor-pointer group-hover:text-red" aria-hidden="true"></i>
-                <button class="peer text-darkGray pl-[10px] text-[14px]">{myAccountDrop.title}</button>          
-                <div class={`${themeAccount} absolute hidden peer-hover:block hover:flex w-[150%] py-[10px] px-[20px] right-0
+                <button className="peer text-darkGray pl-[10px] text-[14px]">{myAccountDrop.title}</button>          
+                <div className={`${themeAccount} absolute hidden peer-hover:block hover:flex w-[150%] py-[10px] px-[20px] right-0
                 flex-col drop-shadow-lg z-[200]`}>
                     {
                       myAccountDrop.submenu.map((item,index)=>{

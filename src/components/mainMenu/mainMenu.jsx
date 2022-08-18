@@ -42,9 +42,9 @@ function MainMenu(props) {
             {
               titleMenus.map((titleMenu, index)=>{
                 return <li className='group relative text-inherit' key={index}>
-                <button class="peer pl-0 text-[16px]">{titleMenu.title}</button>
+                <button className="peer pl-0 text-[16px]">{titleMenu.title}</button>
                 <i className="fa fa-caret-down text-[16px] pl-[10px] cursor-pointer group-hover:text-red" aria-hidden="true"></i>          
-                <div class={`${themeClass} absolute hidden peer-hover:block hover:flex w-[200px] py-[10px] px-[20px] left-0
+                <div className={`${themeClass} absolute hidden peer-hover:block hover:flex w-[200px] py-[10px] px-[20px] left-0
                 flex-col drop-shadow-lg z-[200]`}>
                     {
                       titleMenu.submenu.map((item,index)=>{
@@ -67,7 +67,7 @@ function MainMenu(props) {
             </li>
             <li className='group relative text-inherit pl-[12px]'>
               <i className="peer fa fa-cog text-[25px] px-[1px] py-[1px] cursor-pointer group-hover:text-red" aria-hidden="true"></i>          
-              <div class={`${themeClass} absolute hidden peer-hover:block hover:flex w-[200px] py-[10px] px-[20px] right-0
+              <div className={`${themeClass} absolute hidden peer-hover:block hover:flex w-[200px] py-[10px] px-[20px] right-0
               flex-col drop-shadow-lg z-[200]`}>
                   {
                     submenuSetting.map((item,index)=>{
@@ -78,7 +78,7 @@ function MainMenu(props) {
             </li>
             <li className='group relative text-inherit pl-[12px]'>
               <i className="peer fa fa-shopping-cart text-[25px] px-[1px] py-[1px] cursor-pointer group-hover:text-red" aria-hidden="true"></i>          
-              <div class={`${themeClass} absolute hidden peer-hover:block hover:flex w-[800%] py-[10px] px-[20px] right-0
+              <div className={`${themeClass} absolute hidden peer-hover:block hover:flex w-[800%] py-[10px] px-[20px] right-0
               flex-col drop-shadow-lg z-[200]`}>
                   {
                     submenuCart.map((item,index)=>{

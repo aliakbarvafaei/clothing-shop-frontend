@@ -40,7 +40,7 @@ function LoginBox(props) {
                                 })}
                             />
                             {errors.email && (
-                                <div className="text-red pt-[5px]"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i><span className='pl-[5px]'>{errors.email.message}</span></div>
+                                <div className="text-red pt-[5px]"><i className="fa fa-exclamation-triangle" aria-hidden="true"></i><span className='pl-[5px]'>{errors.email.message}</span></div>
                             )}
                         </div>
                         <div className='mb-[30px]'>
@@ -61,7 +61,7 @@ function LoginBox(props) {
                                 })}
                             />
                             {errors.password && (
-                                <div className="text-red pt-[5px]"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i><span className='pl-[5px]'>{errors.password.message}</span></div>
+                                <div className="text-red pt-[5px]"><i className="fa fa-exclamation-triangle" aria-hidden="true"></i><span className='pl-[5px]'>{errors.password.message}</span></div>
                             )}
                         </div>
                         <button type='submit' className="h-[50px] min-w-[150px] rounded-none bg-red text-white font-bold text-[14px] hover:bg-white hover:border-red hover:border-[2px] hover:border-solid hover:text-black">LOGIN</button>
