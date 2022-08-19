@@ -1,9 +1,15 @@
-import React ,{ useId } from 'react';
+import React ,{ useId, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTheme } from '../../contexts/theme';
 import { registerAPI } from "../../services/api/index.js";
+import Toast from '../Toast/Toast';
 
 function RegisterBox(props) {
+    const [toast, setToast] = useState(false);
+
+    function handleToast(){
+        setToast(false);
+    }
     const fnameId = useId();
     const lnameId = useId();
     const emailId = useId();
@@ -31,13 +37,27 @@ function RegisterBox(props) {
         document.getElementById(passwordId).value='';
 
         registerAPI(fname,lname,email,password)
-        .then((response) => console.log(response.data))
+        .then((response) => {
+            if(response.data==="registered"){
+                setToast({
+                title: "1",
+                description: "Registration was successful",
+                })
+            }
+            else{
+                setToast({
+                    title: "2",
+                    description: "The user has already registered",
+                    })
+            }
+        })
         .catch(err => {
             console.error(err);
         });
     }
 
     return (
+        <>
         <div className={`${themeClass} py-[40px] px-total`}>
             <div className='w-[100%] pt-[10px]'>
                 <h3 className="text-[24px] font-black mb-[20px]">CREATE ACCOUNT</h3>
@@ -125,6 +145,8 @@ function RegisterBox(props) {
                 
             </div>
         </div>
+        {toast && <Toast type={toast.title} description={toast.description} handleToast={handleToast}/>}
+        </>
     );
 }
 
