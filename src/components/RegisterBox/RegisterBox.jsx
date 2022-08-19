@@ -38,21 +38,28 @@ function RegisterBox(props) {
 
         registerAPI(fname,lname,email,password)
         .then((response) => {
-            if(response.data==="registered"){
+            if(response.status===201){
                 setToast({
                 title: "1",
                 description: "Registration was successful",
                 })
             }
-            else{
+            // else if(response.status===409){
+            //     setToast({
+            //         title: "2",
+            //         description: "The user has already registered",
+            //         })
+            // }
+        })
+        .catch(err => {
+            if(err.response.status===409){
                 setToast({
                     title: "2",
                     description: "The user has already registered",
                     })
             }
-        })
-        .catch(err => {
-            console.error(err);
+            else
+                console.error(err);
         });
     }
 
