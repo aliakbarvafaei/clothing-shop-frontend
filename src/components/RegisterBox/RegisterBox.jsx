@@ -26,6 +26,11 @@ function RegisterBox(props) {
     } = useForm()
 
     function formSubmit(){
+        setToast({
+            title: "3",
+            description: "",
+            })
+
         const fname=document.getElementById(fnameId).value;
         const lname=document.getElementById(lnameId).value;
         const email=document.getElementById(emailId).value;
@@ -44,12 +49,6 @@ function RegisterBox(props) {
                 description: "Registration was successful",
                 })
             }
-            // else if(response.status===409){
-            //     setToast({
-            //         title: "2",
-            //         description: "The user has already registered",
-            //         })
-            // }
         })
         .catch(err => {
             if(err.response.status===409){

@@ -7,21 +7,21 @@ function Toast({ type, description, handleToast}) {
             handleToast();
         }, 3000);
         return () => clearTimeout(timer);
-    },[]);
+    },[handleToast]);
 
     function handleClick(){
         handleToast();
     }
 
     const toastObject = {
-        title: type === "1" ? "Success" : "Danger",
+        title: type === "1" ? "Success" : type === "2" ? "Error": "Please wait...",
         description: description,
-        backgroundColor: type === "1" ? "bg-green" : "bg-red",
-        icon: type === "1" ? "fa fa-check-circle" : "fa fa-exclamation-circle",
+        backgroundColor: type === "1" ? "text-gray bg-green" : type === "2" ? "text-gray bg-red": "text-black bg-white",
+        icon: type === "1" ? "fa fa-check-circle" : type  === "2" ? "fa fa-exclamation-circle":"fa fa-spinner fa-spin",
     }
     return (
         <>
-            <div className={`fixed z-[300] top-[20px] right-[20px] p-[10px] flex flex-row items-start gap-[20px] text-gray rounded-[5px] shadow-[0_8px_18px_0_rgba(200,200,200)] ${toastObject.backgroundColor}`}>
+            <div className={`fixed z-[300] top-[20px] right-[20px] p-[10px] flex flex-row items-start gap-[20px] rounded-[5px] shadow-[0_8px_18px_0_rgba(200,200,200)] ${toastObject.backgroundColor}`}>
                 <div className="text-[30px]">
                     <i class={toastObject.icon} aria-hidden="true"></i>
                 </div>
