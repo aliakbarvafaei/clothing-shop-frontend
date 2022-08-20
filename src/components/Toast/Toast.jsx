@@ -24,7 +24,7 @@ function Toast({ type, description}) {
         <>
             <div className={`fixed z-[300] top-[20px] right-[20px] p-[10px] flex flex-row items-start gap-[20px] rounded-[5px] shadow-[0_8px_18px_0_rgba(200,200,200)] ${toastObject.backgroundColor}`}>
                 <div className="text-[30px]">
-                    <i class={toastObject.icon} aria-hidden="true"></i>
+                    <i className={toastObject.icon} aria-hidden="true"></i>
                 </div>
                 <div>
                     <h3 className="text-[15px]">{toastObject.title}</h3>
