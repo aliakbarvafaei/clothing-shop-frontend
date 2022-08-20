@@ -1,4 +1,4 @@
-import React ,{ useId } from 'react';
+import React ,{ useId, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTheme } from '../../contexts/theme';
 import { registerAPI } from "../../services/api/index.js";
@@ -67,6 +67,12 @@ function RegisterBox(props) {
             }
         });
     }
+    const [iconPassword ,setIconPassword] = useState("fa-eye-slash");
+    const [passType, setPassType] = useState("password");
+    function handlePassword(){
+        setIconPassword(old =>(old==="fa-eye-slash" ? "fa-eye": "fa-eye-slash"));
+        setPassType(old => (old==="password" ? "text": "password"));
+    }
 
     return (
         <>
@@ -129,12 +135,12 @@ function RegisterBox(props) {
                                 <div className="text-red pt-[5px]"><i className="fa fa-exclamation-triangle" aria-hidden="true"></i><span className='pl-[5px]'>{errors.email.message}</span></div>
                             )}
                         </div>
-                        <div className='mb-[30px] md:w-[100%] mdmin:w-[48%]'>
+                        <div className='mb-[30px] md:w-[100%] mdmin:w-[48%] relative'>
                             <label htmlFor="password-input" className="block text-[14px] font-black mb-[8px]">
                                 Password
                             </label>
                             <input
-                                type="text"
+                                type={passType}
                                 className={`${themeClass} w-[100%] rounded-none border-solid border-[1px] outline-darkGray py-[17px] px-[25px] text-[12px] ${errors.password ? 'border-red outline-red' : `${themeBorder}`}`}
                                 data-testid="password-input"
                                 placeholder="Password"
@@ -146,7 +152,7 @@ function RegisterBox(props) {
                                     message: 'At least 8 characters...',
                                 },
                                 })}
-                            />
+                            /><i className={`fa ${iconPassword} absolute right-[2%] bottom-[20px] cursor-pointer`} onClick={handlePassword} aria-hidden="true"></i>
                             {errors.password && (
                                 <div className="text-red pt-[5px]"><i className="fa fa-exclamation-triangle" aria-hidden="true"></i><span className='pl-[5px]'>{errors.password.message}</span></div>
                             )}

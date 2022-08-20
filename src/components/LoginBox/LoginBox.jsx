@@ -1,4 +1,4 @@
-import React, { useId } from 'react';
+import React, { useId, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useTheme } from '../../contexts/theme';
@@ -71,7 +71,14 @@ function LoginBox(props) {
             }
         });
     }
-           
+    
+    const [iconPassword ,setIconPassword] = useState("fa-eye-slash");
+    const [passType, setPassType] = useState("password");
+    function handlePassword(){
+        setIconPassword(old =>(old==="fa-eye-slash" ? "fa-eye": "fa-eye-slash"));
+        setPassType(old => (old==="password" ? "text": "password"));
+    }
+
     return (
         <div className={`${themeClass} py-[40px] px-total flex flex-row flex-wrap justify-between`}>
             <div className='lg:w-[100%] lgmin:w-[48%] pt-[10px]'>
@@ -96,13 +103,13 @@ function LoginBox(props) {
                                 <div className="text-red pt-[5px]"><i className="fa fa-exclamation-triangle" aria-hidden="true"></i><span className='pl-[5px]'>{errors.email.message}</span></div>
                             )}
                         </div>
-                        <div className='mb-[30px]'>
+                        <div className='mb-[30px] relative'>
                             <label htmlFor="password-input" className="block text-[14px] font-black mb-[8px]">
                                 Password
                             </label>
                             <input
-                                type="password"
-                                className={`${themeClass} w-[100%] rounded-none border-solid border-[1px] outline-darkGray py-[17px] px-[25px] text-[12px] ${errors.password ? 'border-red outline-red' : `${themeBorder}`}`}
+                                type={passType}
+                                className={`${themeClass} w-[100%] relative rounded-none border-solid border-[1px] outline-darkGray py-[17px] px-[25px] text-[12px] ${errors.password ? 'border-red outline-red' : `${themeBorder}`}`}
                                 data-testid="password-input"
                                 placeholder="Password"
                                 id={passwordId}
@@ -113,7 +120,7 @@ function LoginBox(props) {
                                     message: 'At least 8 characters...',
                                 },
                                 })}
-                            />
+                            /><i className={`fa ${iconPassword} absolute right-[2%] bottom-[20px] cursor-pointer`} onClick={handlePassword} aria-hidden="true"></i>
                             {errors.password && (
                                 <div className="text-red pt-[5px]"><i className="fa fa-exclamation-triangle" aria-hidden="true"></i><span className='pl-[5px]'>{errors.password.message}</span></div>
                             )}
