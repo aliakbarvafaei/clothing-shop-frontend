@@ -1,16 +1,17 @@
 import React, { useEffect } from 'react';
+import { useToast } from '../../contexts/ToastState';
 
-function Toast({ type, description, handleToast}) {
-    // console.log(type, description);
+function Toast({ type, description}) {
+    const { setToastState } = useToast();
     useEffect(() => {
         const timer= setTimeout(() => {
-            handleToast();
+            setToastState(false);
         }, 3000);
         return () => clearTimeout(timer);
-    },[handleToast]);
+    },[setToastState]);
 
     function handleClick(){
-        handleToast();
+        setToastState(false);
     }
 
     const toastObject = {

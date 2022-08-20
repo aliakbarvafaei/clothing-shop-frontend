@@ -1,15 +1,14 @@
-import React ,{ useId, useState } from 'react';
+import React ,{ useId } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTheme } from '../../contexts/theme';
 import { registerAPI } from "../../services/api/index.js";
-import Toast from '../Toast/Toast';
+import { useHistory } from 'react-router-dom'
+import { useToast } from '../../contexts/ToastState';
 
 function RegisterBox(props) {
-    const [toast, setToast] = useState(false);
+    const { setToastState } = useToast();
+    const history = useHistory();
 
-    function handleToast(){
-        setToast(false);
-    }
     const fnameId = useId();
     const lnameId = useId();
     const emailId = useId();
@@ -26,7 +25,7 @@ function RegisterBox(props) {
     } = useForm()
 
     function formSubmit(){
-        setToast({
+        setToastState({
             title: "3",
             description: "",
             })
@@ -44,21 +43,28 @@ function RegisterBox(props) {
         registerAPI(fname,lname,email,password)
         .then((response) => {
             if(response.status===201){
-                setToast({
+                setToastState({
                 title: "1",
                 description: "Registration was successful",
-                })
+                });
+                history.push("/login");
             }
         })
         .catch(err => {
             if(err.response.status===409){
-                setToast({
+                setToastState({
                     title: "2",
                     description: "The user has already registered",
                     })
             }
-            else
+            else{
+                setToastState({
+                    title: "2",
+                    description: "The server is unavailable",
+                    })
                 console.error(err);
+
+            }
         });
     }
 
@@ -151,7 +157,6 @@ function RegisterBox(props) {
                 
             </div>
         </div>
-        {toast && <Toast type={toast.title} description={toast.description} handleToast={handleToast}/>}
         </>
     );
 }

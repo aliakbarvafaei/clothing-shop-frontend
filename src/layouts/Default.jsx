@@ -8,8 +8,12 @@ import ProtectedRoute from '../components/ProtectedRoute'
 import Footer from '../components/Footer/Footer'
 import FixedButtonRight from '../components/FixedButtonRight/FixedButtonRight'
 import MobileMenu from '../components/MobileMenu/MobileMenu'
+import Toast from '../components/Toast/Toast'
+import { useToast } from '../contexts/ToastState'
 
 const DefaultLayout = (props) => {
+  const { toastState } = useToast();
+    
   return (
     <div
       id="main-wrapper"
@@ -40,6 +44,7 @@ const DefaultLayout = (props) => {
         </div>
       </div>
       <Footer />
+      {toastState && <Toast type={toastState.title} description={toastState.description}/>}
     </div>
   )
 }
