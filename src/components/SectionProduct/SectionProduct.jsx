@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useTheme } from '../../contexts/theme';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import Card from '../Products/Card';
+
+// <div className='h-[300px] bg-red ml-[10px]' onMouseEnter={()=>setAutoPlay(false)} onMouseLeave={()=>setAutoPlay(true)}>{index}</div>
 
 const responsive = {
     superLargeDesktop: {
@@ -10,11 +13,11 @@ const responsive = {
       items: 4
     },
     desktop: {
-      breakpoint: { max: 1200, min: 991 },
+      breakpoint: { max: 1200, min: 767 },
       items: 3
     },
     tablet: {
-      breakpoint: { max: 991, min: 0 },
+      breakpoint: { max: 767, min: 0 },
       items: 2
     }
   };
@@ -22,7 +25,6 @@ function SectionProduct(props) {
     const {theme} = useTheme();
     const themeClass = theme.mode==="DARK" ? "bg-darkModeLightBlack text-white": "bg-white";
 
-    const [autoPlay, setAutoPlay] = useState(true);
     const arr=[1,2,3,4,5,6,7,8,9]
     return (
         <div className={`${themeClass} flex flex-col items-center pb-[50px] px-total`}>
@@ -31,11 +33,11 @@ function SectionProduct(props) {
             <h6 className='w-[70px] border-b-red border-b-solid border-b-[3px] mb-[15px]'></h6>
             <p className='w-[50%] text-darkGray text-center text-[14px] mb-[20px]'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
             Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
-            <div className='overflow-hidden w-[100%] h-[300px]'>
-                <Carousel responsive={responsive} autoPlay={autoPlay} infinite="true">
+            <div className='overflow-hidden w-[100%]'>
+                <Carousel responsive={responsive} autoPlay={true} infinite={true} arrows={false}>
                 {
                     arr.map((item,index)=>{
-                        return <div className='h-[300px] bg-red ml-[10px]' onMouseEnter={()=>setAutoPlay(false)} onMouseLeave={()=>setAutoPlay(true)}>{index}</div>
+                        return <Card />
                     })
                 }
                 </Carousel>
