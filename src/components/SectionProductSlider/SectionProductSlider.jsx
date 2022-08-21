@@ -9,11 +9,11 @@ import Card from '../Products/Card';
 const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
-      breakpoint: { max: 4000, min: 1200 },
+      breakpoint: { max: 4000, min: 1279 },
       items: 4
     },
     desktop: {
-      breakpoint: { max: 1200, min: 767 },
+      breakpoint: { max: 1279, min: 767 },
       items: 3
     },
     tablet: {
@@ -21,7 +21,7 @@ const responsive = {
       items: 2
     }
   };
-function SectionProduct(props) {
+function SectionProductSlider(props) {
     const {theme} = useTheme();
     const themeClass = theme.mode==="DARK" ? "bg-darkModeLightBlack text-white": "bg-white";
 
@@ -47,4 +47,4 @@ function SectionProduct(props) {
     );
 }
 
-export default SectionProduct;
+export default SectionProductSlider;

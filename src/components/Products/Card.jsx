@@ -23,7 +23,7 @@ function Card(props) {
             <div id='price' className='flex flex-row items-center gap-[5px]'>
                 <h3 className='text-[18px] font-bold'>$104.40</h3><strike className='text-[14px] text-darkGray'>$120.50</strike>
             </div>
-            <div id='colors' className='flex flex-row gap-[2px] pt-[10px]'>
+            <div id='colors' className='flex flex-row gap-[2px] pt-[10px] pb-[20px]'>
                 <i class="fa fa-circle" aria-hidden="true"></i>
                 <i class="fa fa-circle text-red" aria-hidden="true"></i>
             </div>
