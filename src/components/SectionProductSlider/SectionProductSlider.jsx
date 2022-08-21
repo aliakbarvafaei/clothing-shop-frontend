@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect} from 'react';
 import { useTheme } from '../../contexts/theme';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import Card from '../Products/Card';
+import { getProducts } from "../../services/api/index.js";
 
 // <div className='h-[300px] bg-red ml-[10px]' onMouseEnter={()=>setAutoPlay(false)} onMouseLeave={()=>setAutoPlay(true)}>{index}</div>
 
@@ -24,8 +25,16 @@ const responsive = {
 function SectionProductSlider(props) {
     const {theme} = useTheme();
     const themeClass = theme.mode==="DARK" ? "bg-darkModeLightBlack text-white": "bg-white";
-
-    const arr=[1,2,3,4,5,6,7,8,9]
+    const [products, setProducts] = useState([]);
+    useEffect(()=>{
+        getProducts()
+        .then((response) => {
+            setProducts(response.data);
+        })
+        .catch(err => {
+                console.error(err);
+        });
+    },[])
     return (
         <div className={`${themeClass} flex flex-col items-center pb-[50px] px-total`}>
             <h4 className='text-[18px] text-red'>Special Offer</h4>
@@ -36,8 +45,8 @@ function SectionProductSlider(props) {
             <div className='overflow-hidden w-[100%]'>
                 <Carousel responsive={responsive} autoPlay={true} infinite={true} arrows={false}>
                 {
-                    arr.map((item,index)=>{
-                        return <Card />
+                    products.map((item,index)=>{
+                        return <Card item={item} />
                     })
                 }
                 </Carousel>

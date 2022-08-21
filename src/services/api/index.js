@@ -13,5 +13,5 @@ export const registerAPI = ( fname, lname, email, password ) =>
     password: password,
   })
 
-export const getChart = () =>
-  Axios.get('https://dummy.restapiexample.com/api/v1/employees')
+export const getProducts = () =>
+  Axios.get('http://localhost:5000/products')

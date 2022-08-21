@@ -1,12 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTheme } from '../../contexts/theme';
 import Card from '../Products/Card';
+import { getProducts } from "../../services/api/index.js";
 
 function SectionProductMain(props) {
     const {theme} = useTheme();
     const themeClass = theme.mode==="DARK" ? "bg-darkModeLightBlack text-white": "bg-white";
-
-    const arr=[1,2,3,4,5,6,7,8]
+    const [products, setProducts] = useState([]);
+    useEffect(()=>{
+        getProducts()
+        .then((response) => {
+            setProducts(response.data);
+        })
+        .catch(err => {
+                console.error(err);
+        });
+    },[])
     return (
         <div className={`${themeClass} flex flex-col items-center py-[50px] px-total`}>
             <h2 className='text-[32px] font-bold'>SPECIAL PRODUCTS</h2>
@@ -15,8 +24,8 @@ function SectionProductMain(props) {
             Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
             <div className='flex flex-row flex-wrap w-[100%] gap-[1%]'>
                 {
-                    arr.map((item,index)=>{
-                        return <div className='md:w-[48%] xl:w-[32%] xlmin:w-[23%]'><Card /></div>
+                    products.map((item,index)=>{
+                        return <div className='md:w-[48%] xl:w-[32%] xlmin:w-[23%]'><Card item={item}/></div>
                     })
                 }
             </div>
