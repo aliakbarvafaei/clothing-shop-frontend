@@ -17,7 +17,7 @@ function Toast({ type, description}) {
     const toastObject = {
         title: type === "1" ? "Success" : type === "2" ? "Error": "Please wait...",
         description: description,
-        backgroundColor: type === "1" ? "text-gray bg-green" : type === "2" ? "text-gray bg-red": "text-black bg-white",
+        backgroundColor: type === "1" ? "text-lightGray bg-green" : type === "2" ? "text-lightGray bg-red": "text-black bg-white",
         icon: type === "1" ? "fa fa-check-circle" : type  === "2" ? "fa fa-exclamation-circle":"fa fa-spinner fa-spin",
     }
     return (

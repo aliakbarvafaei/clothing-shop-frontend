@@ -26,7 +26,7 @@ module.exports = {
       '2xl': '1536px',
     },
     colors: {
-      'gray': '#f9f9f9',
+      'lightGray': '#f9f9f9',
       'darkGray': '#999999',
       'white': '#ffffff',
       'red': '#ff4c3b',
@@ -37,6 +37,13 @@ module.exports = {
       'lightestBlak': '#3a3a3a',
       'darkModeGray': '#cfd4da',
       'lightestBlak': '#3a3a3a',
+
+      'skyblue': '#57d7f7',
+      'navy': '#021840',
+      'olive': '#bab789',
+      'pink': '#ffc0cb',
+      'yellow': '#fdf791',
+      'gray': '#bababa',
     },
   },
     

@@ -6,7 +6,7 @@ const myAccountDrop={title: "My Account", submenu:[{title: "Login", pathTo: "/lo
 
 function Header(props) {
     const {theme} = useTheme();
-    const themeClass = theme.mode==="DARK" ? "bg-black text-gray": "bg-gray";
+    const themeClass = theme.mode==="DARK" ? "bg-black text-lightGray": "bg-lightGray";
     const themeAccount = theme.mode==="DARK" ? "bg-darkModeLightBlack text-darkModeGray": "bg-white text-black";
 
     const information={

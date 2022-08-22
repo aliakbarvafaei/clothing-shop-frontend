@@ -7,7 +7,6 @@ import image3 from "../../assets/images/insta/3.jpg";
 import image4 from "../../assets/images/insta/4.jpg";
 import image5 from "../../assets/images/insta/5.jpg";
 import image6 from "../../assets/images/insta/6.jpg";
-import { FaInstagram } from "@react-icons/all-files/fa/FaInstagram";
 
 function Instagram(props) {
     const {theme} = useTheme();

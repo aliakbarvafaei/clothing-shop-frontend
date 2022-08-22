@@ -7,7 +7,7 @@ function FixedButtonRight(props) {
     function handleClick(){
         toggleThemeMode();
     }
-    const themeClass = theme.mode==="DARK" ? "bg-darkModeLightBlack text-gray": "bg-gray";
+    const themeClass = theme.mode==="DARK" ? "bg-darkModeLightBlack text-lightGray": "bg-lightGray";
 
     return (
         <>

@@ -11,7 +11,7 @@ function LoginBox(props) {
     const history = useHistory();
 
     const {theme} = useTheme();
-    const themeClass = theme.mode==="DARK" ? "bg-darkModeLightBlack text-gray": "bg-white";
+    const themeClass = theme.mode==="DARK" ? "bg-darkModeLightBlack text-lightGray": "bg-white";
     const themeBorder = theme.mode==="DARK" ? "border-lightestBlak": "border-darkModeGray";
     
     const emailId = useId();

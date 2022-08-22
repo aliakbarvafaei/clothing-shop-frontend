@@ -4,7 +4,7 @@ import { useTheme } from '../../../contexts/theme';
 function Newsletter(props) {
     const {theme} = useTheme();
 
-    const themeClass = theme.mode==="DARK" ? "bg-darkModeLightBlack text-gray": "bg-white text-darkGray";
+    const themeClass = theme.mode==="DARK" ? "bg-darkModeLightBlack text-lightGray": "bg-white text-darkGray";
     const themeBorder = theme.mode==="DARK" ? "border-lightestBlak": "border-darkModeGray";
 
     return (

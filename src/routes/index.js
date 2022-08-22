@@ -4,6 +4,7 @@ import DefaultLayout from '../layouts/Default'
 import Home from '../pages/Home'
 // import EditProduct from '../pages/edit-product'
 import LoginPage from '../pages/Login'
+import ProductDetail from '../pages/ProductDetail'
 import RegisterPage from '../pages/Register'
 // import ProductsList from '../pages/products-list'
 
@@ -17,6 +18,14 @@ const AppRoutes = [
     icon: 'fa fa-tachometer-alt',
     component: Home,
     showInNav: true,
+    private: false,
+  },
+  {
+    path: '/product-details',
+    name: 'همه محصولات',
+    icon: 'fa fa-list',
+    component: ProductDetail,
+    showInNav: false,
     private: false,
   },
   // {
