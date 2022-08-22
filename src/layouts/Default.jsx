@@ -2,7 +2,7 @@
 import Header from '../components/Header/Header'
 import MainMenu from '../components/mainMenu/MainMenu'
 import React from 'react'
-import { Redirect, Route, Switch  } from 'react-router-dom'
+import { Route, Switch  } from 'react-router-dom'
 import AppRoutes from '../routes'
 import ProtectedRoute from '../components/ProtectedRoute'
 import Footer from '../components/Footer/Footer'
@@ -32,12 +32,10 @@ const DefaultLayout = (props) => {
         <div className="page-content container-fluid">
           <Switch >
             {AppRoutes.map((prop, key) => {
-              if(prop.redirect===true)
-                return <Redirect to={prop.pathTo} key={key}/>
               if(prop.private)
                 return <ProtectedRoute path={prop.path} key={key} component={prop.component} />
               else{
-                return ( <Route path={prop.path} key={key} component={prop.component} />)
+                return ( <Route exact path={prop.path} key={key} component={prop.component} />)
               }
             })}
           </Switch >

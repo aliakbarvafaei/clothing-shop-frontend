@@ -4,6 +4,7 @@ import DefaultLayout from '../layouts/Default'
 import Home from '../pages/Home'
 // import EditProduct from '../pages/edit-product'
 import LoginPage from '../pages/Login'
+import NotFound from '../pages/NotFound'
 import ProductDetail from '../pages/ProductDetail'
 import RegisterPage from '../pages/Register'
 // import ProductsList from '../pages/products-list'
@@ -13,7 +14,7 @@ const indexRoutes = [{ path: '/', component: DefaultLayout }]
 const AppRoutes = [
   
     {
-    path: '/home',
+    path: ['/home','/'],
     name: 'داشبورد',
     icon: 'fa fa-tachometer-alt',
     component: Home,
@@ -21,7 +22,7 @@ const AppRoutes = [
     private: false,
   },
   {
-    path: '/product-details',
+    path: '/product-details/:id',
     name: 'همه محصولات',
     icon: 'fa fa-list',
     component: ProductDetail,
@@ -79,7 +80,15 @@ const AppRoutes = [
   //   showInNav: true,
   //   private: false,
   // },
-  { path: '/', pathTo: '/home', name: 'Dashboard', redirect: true },
+  {
+    path: ['*','/not-found'],
+    name: 'not found',
+    icon: 'fa fa-tachometer-alt',
+    component: NotFound,
+    showInNav: true,
+    private: false,
+  },
+  // { path: '/', pathTo: '/home', name: 'Dashboard', redirect: true },
 ]
 
 export default AppRoutes
