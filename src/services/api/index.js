@@ -15,3 +15,8 @@ export const registerAPI = ( fname, lname, email, password ) =>
 
 export const getProducts = () =>
   Axios.get('http://localhost:5000/products')
+
+export const getProduct = (idProduct) =>
+  Axios.get(`http://localhost:5000/product/${idProduct}`)
+
+

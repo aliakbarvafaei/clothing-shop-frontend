@@ -22,7 +22,7 @@ const AppRoutes = [
     private: false,
   },
   {
-    path: '/product-details/:id',
+    path: '/product-details/:idProduct',
     name: 'همه محصولات',
     icon: 'fa fa-list',
     component: ProductDetail,
