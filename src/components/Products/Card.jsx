@@ -16,7 +16,7 @@ function Card({item}) {
     }
     return (
         <div className='group flex flex-col md:ml-[5px] lg:ml-[10px] lgmin:ml-[20px]'>
-            <Link to={'product-details/'+String(item.code)+`-`+String((item.name).replace(/\s/g, '').toLowerCase())}>
+            <Link to={'/product-details/'+String(item.code)+`-`+String((item.name).replace(/\s/g, '').toLowerCase())}>
             <div className={`relative overflow-hidden mm:min-h-[250px] sm:min-h-[300px] md:min-h-[350px] lg:min-h-[370px] xl:min-h-[410px] xlmin:min-h-[440px] bg-[length:100%_100%] bg-no-repeat`} style={{backgroundImage: `url("`+backgroundImage+`")`}}>
                 <div className='absolute mm:right-[-25%] mmmin:right-[-15%] bottom-[5%] flex flex-col items-center justify-center gap-[20px] text-darkGray text-[20px]'>
                     <i className="lg:group-hover:translate-x-[-45px] lgmin:group-hover:translate-x-[-55px] duration-[700ms] delay-[0ms] fa fa-shopping-cart cursor-pointer hover:text-red mr-[3px]" onClick={(e)=>e.preventDefault()} aria-hidden="true"></i>
@@ -39,7 +39,7 @@ function Card({item}) {
                 <i className={`fa fa-star ${Number(item.rating)>3 ? "text-[#FAD02C]": "text-darkGray"}`} aria-hidden="true"></i>
                 <i className={`fa fa-star ${Number(item.rating)>4 ? "text-[#FAD02C]": "text-darkGray"}`} aria-hidden="true"></i>
             </div>
-            <Link to={'product-details/'+String(item.code)+`-`+String((item.name).replace(/\s/g, '').toLowerCase())}>
+            <Link to={'/product-details/'+String(item.code)+`-`+String((item.name).replace(/\s/g, '').toLowerCase())}>
             <div id='title' className='font-medium text-darkGray'>
                 {item.name}
             </div>

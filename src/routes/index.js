@@ -31,7 +31,7 @@ const AppRoutes = [
     private: false,
   },
   {
-    path: '/search/:idProduct',
+    path: '/search',
     name: 'search',
     icon: 'fa fa-list',
     component: SearchPage,

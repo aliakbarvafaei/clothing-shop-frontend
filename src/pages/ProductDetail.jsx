@@ -10,6 +10,8 @@ function ProductDetail(props) {
     const [product, setProduct] = useState(false);
 
     useEffect(()=>{
+        window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+
         if(idProduct.split('-').length>2)
             history.push('/not-found');
         else{
@@ -25,7 +27,6 @@ function ProductDetail(props) {
                     console.error(err);
             });
         }
-        window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
     },[idProduct,history])
 
     return (
