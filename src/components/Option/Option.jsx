@@ -7,7 +7,7 @@ import Speaker from "../../assets/images/option/speaker.png";
 function Option(props) {
     const {theme} = useTheme();
     const themeClass = theme.mode==="DARK" ? "bg-darkModeLightBlack text-white": "bg-white";
-    const themeBorder = theme.mode==="DARK" ? "border-lightestBlak": "border-darkModeGray";
+    const themeBorder = theme.mode==="DARK" ? "border-lightestBlack": "border-darkModeGray";
 
 
     return (

@@ -5,6 +5,7 @@ import classNames from "classnames";
 import useSticky from "./useSticky";
 import Hamburger from "./Hamburger/Hamburger";
 import { Link } from "react-router-dom"
+import Search from '../Search/Search';
 // import "bootstrap/dist/css/bootstrap.min.css"
 
 const titleMenus=[{title: "HOME", submenu:[{title:"New Demos", pathTo:"/"},{title:"Clothing", pathTo:"/"},{title:"Basics", pathTo:"/"},{title:"Beauty", pathTo:"/"},{title:"Eelectronic", pathTo:"/"},{title:"Furniture", pathTo:"/"},{title:"Vegetables", pathTo:"/"},{title:"Watch", pathTo:"/"},{title:"Lights", pathTo:"/"},{title:"Goggles", pathTo:"/"},{title:"Shoes", pathTo:"/"},{title:"Bagg", pathTo:"/"},{title:"Flowers", pathTo:"/"}]},
@@ -20,6 +21,7 @@ const submenuCart=["Your cart is currently empty."];
 function MainMenu(props) {
     const {theme} = useTheme();
     const [isOpen, setIsOpen] = useState(false);
+    const [searchOpen, setSearchOpen] = useState(false);
     const { sticky, stickyRef } = useSticky();
 
     const themeClass = theme.mode==="DARK" ? "bg-darkModeLightBlack text-darkModeGray": "bg-white";
@@ -62,8 +64,9 @@ function MainMenu(props) {
           </div>
 
           <ul className="sm:hidden smmin:flex flex-row m-0 items-center list-none">
-            <li className='group relative text-inherit pl-[12px]'>
-              <i className="peer fa fa-search text-[25px] cursor-pointer group-hover:text-red" aria-hidden="true"></i>          
+            <li className='group text-inherit pl-[12px]'>
+              <i onClick={()=>setSearchOpen(true)} className="peer fa fa-search text-[25px] cursor-pointer group-hover:text-red" aria-hidden="true"></i>
+              {searchOpen && <Search setSearchOpen={setSearchOpen} />}          
             </li>
             <li className='group relative text-inherit pl-[12px]'>
               <i className="peer fa fa-cog text-[25px] px-[1px] py-[1px] cursor-pointer group-hover:text-red" aria-hidden="true"></i>          

@@ -8,7 +8,7 @@ function Footer(props) {
     const {theme} = useTheme();
     const themeClass = theme.mode==="DARK" ? "bg-black text-darkModeGray": "bg-lightGray";
     const themeClassCopy = theme.mode==="DARK" ? "bg-darkModeLightBlack": "bg-white";
-    const themeBorder = theme.mode==="DARK" ? "border-lightestBlak": "border-darkModeGray";
+    const themeBorder = theme.mode==="DARK" ? "border-lightestBlack": "border-darkModeGray";
 
 
     return <section>

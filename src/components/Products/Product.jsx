@@ -11,7 +11,10 @@ function Product({product}) {
     const {theme} = useTheme();
     const themeClass = theme.mode==="DARK" ? "bg-darkModeLightBlack text-lightGray": "bg-white";
     const themeBorder = theme.mode==="DARK" ? "border-red": "border-darkGray";
-    const themeBorder2 = theme.mode==="DARK" ? "border-lightestBlak": "border-darkModeGray";
+    const themeBorder2 = theme.mode==="DARK" ? "border-lightestBlack": "border-darkModeGray";
+
+    const [showMenu, setShowMenu] = useState("description");
+    const styleSelectedMenu = "text-red border-red border-b-solid border-b-[2px]";
 
     const [counter, setCounter] = useState(1)
 
@@ -23,7 +26,7 @@ function Product({product}) {
 
     return (
         <div className={`${themeClass} px-total py-[50px]`}>
-            <div className='flex lg:flex-col lg:items-center lg:gap-[20px] lgmin:flex-row lgmin:justify-between'>
+            <div className='flex lg:flex-col lg:items-center lg:gap-[20px] lgmin:flex-row lgmin:justify-between flex-wrap'>
                 <div className='sm:w-[90%] lg:w-[70%] lgmin:w-[48%] flex flex-col gap-[20px]'>
                     <div className={` bg-[length:100%_100%] bg-no-repeat w-[100%] mm:h-[350px] sm:h-[450px] md:h-[550px] lg:h-[700px] lgmin:h-[750px]`} style={{backgroundImage: `url("`+backgroundImage+`")`}}>
                     
@@ -89,6 +92,15 @@ function Product({product}) {
                         </div>
                     </div>
                     <div className={`${themeBorder2} w-[100%] border-dashed border-b-[1px]`}></div>
+                </div>
+                <div className='mt-[30px] lgmin:px-[30px] sm:w-[90%] lg:w-[70%] lgmin:w-[100%]'>
+                    <div className={`flex mm:flex-col mmmin:flex-row lg:justify-center gap-[30px] mmmin:border-b-[1px] mmmin:border-b-solid ${themeBorder2}`}>
+                        <h4 className={`${showMenu==="description" ? styleSelectedMenu : themeBorder2} pb-[20px] text-[14px] mm:w-[100%] mm:text-center mm:pb-[10px] cursor-pointer mm:border-b-[1px] mm:border-b-solid`} onClick={()=>setShowMenu("description")}>DESCRIPTION</h4>
+                        <h4 className={`${showMenu==="details" ? styleSelectedMenu : themeBorder2} pb-[20px] text-[14px] mm:w-[100%] mm:text-center mm:pb-[10px] cursor-pointer mm:border-b-[1px] mm:border-b-solid`} onClick={()=>setShowMenu("details")}>DETAILS</h4>
+                        <h4 className={`${showMenu==="video" ? styleSelectedMenu : themeBorder2} pb-[20px] text-[14px] mm:w-[100%] mm:text-center mm:pb-[10px] cursor-pointer mm:border-b-[1px] mm:border-b-solid`} onClick={()=>setShowMenu("video")}>VIDEO</h4>
+                        <h4 className={`${showMenu==="review" ? styleSelectedMenu : themeBorder2} pb-[20px] text-[14px] mm:w-[100%] mm:text-center mm:pb-[10px] cursor-pointer mm:border-b-[1px] mm:border-b-solid`} onClick={()=>setShowMenu("review")}>WRITE REVIEW</h4>
+                    </div>
+                    <p className='text-[14px] text-darkGray leading-[25px] pt-[20px] px-[20px]'>{product[showMenu]}</p>
                 </div>
             </div>
         </div>

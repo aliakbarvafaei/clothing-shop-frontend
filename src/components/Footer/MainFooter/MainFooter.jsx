@@ -10,7 +10,7 @@ import { FaFacebookF } from "@react-icons/all-files/fa/FaFacebookF";
 
 function MainFooter(props) {
     const {theme} = useTheme();
-    const themeBorder = theme.mode==="DARK" ? "border-lightestBlak": "border-darkModeGray";
+    const themeBorder = theme.mode==="DARK" ? "border-lightestBlack": "border-darkModeGray";
 
     return (
         <div className='flex flex-row flex-wrap justify-between'>

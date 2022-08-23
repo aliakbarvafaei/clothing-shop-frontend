@@ -5,7 +5,7 @@ function Newsletter(props) {
     const {theme} = useTheme();
 
     const themeClass = theme.mode==="DARK" ? "bg-darkModeLightBlack text-lightGray": "bg-white text-darkGray";
-    const themeBorder = theme.mode==="DARK" ? "border-lightestBlak": "border-darkModeGray";
+    const themeBorder = theme.mode==="DARK" ? "border-lightestBlack": "border-darkModeGray";
 
     return (
         <div className="flex lgmin:flex-row lg:flex-col justify-between items-center lg:gap-[15px]">

@@ -25,7 +25,8 @@ function ProductDetail(props) {
                     console.error(err);
             });
         }
-    },[idProduct])
+        window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+    },[idProduct,history])
 
     return (
         <div>

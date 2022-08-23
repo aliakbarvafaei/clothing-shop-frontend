@@ -16,7 +16,7 @@ function RegisterBox(props) {
 
     const {theme} = useTheme();
     const themeClass = theme.mode==="DARK" ? "bg-darkModeLightBlack text-lightGray": "bg-white";
-    const themeBorder = theme.mode==="DARK" ? "border-lightestBlak": "border-darkModeGray";
+    const themeBorder = theme.mode==="DARK" ? "border-lightestBlack": "border-darkModeGray";
 
     const {
         register,
