@@ -7,6 +7,7 @@ import LoginPage from '../pages/Login'
 import NotFound from '../pages/NotFound'
 import ProductDetail from '../pages/ProductDetail'
 import RegisterPage from '../pages/Register'
+import SearchPage from '../pages/SearchPage'
 // import ProductsList from '../pages/products-list'
 
 const indexRoutes = [{ path: '/', component: DefaultLayout }]
@@ -26,6 +27,14 @@ const AppRoutes = [
     name: 'همه محصولات',
     icon: 'fa fa-list',
     component: ProductDetail,
+    showInNav: false,
+    private: false,
+  },
+  {
+    path: '/search/:idProduct',
+    name: 'search',
+    icon: 'fa fa-list',
+    component: SearchPage,
     showInNav: false,
     private: false,
   },
