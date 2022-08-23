@@ -37,7 +37,7 @@ function MainMenu(props) {
     <div ref={stickyRef} className={`${stickyClass} ${themeClass} flex flex-row items-center justify-between py-[40px] px-total shadow-[0_2px_4px_0_rgba(200,200,200)] box-border`} >
         <div className="flex flex-row justify-between items-center gap-[30px]">
           <i className="fa fa-bars text-[25px] cursor-pointer" aria-hidden="true"></i>
-          <span><Link to="/home"><img className="w-[100%] cursor-pointer sm:w-[40%] sm:absolute sm:left-[30%] sm:top-[5%]" src={logo} alt="title" /></Link></span>
+          <span><Link to="/home"><img className="w-[100%] cursor-pointer sm:w-[40%] sm:absolute sm:left-[30%] sm:mt-[-4%]" src={logo} alt="title" /></Link></span>
         </div>
         <div className="flex flex-row items-center justify-between gap-[30px]">
           <ul className="xl:hidden xlmin:flex flex-row items-center gap-[25px] m-0 list-none p-0">
