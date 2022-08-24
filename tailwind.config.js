@@ -7,6 +7,9 @@ module.exports = {
         'total': '5%',
       }
     },
+    fontFamily: {
+      'font': ['Lato','sans-serif'],
+    },
     screens: {
       xl: {max: '1279px'},
       xlmin: {min: '1279px'},
