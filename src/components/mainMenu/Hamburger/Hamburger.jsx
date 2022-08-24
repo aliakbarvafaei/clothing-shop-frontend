@@ -12,7 +12,7 @@ function Hamburger({isOpen, items, handeHamburger}) {
         <>
           {isOpen && <IconContext.Provider value={{ color: "black", size: "30px" }}>
             <div>
-                <nav className={`${themeClass} w-[250px] h-[200vh] flex justify-center fixed z-[1000] top-0 shadow-[0_0_5px_0_rgba(200,200,200)] right-0 cursor-text duration-[850ms]`}>
+                <nav className={`${themeClass} w-[250px] h-[200vh] flex justify-center fixed z-[30] top-0 shadow-[0_0_5px_0_rgba(200,200,200)] right-0 cursor-text duration-[850ms]`}>
                     <ul className="w-[100%] p-0">
                         <li className="w-[100%] pr-[8%] h-[80px] flex justify-end items-center border-b-solid border-b-[1px] border-b-darkModeGray" onClick={()=>{handeHamburger()}}>
                         <Link to="#" className=" ml-[2rem] text-[2rem] no-underline">

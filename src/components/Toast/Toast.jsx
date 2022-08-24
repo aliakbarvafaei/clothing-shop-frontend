@@ -22,7 +22,7 @@ function Toast({ type, description}) {
     }
     return (
         <>
-            <div className={`fixed z-[300] top-[20px] right-[20px] p-[10px] flex flex-row items-start gap-[20px] rounded-[5px] shadow-[0_8px_18px_0_rgba(200,200,200)] ${toastObject.backgroundColor}`}>
+            <div className={`fixed z-[40] top-[20px] right-[20px] p-[10px] flex flex-row items-start gap-[20px] rounded-[5px] shadow-[0_8px_18px_0_rgba(200,200,200)] ${toastObject.backgroundColor}`}>
                 <div className="text-[30px]">
                     <i className={toastObject.icon} aria-hidden="true"></i>
                 </div>

@@ -29,7 +29,7 @@ function MainMenu(props) {
     {
       setIsOpen(old => !old);
     }
-    const stickyClass = sticky ? "fixed top-0 z-[200] w-[100%]":"";
+    const stickyClass = sticky ? "fixed top-0 z-[20] w-[100%]":"";
   
     return (
     <>
@@ -46,7 +46,7 @@ function MainMenu(props) {
                 <button className="peer pl-0 text-[16px]">{titleMenu.title}</button>
                 <i className="fa fa-caret-down text-[16px] pl-[10px] cursor-pointer group-hover:text-red" aria-hidden="true"></i>          
                 <div className={`${themeClass} absolute hidden peer-hover:block hover:flex w-[200px] py-[10px] px-[20px] left-0
-                flex-col drop-shadow-lg z-[200]`}>
+                flex-col drop-shadow-lg z-[22]`}>
                     {
                       titleMenu.submenu.map((item,index)=>{
                             return <Link className={`text-left text-[14px] py-[12px] hoverItem`} to={item.pathTo} key={index}>{item.title}</Link>
@@ -69,7 +69,7 @@ function MainMenu(props) {
             <li className='group relative text-inherit pl-[12px]'>
               <i className="peer fa fa-cog text-[25px] px-[1px] py-[1px] cursor-pointer group-hover:text-red" aria-hidden="true"></i>          
               <div className={`${themeClass} absolute hidden peer-hover:block hover:flex w-[200px] py-[10px] px-[20px] right-0
-              flex-col drop-shadow-lg z-[200]`}>
+              flex-col drop-shadow-lg z-[22]`}>
                   {
                     submenuSetting.map((item,index)=>{
                           return <Link className={classNames("text-left text-[14px] py-[12px] hoverItem")} to={item.pathTo} key={index}>{item.title}</Link>
@@ -80,7 +80,7 @@ function MainMenu(props) {
             <li className='group relative text-inherit pl-[12px]'>
               <i className="peer fa fa-shopping-cart text-[25px] px-[1px] py-[1px] cursor-pointer group-hover:text-red" aria-hidden="true"></i>          
               <div className={`${themeClass} absolute hidden peer-hover:block hover:flex w-[800%] py-[10px] px-[20px] right-0
-              flex-col drop-shadow-lg z-[200]`}>
+              flex-col drop-shadow-lg z-[22]`}>
                   {
                     submenuCart.map((item,index)=>{
                           return <Link className={classNames("text-left text-[14px] py-[12px] hoverItem")} to="/" key={index}>{item}</Link>

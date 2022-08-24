@@ -15,7 +15,7 @@ function MobileMenu(props) {
 
 
     return (<>
-        <div className="sm:fixed smmin:hidden sm:bottom-0 z-[200] flex flex-row justify-between items-center bg-darkModeLightBlack w-full h-16 text-darkGray text-[26px] px-[60px]">
+        <div className="sm:fixed smmin:hidden sm:bottom-0 z-[25] flex flex-row justify-between items-center bg-darkModeLightBlack w-full h-16 text-darkGray text-[26px] px-[60px]">
             <i className="fa fa-search" aria-hidden="true" onClick={()=>history.push('/search')}></i>         
 
             <i className="fa fa-heart" aria-hidden="true"></i>
@@ -26,7 +26,7 @@ function MobileMenu(props) {
             </Badge>
             <i className="fa fa-user group cursor-pointer relative" aria-hidden="true">
                 <div className={`${themeClass} absolute hidden group-hover:block hover:flex w-[150px] py-[10px] px-[20px] bottom-6 right-[-60px]
-                flex-col drop-shadow-lg z-[200]`}>
+                flex-col drop-shadow-lg z-[26]`}>
                   {
                     myAccountDrop.map((item,index)=>{
                           return <Link className="text-left text-[14px] py-[12px] hoverItem font-font font-normal" to={item.pathTo} key={index}>{item.title}</Link>
@@ -36,7 +36,7 @@ function MobileMenu(props) {
             </i>
             <i className="fa fa-cog group cursor-pointer relative" aria-hidden="true">
                 <div className={`${themeClass} absolute hidden group-hover:block hover:flex w-[150px] py-[10px] px-[20px] bottom-6 right-[-60px]
-                flex-col drop-shadow-lg z-[200]`}>
+                flex-col drop-shadow-lg z-[26]`}>
                   {
                     submenuSetting.map((item,index)=>{
                           return <Link className="text-left text-[14px] py-[12px] hoverItem font-font font-normal" to={item.pathTo} key={index}>{item.title}</Link>

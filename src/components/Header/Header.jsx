@@ -33,7 +33,7 @@ function Header(props) {
                 <i className="fa fa-user text-[14px] pl-0 cursor-pointer group-hover:text-red" aria-hidden="true"></i>
                 <button className="peer text-darkGray pl-[10px] text-[14px]">{myAccountDrop.title}</button>          
                 <div className={`${themeAccount} absolute hidden peer-hover:block hover:flex w-[150%] py-[10px] px-[20px] right-0
-                flex-col drop-shadow-lg z-[200]`}>
+                flex-col drop-shadow-lg z-[22]`}>
                     {
                       myAccountDrop.submenu.map((item,index)=>{
                             return <Link className="text-left text-[14px] py-[12px] hoverItem" to={item.pathTo} key={index}>{item.title}</Link>
