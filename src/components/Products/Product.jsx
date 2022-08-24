@@ -41,7 +41,7 @@ function Product({product}) {
                 </div>
                 <div className='sm:w-[90%] lg:w-[70%] lgmin:w-[48%] flex flex-col gap-[10px] lg:text-center'>
                     <div>
-                        <h2 className='text-[25px] font-bold pb-[10px]'>{product.name}</h2>
+                        <h2 className='text-[25px] font-bold pb-[10px]'>{product.name}<span className='text-[16px] text-darkGray font-normal'>{product.code}</span></h2>
                         <h3><strike className='text-[14px] text-darkGray'>${product.price}</strike><span className='text-red'> {product.off}% Off</span></h3>
                         <h3 className='text-[26px]'>${Number(product.price)*(100-Number(product.off))/100}</h3>
                         <div id='colors' className='flex flex-row gap-[5px] pt-[15px] pb-[10px] lg:justify-center'>

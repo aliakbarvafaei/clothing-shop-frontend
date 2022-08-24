@@ -41,7 +41,7 @@ function Card({item}) {
             </div>
             <Link to={'/product-details/'+String(item.code)+`-`+String((item.name).replace(/\s/g, '').toLowerCase())}>
             <div id='title' className='font-medium text-darkGray'>
-                {item.name}
+                {item.name} <span className='text-[70%] font-normal'>{item.code}</span>
             </div>
             </Link> 
             <div id='price' className='flex flex-row items-center gap-[5px]'>
