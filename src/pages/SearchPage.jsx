@@ -98,8 +98,8 @@ function SearchPage(props) {
     return (
         <div>
             <TitlePages title="SEARCH"/>
-            <div className={`${themeClass} px-total flex flex-row justify-between`}>
-                <div className={`sm:hidden w-[20%] my-[50px] py-[20px] px-[2%] rounded-md border-solid border-[1px] ${themeBorder}`}>
+            <div className={`${themeClass} px-total flex smmin:flex-row sm:flex-col justify-between`}>
+                <div className={`smmin:w-[20%] sm:w-[100%] smmin:my-[50px] sm:my-[20px] py-[20px] sm:px-[8%] smmin:px-[2%] rounded-md border-solid border-[1px] ${themeBorder}`}>
                     <h2 className='text-center mb-[20px]'>Filters</h2>
                     {
                         filtersOption.map((item,index)=>{
@@ -148,7 +148,7 @@ function SearchPage(props) {
                         </label>
                     </div>
                 </div>
-                <div className={`sm:w-[100%] smmin:w-[78%] my-[50px]`} >
+                <div className={`sm:w-[100%] smmin:w-[78%] smmin:my-[50px] sm:my-[20px]`} >
                     <div className='relative text-darkGray'>
                         <i className="fa fa-search text-[25px] cursor-pointer absolute top-[15%] left-[3%]"  aria-hidden="true"></i>
                         <input ref={searchRef} value={searchInput} onChange={handleChange} type="text" placeholder='Search Name or Code a Product' className={`w-[100%] mb-[20px] py-[10px] px-[10%] rounded-md border-solid border-[1px] ${themeBorder} ${themeClass}`}/>
