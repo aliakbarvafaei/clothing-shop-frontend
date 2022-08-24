@@ -8,6 +8,7 @@ import NotFound from '../pages/NotFound'
 import ProductDetail from '../pages/ProductDetail'
 import RegisterPage from '../pages/Register'
 import SearchPage from '../pages/SearchPage'
+import Wishlist from '../pages/Wishlist'
 // import ProductsList from '../pages/products-list'
 
 const indexRoutes = [{ path: '/', component: DefaultLayout }]
@@ -35,6 +36,14 @@ const AppRoutes = [
     name: 'search',
     icon: 'fa fa-list',
     component: SearchPage,
+    showInNav: false,
+    private: false,
+  },
+  {
+    path: '/wishlist',
+    name: 'wishlist',
+    icon: 'fa fa-list',
+    component: Wishlist,
     showInNav: false,
     private: false,
   },

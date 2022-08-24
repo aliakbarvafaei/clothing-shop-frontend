@@ -19,4 +19,14 @@ export const getProducts = () =>
 export const getProduct = (idProduct) =>
   Axios.get(`http://localhost:5000/product/${idProduct}`)
 
+export const getWishlist = (email) =>
+  Axios.get(`http://localhost:5000/wishlist/${email}`)
+
+export const postWishlist = (email,code) =>
+  Axios.post(`http://localhost:5000/wishlist/${email}`, {
+    code: code,
+  })
+export const deleteWishlist = (email,code) =>
+  Axios.delete(`http://localhost:5000/wishlist/${email}!${code}`)
+
 
