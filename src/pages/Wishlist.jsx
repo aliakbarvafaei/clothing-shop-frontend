@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import TitlePages from '../components/TitlePages/TitlePages';
 import { useAuth } from '../contexts/Auth';
 import { useTheme } from '../contexts/theme';
@@ -64,17 +65,17 @@ function Wishlist(props) {
                         {
                             productWishlist.map((product,index)=>{
                                 return <tr className={`text-center border-b-solid border-b-[.5px] ${themeBorder}`}>
-                                    <td className='p-[12px]'><img className='mm:w-[60%] sm:w-[40%] smmin:w-[30%] ml-[35%]' src={product.images[0]} alt="" /></td>
-                                    <td className='md:hidden p-[12px] text-darkGray'>{product.name}</td>
+                                    <td className='p-[12px]'><Link to={'/product-details/'+String(product.code)+`-`+String((product.name).replace(/\s/g, '').toLowerCase())}><img className='mm:w-[60%] sm:w-[40%] smmin:w-[30%] ml-[35%]' src={product.images[0]} alt="" /></Link></td>
+                                    <td className='md:hidden p-[12px] text-darkGray'><Link to={'/product-details/'+String(product.code)+`-`+String((product.name).replace(/\s/g, '').toLowerCase())}>{product.name}</Link></td>
                                     <td className='md:hidden p-[12px] text-[24px]'>{Number(product.price)*(100-Number(product.off))/100}</td>
                                     <td className='md:hidden p-[12px] text-darkGray'>{(product.stock)>0 ? "In Stock": "Out Of Stock"}</td>
-                                    <td className='md:hidden p-[12px] text-darkGray'><i class="fa fa-times cursor-pointer" onClick={()=>{handleremove(product)}} aria-hidden="true"></i><i class="fa fa-shopping-cart pl-[5px] cursor-pointer" aria-hidden="true"></i></td>
+                                    <td className='md:hidden p-[12px] text-darkGray'><i class="fa fa-times cursor-pointer" onClick={()=>{handleremove(product)}} aria-hidden="true"></i></td>
                                     <td className='mdmin:hidden md:flex flex-col items-center justify-center gap-[20px] pt-[10%] text-[14px] w-[100%] h-[100%] p-[12px]'>
                                         <span className='w-[100%] text-darkGray'>{product.name}</span>
                                         <span className='flex smmin:flex-row sm:flex-col justify-between items-center flex-wrap w-[80%]'>
                                             <span className='text-darkGray'>{(product.stock)>0 ? "In Stock": "Out Of Stock"}</span>
                                             <span className='text-red text-[20px]'>{Number(product.price)*(100-Number(product.off))/100}</span>
-                                            <span className='text-darkGray'><i class="fa fa-times cursor-pointer" onClick={()=>{handleremove(product)}} aria-hidden="true"></i><i class="fa fa-shopping-cart pl-[5px] cursor-pointer" aria-hidden="true"></i></span>
+                                            <span className='text-darkGray'><i class="fa fa-times cursor-pointer" onClick={()=>{handleremove(product)}} aria-hidden="true"></i></span>
                                         </span>
                                     </td>
                                 </tr>

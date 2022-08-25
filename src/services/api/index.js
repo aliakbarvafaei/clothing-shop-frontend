@@ -45,4 +45,6 @@ export const updateCart = (email,code,quantity) =>
     quantity: quantity,
   })
 
+export const isInCart = (email,code) =>
+  Axios.get(`http://localhost:5000/isincart/${email}!${code}`)
 

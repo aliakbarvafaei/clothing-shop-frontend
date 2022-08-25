@@ -1,29 +1,135 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useTheme } from '../../contexts/theme';
 import { FaGooglePlusG } from "@react-icons/all-files/fa/FaGooglePlusG";
 import { FaInstagram } from "@react-icons/all-files/fa/FaInstagram";
 import { FaTwitter } from "@react-icons/all-files/fa/FaTwitter";
 import { FaFacebookF } from "@react-icons/all-files/fa/FaFacebookF";
+import { useAuth } from '../../contexts/Auth';
+import { useToast } from '../../contexts/ToastState';
+import { useHistory } from 'react-router-dom';
+import { deleteCart, isInCart, postCart, postWishlist, updateCart } from '../../services/api';
 
 
 
 function Product({product}) {
+    const history = useHistory();
     const {theme} = useTheme();
     const themeClass = theme.mode==="DARK" ? "bg-darkModeLightBlack text-lightGray": "bg-white";
     const themeBorder = theme.mode==="DARK" ? "border-red": "border-darkGray";
     const themeBorder2 = theme.mode==="DARK" ? "border-lightestBlack": "border-darkModeGray";
 
+    const {setToastState} = useToast();
+
+    const {user} = useAuth();
     const [showMenu, setShowMenu] = useState("description");
     const styleSelectedMenu = "text-red border-red border-b-solid border-b-[2px]";
 
-    const [counter, setCounter] = useState(1)
+    const [counter, setCounter] = useState(1);
+    const [textButton,settextButton] = useState("ADD TO CART");
 
     const [backgroundImage, setBackgroundImage] = useState(product.images[0]);
 
+    useEffect(()=>{
+        if(user.loggedIn){
+            isInCart(user.loggedIn,product.code)
+            .then((response) => {
+                setCounter(Number(response.data));
+                settextButton("REMOVE PRODUCT FROM CART");
+            })
+            .catch(err => {
+                console.error(err);
+            });
+        }
+    },[])
     function handleBackground(e){
         setBackgroundImage(e.target.src);
     }
-
+    function handleClickHeart(e){
+        e.preventDefault();
+        if(!user.loggedIn){
+            setToastState({ title: "2" , description: "First, log in to your account"});
+            history.push('/login');
+        }else{
+            setToastState({
+                title: "3",
+                description: "",
+                })
+            postWishlist(user.loggedIn,product.code)
+            .then((response) => {
+                console.log(response.data);
+                setToastState({title: "1",description: "Product Added Successfully",});
+            })
+            .catch(err => {
+                if(err.response.status===409){
+                    setToastState({title: "2",description: "This Product Already Added",});
+                }else{
+                    console.error(err);
+                }
+            });
+        }
+    }
+    function handleQuantity(operand){
+        if(operand==='-')
+            counter>1 ? setCounter(old=>old-1) : setCounter(old=>old);
+        else if(operand==='+')
+            counter<10 ? setCounter(old=>old+1) : setCounter(old=>old);
+        
+    }
+    useEffect(()=>{
+        if(textButton==="REMOVE PRODUCT FROM CART")
+        {
+            setToastState({
+                title: "3",
+                description: "",
+                })
+            updateCart(user.loggedIn,product.code,String(counter))
+                .then((response) => {
+                    console.log(response.data);
+                    setToastState({title: "1",description: "Product changed Successfully",});
+                })
+                .catch(err => {
+                        console.error(err);
+                });
+        }
+    },[counter])
+    function handleClickCart(e){
+        e.preventDefault();
+        if(!user.loggedIn){
+            setToastState({ title: "2" , description: "First, log in to your account"});
+            history.push('/login');
+        }else{
+            setToastState({
+                title: "3",
+                description: "",
+                })
+            if(textButton==="ADD TO CART"){
+                postCart(user.loggedIn,product.code,String(counter))
+                .then((response) => {
+                    console.log(response.data);
+                    settextButton("REMOVE PRODUCT FROM CART");
+                    setToastState({title: "1",description: "Product Added Successfully",});
+                })
+                .catch(err => {
+                    if(err.response.status===409){
+                        setToastState({title: "2",description: "This Product Already Added",});
+                    }else{
+                        console.error(err);
+                    }
+                });
+            }else{
+                deleteCart(user.loggedIn,product.code)
+                .then((response) => {
+                    console.log(response.data);
+                    settextButton("ADD TO CART");
+                    setCounter(1);
+                    setToastState({title: "2", description: "Product Removed Successfully"})
+                })
+                .catch(err => {
+                        console.error(err);
+                });
+            }
+        }
+    }
     return (
         <div className={`${themeClass} px-total py-[50px]`}>
             <div className='flex lg:flex-col lg:items-center lg:gap-[20px] lgmin:flex-row lgmin:justify-between flex-wrap'>
@@ -42,6 +148,7 @@ function Product({product}) {
                 <div className='sm:w-[90%] lg:w-[70%] lgmin:w-[48%] flex flex-col gap-[10px] lg:text-center'>
                     <div>
                         <h2 className='text-[25px] font-bold pb-[10px]'>{product.name}<span className='text-[16px] text-darkGray font-normal'>{product.code}</span></h2>
+                        <i className="fa fa-heart text-red pb-[5px]" onClick={handleClickHeart} aria-hidden="true"></i>
                         <h3><strike className='text-[14px] text-darkGray'>${product.price}</strike><span className='text-red'> {product.off}% Off</span></h3>
                         <h3 className='text-[26px]'>${Number(product.price)*(100-Number(product.off))/100}</h3>
                         <div id='colors' className='flex flex-row gap-[5px] pt-[15px] pb-[10px] lg:justify-center'>
@@ -66,15 +173,15 @@ function Product({product}) {
                         <h3 className='text-[14px] font-bold '>Quantity</h3>
                         <div className='flex lg:justify-center'>
                             <div className={`mt-[10px] flex flex-row items-center justify-between border-[1px] border-solid w-[100px] ${themeBorder2}`}>
-                                <div className='cursor-pointer' onClick={()=>{counter>1 ? setCounter(counter-1): setCounter(counter)}}><i className={`fa fa-caret-left p-[8px] h-[100%] border-r-[1px] ${themeBorder2}`} aria-hidden="true"></i></div>
+                                <div className='cursor-pointer' onClick={()=>handleQuantity('-')}><i className={`fa fa-caret-left p-[8px] h-[100%] border-r-[1px] ${themeBorder2}`} aria-hidden="true"></i></div>
                                 <div className='py-[4px] px-[10px]'>{counter}</div>
-                                <div className='cursor-pointer' onClick={()=>{counter<10 ? setCounter(counter+1): setCounter(counter)}}><i className={`fa fa-caret-right p-[8px] border-l-[1px] ${themeBorder2}`} aria-hidden="true"></i></div>
+                                <div className='cursor-pointer' onClick={()=>handleQuantity('+')}><i className={`fa fa-caret-right p-[8px] border-l-[1px] ${themeBorder2}`} aria-hidden="true"></i></div>
                             </div>
                         </div>
                         <div className='py-[10px]'>
-                            <button type='button' className="h-[50px] min-w-fit py-[10px] px-[20px] rounded-none bg-red text-white font-bold text-[14px] hover:bg-white hover:border-red hover:border-[2px] hover:border-solid hover:text-black">ADD TO CART</button>
-                            <button type='button' className="h-[50px] ml-[20px] min-w-fit py-[10px] px-[20px] rounded-none bg-red text-white font-bold text-[14px] hover:bg-white hover:border-red hover:border-[2px] hover:border-solid hover:text-black">BUY NOW</button>
-                        </div>
+                            <button type='button' onClick={handleClickCart} className="h-[50px] min-w-fit py-[10px] px-[20px] rounded-none bg-red text-white font-bold text-[14px] hover:bg-white hover:border-red hover:border-[2px] hover:border-solid hover:text-black">{textButton}</button>
+                            {/* <button type='button' className="h-[50px] ml-[20px] min-w-fit py-[10px] px-[20px] rounded-none bg-red text-white font-bold text-[14px] hover:bg-white hover:border-red hover:border-[2px] hover:border-solid hover:text-black">BUY NOW</button> */}
+                        </div> 
                     </div>
                     <div className={`${themeBorder2} w-[100%] border-dashed border-b-[1px]`}></div>
                     <div>

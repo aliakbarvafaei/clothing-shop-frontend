@@ -38,7 +38,7 @@ function SectionProductSlider(props) {
     return (
         <div className={`${themeClass} flex flex-col items-center pb-[50px] px-total`}>
             <h4 className='text-[18px] text-red'>Special Offer</h4>
-            <h2 className='text-[32px] font-bold'>TOP COLLECTION</h2>
+            <h2 className='sm:text-[24px] smmin:text-[32px] font-bold'>TOP COLLECTION</h2>
             <h6 className='w-[70px] border-b-red border-b-solid border-b-[3px] mb-[15px]'></h6>
             <p className='w-[50%] text-darkGray text-center text-[14px] mb-[20px]'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
             Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>

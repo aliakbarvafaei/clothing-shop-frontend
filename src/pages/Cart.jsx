@@ -5,6 +5,7 @@ import { useTheme } from '../contexts/theme';
 import { useToast } from '../contexts/ToastState';
 import { deleteCart, getCart, updateCart } from '../services/api';
 import emptyCart from "../assets/images/emptyCart.png";
+import { Link } from 'react-router-dom';
 
 
 function Cart(props) {
@@ -94,8 +95,8 @@ function Cart(props) {
                             productCart.map((item,index)=>{
                                 totalPrice+=Number(item.quantity)*(Number(item.product.price)*(100-Number(item.product.off))/100);
                                 return <tr className={`text-center border-b-solid border-b-[.5px] ${themeBorder}`}>
-                                    <td className='p-[12px]'><img className='mm:w-[60%] sm:w-[40%] smmin:w-[30%] ml-[35%]' src={item.product.images[0]} alt="" /></td>
-                                    <td className='md:hidden p-[12px] text-darkGray'>{item.product.name}</td>
+                                    <td className='p-[12px]'><Link to={'/product-details/'+String(item.product.code)+`-`+String((item.product.name).replace(/\s/g, '').toLowerCase())}><img className='mm:w-[60%] sm:w-[40%] smmin:w-[30%] ml-[35%]' src={item.product.images[0]} alt="" /></Link></td>
+                                    <td className='md:hidden p-[12px] text-darkGray'><Link to={'/product-details/'+String(item.product.code)+`-`+String((item.product.name).replace(/\s/g, '').toLowerCase())}>{item.product.name}</Link></td>
                                     <td className='md:hidden p-[12px] text-[24px]'>${Number(item.product.price)*(100-Number(item.product.off))/100}</td>
                                     <td className='md:hidden p-[25px] text-darkGray flex flex-col gap-[5px] items-center justify-center'>
                                         <div className='flex lg:justify-center'>
