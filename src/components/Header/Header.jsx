@@ -1,13 +1,19 @@
 import React from 'react';
 import { useTheme } from '../../contexts/theme';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../contexts/Auth';
+import { useToast } from '../../contexts/ToastState';
 
-const myAccountDrop={title: "My Account", submenu:[{title: "Login", pathTo: "/login"},{title: "Register", pathTo: "/register"}]}
+const myAccountDrop={title: "My Account", submenu:[{title: "Login", pathTo: "/login"},
+{title: "Register", pathTo: "/register"},{title: "Profile", pathTo: "/profile"},{title: "Logout", pathTo: "/"}]}
 
 function Header(props) {
     const {theme} = useTheme();
     const themeClass = theme.mode==="DARK" ? "bg-black text-lightGray": "bg-lightGray";
     const themeAccount = theme.mode==="DARK" ? "bg-darkModeLightBlack text-darkModeGray": "bg-white text-black";
+    
+    const {setToastState} = useToast();
+    const {user, toggleAuth} = useAuth();
 
     const information={
       welcome: "Welcome to Our store Multikart",
@@ -36,7 +42,14 @@ function Header(props) {
                 flex-col drop-shadow-lg z-[22]`}>
                     {
                       myAccountDrop.submenu.map((item,index)=>{
+                        if(user.loggedIn){
+                          if(item.title==="Logout")
+                            return <Link className="text-left text-[14px] py-[12px] hoverItem" onClick={()=>{toggleAuth();setToastState({title:"2",description:"Logout Successfully"});}} to={item.pathTo} key={index}>{item.title}</Link>
+                          else if(item.title==="Profile")
                             return <Link className="text-left text-[14px] py-[12px] hoverItem" to={item.pathTo} key={index}>{item.title}</Link>
+                        }else if(item.title!=="Logout" && item.title!=="Profile"){
+                          return <Link className="text-left text-[14px] py-[12px] hoverItem" to={item.pathTo} key={index}>{item.title}</Link>
+                        }
                         })    
                     }
                 </div>

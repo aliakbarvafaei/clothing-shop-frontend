@@ -27,10 +27,10 @@ const AuthProvider = ({ children }) => {
     setLocalStorage('user', user)
   }, [user])
 
-  const toggleAuth = () => {
+  const toggleAuth = (email=false) => {
     setUser((prev) => ({
       ...prev,
-      loggedIn: !prev.loggedIn,
+      loggedIn: email,
     }))
   }
 

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import TitlePages from '../components/TitlePages/TitlePages';
+import { useAuth } from '../contexts/Auth';
 import { useTheme } from '../contexts/theme';
 import { useToast } from '../contexts/ToastState';
 import { deleteWishlist, getWishlist } from '../services/api';
@@ -9,10 +10,12 @@ function Wishlist(props) {
     const themeClass = theme.mode==="DARK" ? "bg-darkModeLightBlack text-white": "bg-white";
     const themeBorder = theme.mode==="DARK" ? "border-lightestBlack": "border-darkModeGray";
     const [productWishlist, setProductWishlist] = useState([]);
-    const { setToastState } = useToast(); 
+    const { setToastState } = useToast();
+    
+    const {user} = useAuth()
 
     useEffect(()=>{
-        getWishlist('aliakbarvafaei.065@gmail.com')
+        getWishlist(user.loggedIn)
         .then((response) => {
             setProductWishlist(response.data);
         })
@@ -22,7 +25,11 @@ function Wishlist(props) {
     },[]);
 
     function handleremove(product){ 
-        deleteWishlist("aliakbarvafaei.065@gmail.com",product.code)
+        setToastState({
+            title: "3",
+            description: "",
+            })
+        deleteWishlist(user.loggedIn,product.code)
         .then((response) => {
             console.log(response.data);
             setToastState({title: "2", description: "Product Removed Successfully"})

@@ -1,13 +1,15 @@
-import React, { useId, useState } from 'react';
+import React, { useEffect, useId, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useTheme } from '../../contexts/theme';
 import { useToast } from '../../contexts/ToastState';
 import { loginAPI } from "../../services/api/index.js";
+import { useAuth } from '../../contexts/Auth';
 
 
 function LoginBox(props) {
     const { setToastState } = useToast();
+    const {toggleAuth, user} = useAuth();
     const history = useHistory();
 
     const {theme} = useTheme();
@@ -17,6 +19,12 @@ function LoginBox(props) {
     const emailId = useId();
     const passwordId = useId();
 
+    window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+
+    useEffect(()=>{
+        toggleAuth();
+    },[])
+    
     const {
         register,
         handleSubmit,
@@ -26,7 +34,7 @@ function LoginBox(props) {
     function handleCreate(){
         history.push("/register");
     }
-
+    
     function formSubmit(){
         setToastState({
             title: "3",
@@ -46,6 +54,7 @@ function LoginBox(props) {
                 title: "1",
                 description: `Welcome dear ${response.data.fname}`,
                 });
+                toggleAuth(response.data.email);
                 history.push("/home");
             }
         })

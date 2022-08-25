@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import { useAuth } from '../../contexts/Auth';
 import { useToast } from '../../contexts/ToastState';
 import { postWishlist } from '../../services/api';
 
 function Card({item}) {
+    const history = useHistory();
+    const {user} = useAuth();
     const [backgroundImage, setBackgroundImage] = useState('');
     const { setToastState } = useToast();
     const [images, setImages] = useState([]);
@@ -20,18 +23,27 @@ function Card({item}) {
 
     function handleClickHeart(e){
         e.preventDefault();
-        postWishlist("aliakbarvafaei.065@gmail.com",item.code)
-        .then((response) => {
-            console.log(response.data);
-            setToastState({title: "1",description: "Product Added Successfully",});
-        })
-        .catch(err => {
-            if(err.response.status==409){
-                setToastState({title: "2",description: "This Product Already Added",});
-            }else{
-                console.error(err);
-            }
-        });
+        if(!user.loggedIn){
+            setToastState({ title: "2" , description: "First, log in to your account"});
+            history.push('/login');
+        }else{
+            setToastState({
+                title: "3",
+                description: "",
+                })
+            postWishlist(user.loggedIn,item.code)
+            .then((response) => {
+                console.log(response.data);
+                setToastState({title: "1",description: "Product Added Successfully",});
+            })
+            .catch(err => {
+                if(err.response.status===409){
+                    setToastState({title: "2",description: "This Product Already Added",});
+                }else{
+                    console.error(err);
+                }
+            });
+        }
     }
     return (
         <div className='group flex flex-col md:ml-[5px] lg:ml-[10px] lgmin:ml-[20px]'>

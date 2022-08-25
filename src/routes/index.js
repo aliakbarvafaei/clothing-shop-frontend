@@ -45,7 +45,7 @@ const AppRoutes = [
     icon: 'fa fa-list',
     component: Wishlist,
     showInNav: false,
-    private: false,
+    private: true,
   },
   // {
   //   path: '/all-products',
