@@ -44,7 +44,7 @@ function LoginBox(props) {
             if(response.status===200){
                 setToastState({
                 title: "1",
-                description: "Login was successful",
+                description: `Welcome dear ${response.data.fname}`,
                 });
                 history.push("/home");
             }

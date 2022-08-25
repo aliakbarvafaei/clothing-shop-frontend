@@ -25,7 +25,7 @@ function Wishlist(props) {
         deleteWishlist("aliakbarvafaei.065@gmail.com",product.code)
         .then((response) => {
             console.log(response.data);
-            setToastState({title: "1", description: "Product Removed Successfully"})
+            setToastState({title: "2", description: "Product Removed Successfully"})
         })
         .catch(err => {
                 console.error(err);
