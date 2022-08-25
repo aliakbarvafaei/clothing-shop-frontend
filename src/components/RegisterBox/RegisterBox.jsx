@@ -78,11 +78,11 @@ function RegisterBox(props) {
         <>
         <div className={`${themeClass} py-[40px] px-total`}>
             <div className='w-[100%] pt-[10px]'>
-                <h3 className="text-[24px] font-black mb-[20px]">CREATE ACCOUNT</h3>
+                <h3 className="text-[24px] font-bold mb-[20px]">CREATE ACCOUNT</h3>
                 <div className={`${themeBorder} min-h-[336px] p-[30px] border-[1px] border-solid`}>
                     <form className='text-left flex flex-row flex-wrap justify-between' onSubmit={handleSubmit(formSubmit)}>
                         <div className='mb-[30px] md:w-[100%] mdmin:w-[48%]'>
-                            <label htmlFor="fname-input" className="block text-[14px] font-black mb-[8px]">
+                            <label htmlFor="fname-input" className="block text-[14px] font-bold mb-[8px]">
                                 First Name
                             </label>
                             <input
@@ -100,7 +100,7 @@ function RegisterBox(props) {
                             )}
                         </div>
                         <div className='mb-[30px] md:w-[100%] mdmin:w-[48%]'>
-                            <label htmlFor="lname-input" className="block text-[14px] font-black mb-[8px]">
+                            <label htmlFor="lname-input" className="block text-[14px] font-bold mb-[8px]">
                                 Last Name
                             </label>
                             <input
@@ -118,7 +118,7 @@ function RegisterBox(props) {
                             )}
                         </div>
                         <div className='mb-[30px] md:w-[100%] mdmin:w-[48%]'>
-                            <label htmlFor="email-input" className="block text-[14px] font-black mb-[8px]">
+                            <label htmlFor="email-input" className="block text-[14px] font-bold mb-[8px]">
                                 Email
                             </label>
                             <input
@@ -136,7 +136,7 @@ function RegisterBox(props) {
                             )}
                         </div>
                         <div className='mb-[30px] md:w-[100%] mdmin:w-[48%] relative'>
-                            <label htmlFor="password-input" className="block text-[14px] font-black mb-[8px]">
+                            <label htmlFor="password-input" className="block text-[14px] font-bold mb-[8px]">
                                 Password
                             </label>
                             <input

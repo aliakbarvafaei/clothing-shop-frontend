@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from "react-router-dom";
 import { useAuth } from '../../contexts/Auth';
 import { useToast } from '../../contexts/ToastState';
-import { postWishlist } from '../../services/api';
+import { postCart, postWishlist } from '../../services/api';
 
 function Card({item}) {
     const history = useHistory();
@@ -20,7 +20,30 @@ function Card({item}) {
         e.preventDefault();
         setBackgroundImage(e.target.src);
     }
-
+    function handleClickCart(e){
+        e.preventDefault();
+        if(!user.loggedIn){
+            setToastState({ title: "2" , description: "First, log in to your account"});
+            history.push('/login');
+        }else{
+            setToastState({
+                title: "3",
+                description: "",
+                })
+            postCart(user.loggedIn,item.code,"1")
+            .then((response) => {
+                console.log(response.data);
+                setToastState({title: "1",description: "Product Added Successfully",});
+            })
+            .catch(err => {
+                if(err.response.status===409){
+                    setToastState({title: "2",description: "This Product Already Added",});
+                }else{
+                    console.error(err);
+                }
+            });
+        }
+    }
     function handleClickHeart(e){
         e.preventDefault();
         if(!user.loggedIn){
@@ -50,7 +73,7 @@ function Card({item}) {
             <Link to={'/product-details/'+String(item.code)+`-`+String((item.name).replace(/\s/g, '').toLowerCase())}>
             <div className={`relative overflow-hidden mm:min-h-[250px] sm:min-h-[300px] md:min-h-[350px] lg:min-h-[370px] xl:min-h-[410px] xlmin:min-h-[440px] bg-[length:100%_100%] bg-no-repeat`} style={{backgroundImage: `url("`+backgroundImage+`")`}}>
                 <div className='absolute mm:right-[-25%] mmmin:right-[-15%] bottom-[5%] flex flex-col items-center justify-center gap-[20px] text-darkGray text-[20px]'>
-                    <i className="lg:group-hover:translate-x-[-45px] lgmin:group-hover:translate-x-[-55px] duration-[700ms] delay-[0ms] fa fa-shopping-cart cursor-pointer hover:text-red mr-[3px]" onClick={(e)=>e.preventDefault()} aria-hidden="true"></i>
+                    <i className="lg:group-hover:translate-x-[-45px] lgmin:group-hover:translate-x-[-55px] duration-[700ms] delay-[0ms] fa fa-shopping-cart cursor-pointer hover:text-red mr-[3px]" onClick={handleClickCart} aria-hidden="true"></i>
                     <i className="lg:group-hover:translate-x-[-45px] lgmin:group-hover:translate-x-[-55px] duration-[700ms] delay-[150ms] fa fa-heart cursor-pointer hover:text-red" onClick={handleClickHeart} aria-hidden="true"></i>
                 </div>
                 <div className='absolute left-[2%] bottom-[5%] w-[12%] flex flex-col justify-center gap-[20px] text-darkGray text-[20px]'>

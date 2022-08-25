@@ -26,10 +26,11 @@ function MobileMenu(props) {
 
             <Link to="/wishlist"><i className="fa fa-heart" aria-hidden="true"></i></Link>
             {/* <ShopIcon submenu={submenuCart} icon="fa fa-shopping-cart iconsMenu" dir="left"/> */}
-
-            <Badge badgeContent={0} showZero color="secondary">
-                <i className="fa fa-shopping-cart" aria-hidden="true"></i>
-            </Badge>
+            <Link to="/cart">
+                <Badge badgeContent={0} showZero color="secondary">
+                    <i className="fa fa-shopping-cart" aria-hidden="true"></i>
+                </Badge>
+            </Link>
             <i className="fa fa-user group relative" aria-hidden="true">
                 <div className={`${themeClass} absolute hidden group-hover:block hover:flex w-[150px] py-[10px] px-[20px] bottom-6 right-[-60px]
                 flex-col drop-shadow-lg z-[26]`}>

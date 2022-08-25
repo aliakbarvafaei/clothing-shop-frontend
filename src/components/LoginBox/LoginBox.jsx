@@ -91,11 +91,11 @@ function LoginBox(props) {
     return (
         <div className={`${themeClass} py-[40px] px-total flex flex-row flex-wrap justify-between`}>
             <div className='lg:w-[100%] lgmin:w-[48%] pt-[10px]'>
-                <h3 className="text-[24px] font-black mb-[20px]">LOGIN</h3>
+                <h3 className="text-[24px] font-bold mb-[20px]">LOGIN</h3>
                 <div className={`${themeBorder} min-h-[336px] p-[30px] border-[1px] border-solid`}>
                     <form className='text-left' onSubmit={handleSubmit(formSubmit)}>
                         <div className='mb-[30px]'>
-                            <label htmlFor="email-input" className="block text-[14px] font-black mb-[8px]">
+                            <label htmlFor="email-input" className="block text-[14px] font-bold mb-[8px]">
                                 Email
                             </label>
                             <input
@@ -113,7 +113,7 @@ function LoginBox(props) {
                             )}
                         </div>
                         <div className='mb-[30px] relative'>
-                            <label htmlFor="password-input" className="block text-[14px] font-black mb-[8px]">
+                            <label htmlFor="password-input" className="block text-[14px] font-bold mb-[8px]">
                                 Password
                             </label>
                             <input
@@ -140,9 +140,9 @@ function LoginBox(props) {
                 
             </div>
             <div className='lg:w-[100%] lgmin:w-[48%] pt-[10px]'>
-                <h3 className="text-[24px] font-black mb-[20px]">NEW CUSTOMER</h3>
+                <h3 className="text-[24px] font-bold mb-[20px]">NEW CUSTOMER</h3>
                 <div className={`${themeBorder} lgmin:min-h-[336px] p-[30px] border-[1px] border-solid`}>
-                    <h4 className="text-[14px] font-black mb-[22px]">CREATE AN ACCOUNT</h4>
+                    <h4 className="text-[14px] font-bold mb-[22px]">CREATE AN ACCOUNT</h4>
                     <p className="bg-inherit p-0 text-[14px] text-darkGray leading-[26px] mb-[30px]">Sign up for a free account at our store. Registration is quick and easy.
                      It allows you to be able to order from our shop. To start shopping click register.</p>
                     <button type='button' onClick={handleCreate} className="h-[50px] min-w-fit p-[10px] rounded-none bg-red text-white font-bold text-[14px] hover:bg-white hover:border-red hover:border-[2px] hover:border-solid hover:text-black">CREATE AN ACCOUNT</button>

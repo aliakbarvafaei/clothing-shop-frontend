@@ -78,7 +78,7 @@ function MainMenu(props) {
               </div>
             </li>
             <li className='group relative text-inherit pl-[12px]'>
-              <i className="peer fa fa-shopping-cart text-[25px] px-[1px] py-[1px] cursor-pointer group-hover:text-red" aria-hidden="true"></i>          
+              <i onClick={()=>history.push('/cart')} className="peer fa fa-shopping-cart text-[25px] px-[1px] py-[1px] cursor-pointer group-hover:text-red" aria-hidden="true"></i>          
               <div className={`${themeClass} absolute hidden peer-hover:block hover:flex w-[800%] py-[10px] px-[20px] right-0
               flex-col drop-shadow-lg z-[22]`}>
                   {

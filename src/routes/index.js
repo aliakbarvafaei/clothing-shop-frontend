@@ -1,4 +1,5 @@
 import DefaultLayout from '../layouts/Default'
+import Cart from '../pages/Cart'
 // import AddProduct from '../pages/add-product'
 // import ContactUsPage from '../pages/contact-us'
 import Home from '../pages/Home'
@@ -44,6 +45,14 @@ const AppRoutes = [
     name: 'wishlist',
     icon: 'fa fa-list',
     component: Wishlist,
+    showInNav: false,
+    private: true,
+  },
+  {
+    path: '/cart',
+    name: 'cart',
+    icon: 'fa fa-list',
+    component: Cart,
     showInNav: false,
     private: true,
   },

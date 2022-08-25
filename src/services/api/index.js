@@ -29,4 +29,20 @@ export const postWishlist = (email,code) =>
 export const deleteWishlist = (email,code) =>
   Axios.delete(`http://localhost:5000/wishlist/${email}!${code}`)
 
+export const getCart = (email) =>
+  Axios.get(`http://localhost:5000/cart/${email}`)
+
+export const postCart = (email,code,quantity) =>
+  Axios.post(`http://localhost:5000/cart/${email}`, {
+    code: code,
+    quantity: quantity,
+  })
+export const deleteCart = (email,code) =>
+  Axios.delete(`http://localhost:5000/cart/${email}!${code}`)
+
+export const updateCart = (email,code,quantity) =>
+  Axios.patch(`http://localhost:5000/cart/${email}!${code}`,{
+    quantity: quantity,
+  })
+
 
