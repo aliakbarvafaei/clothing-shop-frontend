@@ -8,8 +8,7 @@ import { useAuth } from '../../contexts/Auth';
 import { useToast } from '../../contexts/ToastState';
 import { useHistory } from 'react-router-dom';
 import { deleteCart, isInCart, postCart, postWishlist, updateCart } from '../../services/api';
-
-
+import Skeleton from '@mui/material/Skeleton';
 
 function Product({product}) {
     const history = useHistory();
@@ -26,7 +25,7 @@ function Product({product}) {
     const styleSelectedMenu = "text-red border-red border-b-solid border-b-[2px]";
 
     const [counter, setCounter] = useState(1);
-    const [textButton,settextButton] = useState("ADD TO CART");
+    const [textButton,settextButton] = useState("");
 
     const [backgroundImage, setBackgroundImage] = useState(product.images[0]);
 
@@ -42,8 +41,9 @@ function Product({product}) {
                 setdoneRequest(1);
             })
             .catch(err => {
+                settextButton("ADD TO CART");
                 console.error(err);
-            });
+            });            
         }
     },[])
 
@@ -163,7 +163,8 @@ function Product({product}) {
         <div className={`${themeClass} px-total py-[50px]`}>
             <div className='flex lg:flex-col lg:items-center lg:gap-[20px] lgmin:flex-row lgmin:justify-between flex-wrap'>
                 <div className='sm:w-[90%] lg:w-[70%] lgmin:w-[48%] flex flex-col gap-[20px]'>
-                    <div className={` bg-[length:100%_100%] bg-no-repeat w-[100%] mm:h-[350px] sm:h-[450px] md:h-[550px] lg:h-[700px] lgmin:h-[750px]`} style={{backgroundImage: `url("`+backgroundImage+`")`}}>
+                    {textButton!=='' ?
+                    <><div className={` bg-[length:100%_100%] bg-no-repeat w-[100%] mm:h-[350px] sm:h-[450px] md:h-[550px] lg:h-[700px] lgmin:h-[750px]`} style={{backgroundImage: `url("`+backgroundImage+`")`}}>
                     
                     </div>
                     <div className='flex flex-row justify-between w-[100%] gap-[4%]'>
@@ -173,23 +174,31 @@ function Product({product}) {
                             })
                         }
                     </div>
+                    </>
+                    : <div className='w-[100%] mm:h-[350px] sm:h-[450px] md:h-[550px] lg:h-[700px] lgmin:h-[750px] mt-0 pt-0'><Skeleton variant="rectangular" width={'100%'} height={'70%'} /></div>
+                    }
                 </div>
                 <div className='sm:w-[90%] lg:w-[70%] lgmin:w-[48%] flex flex-col gap-[10px] lg:text-center'>
                     <div>
-                        <h2 className='text-[25px] font-bold pb-[10px]'>{product.name}<span className='text-[16px] text-darkGray font-normal'>{product.code}</span></h2>
+                        {textButton!=='' ? 
+                        <><h2 className='text-[25px] font-bold pb-[10px]'>{product.name}<span className='text-[16px] text-darkGray font-normal'>{product.code}</span></h2>
                         <i className="fa fa-heart text-red pb-[5px]" onClick={handleClickHeart} aria-hidden="true"></i>
-                        <h3><strike className='text-[14px] text-darkGray'>${product.price}</strike><span className='text-red'> {product.off}% Off</span></h3>
-                        <h3 className='text-[26px]'>${Number(product.price)*(100-Number(product.off))/100}</h3>
-                        <div id='colors' className='flex flex-row gap-[5px] pt-[15px] pb-[10px] lg:justify-center'>
+                        </>: <div className='w-[100%] mt-0 pt-0'><Skeleton variant="rectangular" width={'100%'} height={'50px'} /></div>
+                        }
+                        {textButton!=='' ? <><h3><strike className='text-[14px] text-darkGray'>${product.price}</strike><span className='text-red'> {product.off}% Off</span></h3>
+                        <h3 className='text-[26px]'>${Number(product.price)*(100-Number(product.off))/100}</h3></>
+                        : <div className='w-[100%] mt-[10px] ml-[10%]'><Skeleton variant="rectangular" width={'80%'} height={'40px'} /></div>}
+                        {textButton!=='' ? <div id='colors' className='flex flex-row gap-[5px] pt-[15px] pb-[10px] lg:justify-center'>
                             {
                                 (product.colors).map((item,index)=>{
                                     return  <div on className={`${themeBorder2} border-solid border-[1px] w-[30px] h-[30px] rounded-[50%]`} style={{backgroundColor: `${item}`}}></div>
                                 })
                             } 
                         </div>
+                        : <div className='w-[100%] mt-[10px]'><Skeleton variant="rectangular" width={'100%%'} height={'40px'} /></div>}
                     </div>
                     <div className={`${themeBorder2} w-[100%] border-dashed border-b-[1px]`}></div>
-                    <div>
+                    {textButton!==''? <div>
                         <h2 className='text-[14px] font-bold '>Select Size</h2>
                         <div id='colors' className='flex flex-row gap-[5px] pt-[15px] pb-[10px] lg:justify-center'>
                             {
@@ -211,8 +220,9 @@ function Product({product}) {
                             <button type='button' onClick={handleClickCart} className="h-[50px] min-w-fit py-[10px] px-[20px] rounded-none bg-red text-white font-bold text-[14px] hover:bg-white hover:border-red hover:border-[2px] hover:border-solid hover:text-black">{textButton}</button>
                         </div> 
                     </div>
+                    : <div className='w-[100%] my-[30px]'><Skeleton variant="rectangular" width={'100%%'} height={'60px'} /></div>}
                     <div className={`${themeBorder2} w-[100%] border-dashed border-b-[1px]`}></div>
-                    <div>
+                    {textButton!=='' ? <><div>
                         <h2 className='text-[14px] font-bold '>Product Details</h2>
                         <p className='text-[14px] text-darkGray'>{product.description}</p>
                     </div>
@@ -225,17 +235,19 @@ function Product({product}) {
                             <span><FaTwitter fontSize={"20px"} /></span>
                             <span><FaInstagram fontSize={"20px"} /></span>
                         </div>
-                    </div>
+                    </div></>
+                    : <div className='w-[100%] my-[30px]'><Skeleton variant="rectangular" width={'100%%'} height={'150px'} /></div>}
                     <div className={`${themeBorder2} w-[100%] border-dashed border-b-[1px]`}></div>
                 </div>
                 <div className='mt-[30px] lgmin:px-[30px] sm:w-[90%] lg:w-[70%] lgmin:w-[100%]'>
-                    <div className={`flex mm:flex-col mmmin:flex-row lg:justify-center gap-[30px] mmmin:border-b-[1px] mmmin:border-b-solid ${themeBorder2}`}>
+                    {textButton!=='' ? <><div className={`flex mm:flex-col mmmin:flex-row lg:justify-center gap-[30px] mmmin:border-b-[1px] mmmin:border-b-solid ${themeBorder2}`}>
                         <h4 className={`${showMenu==="description" ? styleSelectedMenu : themeBorder2} pb-[20px] text-[14px] mm:w-[100%] mm:text-center mm:pb-[10px] cursor-pointer mm:border-b-[1px] mm:border-b-solid`} onClick={()=>setShowMenu("description")}>DESCRIPTION</h4>
                         <h4 className={`${showMenu==="details" ? styleSelectedMenu : themeBorder2} pb-[20px] text-[14px] mm:w-[100%] mm:text-center mm:pb-[10px] cursor-pointer mm:border-b-[1px] mm:border-b-solid`} onClick={()=>setShowMenu("details")}>DETAILS</h4>
                         <h4 className={`${showMenu==="video" ? styleSelectedMenu : themeBorder2} pb-[20px] text-[14px] mm:w-[100%] mm:text-center mm:pb-[10px] cursor-pointer mm:border-b-[1px] mm:border-b-solid`} onClick={()=>setShowMenu("video")}>VIDEO</h4>
                         <h4 className={`${showMenu==="review" ? styleSelectedMenu : themeBorder2} pb-[20px] text-[14px] mm:w-[100%] mm:text-center mm:pb-[10px] cursor-pointer mm:border-b-[1px] mm:border-b-solid`} onClick={()=>setShowMenu("review")}>WRITE REVIEW</h4>
                     </div>
-                    <p className='text-[14px] text-darkGray leading-[25px] pt-[20px] px-[20px]'>{product[showMenu]}</p>
+                    <p className='text-[14px] text-darkGray leading-[25px] pt-[20px] px-[20px]'>{product[showMenu]}</p></>
+                    : <div className='w-[100%] mt-[-200px]'><Skeleton variant="rectangular" width={'100%%'} height={'150px'} /></div>}
                 </div>
             </div>
         </div>
