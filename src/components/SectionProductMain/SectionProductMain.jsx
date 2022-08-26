@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useTheme } from '../../contexts/theme';
 import Card from '../Products/Card';
 import { getProducts } from "../../services/api/index.js";
+import Skeleton from '@mui/material/Skeleton';
+
 
 function SectionProductMain(props) {
     const {theme} = useTheme();
@@ -14,7 +16,7 @@ function SectionProductMain(props) {
         })
         .catch(err => {
                 console.error(err);
-        });
+        });        
     },[])
     return (
         <div className={`${themeClass} flex flex-col items-center py-[50px] px-total`}>
@@ -24,8 +26,8 @@ function SectionProductMain(props) {
             Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
             <div className='flex flex-row flex-wrap w-[100%] gap-[1%]'>
                 {
-                    products.map((item,index)=>{
-                        return <div className='md:w-[48%] xl:w-[32%] xlmin:w-[23%]'><Card item={item}/></div>
+                    (products.length===0 ? Array.from(new Array(8)) : products).map((item,index)=>{
+                        return <div className={`md:w-[48%] xl:w-[32%] xlmin:w-[23%]`}>{item ? <Card item={item}/>: <><Skeleton variant="rectangular" width={'100%'} height={'200px'} /><Skeleton width={`100%`} height="30px"/><div className='mt-0 mb-[30px]'><Skeleton width={`80%`} height="30px"/></div></>}</div>
                     })
                 }
             </div>

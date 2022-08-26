@@ -6,7 +6,7 @@ import { useToast } from '../contexts/ToastState';
 import { deleteCart, getCart, updateCart } from '../services/api';
 import emptyCart from "../assets/images/emptyCart.png";
 import { Link } from 'react-router-dom';
-
+import Skeleton from '@mui/material/Skeleton';
 
 function Cart(props) {
     const {theme} = useTheme();
@@ -17,7 +17,7 @@ function Cart(props) {
 
     var totalPrice=0;
     const {user} = useAuth();
-    const [productCart, setProductCart] = useState([]);
+    const [productCart, setProductCart] = useState('');
 
     useEffect(()=>{
         getCart(user.loggedIn)
@@ -79,7 +79,7 @@ function Cart(props) {
         <div>
             <TitlePages title="CART"/>
             <div className={`${themeClass} px-total py-[50px]`}>
-            {!(productCart.length===0 || !productCart) &&
+            {(productCart.length>0 || productCart==='') &&
                 <><table className='w-[100%] table-fixed'>
                     <thead className={`border-b-solid border-b-[.5px] ${themeBorder}`}>
                         <tr>
@@ -93,9 +93,9 @@ function Cart(props) {
                     </thead>
                     <tbody>
                         {
-                            productCart.map((item,index)=>{
-                                totalPrice+=Number(item.quantity)*(Number(item.product.price)*(100-Number(item.product.off))/100);
-                                return <tr className={`text-center border-b-solid border-b-[.5px] ${themeBorder}`}>
+                            (productCart==='' ? Array.from(new Array(1)) : productCart).map((item,index)=>{
+                                item ? totalPrice+=Number(item.quantity)*(Number(item.product.price)*(100-Number(item.product.off))/100):totalPrice+=0;
+                                return <>{item ? <tr className={`text-center border-b-solid border-b-[.5px] ${themeBorder}`}>
                                     <td className='p-[12px]'><Link to={'/product-details/'+String(item.product.code)+`-`+String((item.product.name).replace(/\s/g, '').toLowerCase())}><img className='mm:w-[60%] sm:w-[40%] smmin:w-[30%] ml-[35%]' src={item.product.images[0]} alt="" /></Link></td>
                                     <td className='md:hidden p-[12px] text-darkGray'><Link to={'/product-details/'+String(item.product.code)+`-`+String((item.product.name).replace(/\s/g, '').toLowerCase())}>{item.product.name}</Link></td>
                                     <td className='md:hidden p-[12px] text-[24px]'>${Number(item.product.price)*(100-Number(item.product.off))/100}</td>
@@ -129,7 +129,7 @@ function Cart(props) {
                                             <span className='text-darkGray'>${Number(item.quantity)*(Number(item.product.price)*(100-Number(item.product.off))/100)}</span>
                                         </span>
                                     </td>
-                                </tr>
+                                </tr> : <tr><td><Skeleton height={'150px'} width={'40%'} className='ml-[30%]' /></td><td><Skeleton height={'50px'}/></td><td className='md:hidden'><Skeleton height={'50px'}/></td><td className='md:hidden'><Skeleton height={'50px'}/></td><td className='md:hidden'><Skeleton height={'50px'}/></td><td className='md:hidden'><Skeleton height={'50px'}/></td></tr>}</>
                             })
                         }
                     </tbody>
@@ -147,7 +147,7 @@ function Cart(props) {
                 </div></>
             }
             
-            {(productCart.length===0 || !productCart) && <div className='w-[100%] text-center py-[30px] text-darkGray font-bold flex flex-col items-center gap-[20px]'><img src={emptyCart} alt="empty" />Your Cart is Empty</div>}
+            {(productCart.length===0 && Array.isArray(productCart)) && <div className='w-[100%] text-center py-[30px] text-darkGray font-bold flex flex-col items-center gap-[20px]'><img src={emptyCart} alt="empty" />Your Cart is Empty</div>}
 
             </div>
         </div>

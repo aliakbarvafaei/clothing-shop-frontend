@@ -4,6 +4,7 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import Card from '../Products/Card';
 import { getProducts } from "../../services/api/index.js";
+import Skeleton from '@mui/material/Skeleton';
 
 // <div className='h-[300px] bg-red ml-[10px]' onMouseEnter={()=>setAutoPlay(false)} onMouseLeave={()=>setAutoPlay(true)}>{index}</div>
 
@@ -45,8 +46,8 @@ function SectionProductSlider(props) {
             <div className='overflow-hidden w-[100%]'>
                 <Carousel responsive={responsive} autoPlay={true} infinite={true} arrows={false}>
                 {
-                    products.map((item,index)=>{
-                        return <Card item={item} />
+                    (products.length===0 ? Array.from(new Array(8)) : products).map((item,index)=>{
+                        return <>{item ? <Card item={item}/> :<div className='ml-[5px]'><Skeleton variant="rectangular" width={'100%'} height={'200px'} /><Skeleton width={`100%`} height="30px"/><div className='mt-0 mb-[30px]'><Skeleton width={`80%`} height="30px"/></div></div>}</>;
                     })
                 }
                 </Carousel>
