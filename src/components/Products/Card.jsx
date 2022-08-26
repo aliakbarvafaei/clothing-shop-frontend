@@ -30,18 +30,23 @@ function Card({item}) {
                 title: "3",
                 description: "",
                 })
-            postCart(user.loggedIn,item.code,"1")
-            .then((response) => {
-                console.log(response.data);
-                setToastState({title: "1",description: "Product Added Successfully",});
-            })
-            .catch(err => {
-                if(err.response.status===409){
-                    setToastState({title: "2",description: "This Product Already Added",});
-                }else{
-                    console.error(err);
-                }
-            });
+            if(Number(item.stock)===0){
+                setToastState({ title: "2" , description: "Out Of Stock"});
+            }
+            else{
+                postCart(user.loggedIn,item.code,"1")
+                .then((response) => {
+                    console.log(response.data);
+                    setToastState({title: "1",description: "Product Added Successfully",});
+                })
+                .catch(err => {
+                    if(err.response.status===409){
+                        setToastState({title: "2",description: "This Product Already Added",});
+                    }else{
+                        console.error(err);
+                    }
+                });
+            }
         }
     }
     function handleClickHeart(e){

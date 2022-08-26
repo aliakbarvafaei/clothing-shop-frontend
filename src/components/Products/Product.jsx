@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTheme } from '../../contexts/theme';
 import { FaGooglePlusG } from "@react-icons/all-files/fa/FaGooglePlusG";
 import { FaInstagram } from "@react-icons/all-files/fa/FaInstagram";
@@ -21,6 +21,7 @@ function Product({product}) {
     const {setToastState} = useToast();
 
     const {user} = useAuth();
+    
     const [showMenu, setShowMenu] = useState("description");
     const styleSelectedMenu = "text-red border-red border-b-solid border-b-[2px]";
 
@@ -29,21 +30,27 @@ function Product({product}) {
 
     const [backgroundImage, setBackgroundImage] = useState(product.images[0]);
 
+    const [firstLoad, setFirstLoad] = useState(1);
+    const [doneRequest, setdoneRequest] = useState(0);
+
     useEffect(()=>{
         if(user.loggedIn){
             isInCart(user.loggedIn,product.code)
             .then((response) => {
                 setCounter(Number(response.data));
                 settextButton("REMOVE PRODUCT FROM CART");
+                setdoneRequest(1);
             })
             .catch(err => {
                 console.error(err);
             });
         }
     },[])
+
     function handleBackground(e){
         setBackgroundImage(e.target.src);
     }
+
     function handleClickHeart(e){
         e.preventDefault();
         if(!user.loggedIn){
@@ -71,12 +78,22 @@ function Product({product}) {
     function handleQuantity(operand){
         if(operand==='-')
             counter>1 ? setCounter(old=>old-1) : setCounter(old=>old);
-        else if(operand==='+')
-            counter<10 ? setCounter(old=>old+1) : setCounter(old=>old);
-        
+        else if(operand==='+'){
+            if(counter<Number(product.stock))
+                counter<10 ? setCounter(old=>old+1) : setCounter(old=>old);
+            else{
+                setToastState({ title: "2" , description: "Your request is more than stock"});
+            }
+        }        
     }
+
     useEffect(()=>{
-        if(textButton==="REMOVE PRODUCT FROM CART")
+        if(doneRequest===1)
+            setFirstLoad(0);
+    },[doneRequest])
+    
+    useEffect(()=>{
+        if(firstLoad===0 && textButton==="REMOVE PRODUCT FROM CART")
         {
             setToastState({
                 title: "3",
@@ -92,6 +109,7 @@ function Product({product}) {
                 });
         }
     },[counter])
+
     function handleClickCart(e){
         e.preventDefault();
         if(!user.loggedIn){
@@ -103,19 +121,30 @@ function Product({product}) {
                 description: "",
                 })
             if(textButton==="ADD TO CART"){
-                postCart(user.loggedIn,product.code,String(counter))
-                .then((response) => {
-                    console.log(response.data);
-                    settextButton("REMOVE PRODUCT FROM CART");
-                    setToastState({title: "1",description: "Product Added Successfully",});
-                })
-                .catch(err => {
-                    if(err.response.status===409){
-                        setToastState({title: "2",description: "This Product Already Added",});
-                    }else{
-                        console.error(err);
+                if(counter>Number(product.stock))
+                {
+                    if(Number(product.stock)===0){
+                        setToastState({ title: "2" , description: "Out Of Stock"});
                     }
-                });
+                    else
+                        setToastState({ title: "2" , description: "Your request is more than stock"});
+                }
+                else{
+                    postCart(user.loggedIn,product.code,String(counter))
+                    .then((response) => {
+                        console.log(response.data);
+                        setdoneRequest(1);
+                        settextButton("REMOVE PRODUCT FROM CART");
+                        setToastState({title: "1",description: "Product Added Successfully",});
+                    })
+                    .catch(err => {
+                        if(err.response.status===409){
+                            setToastState({title: "2",description: "This Product Already Added",});
+                        }else{
+                            console.error(err);
+                        }
+                    });
+                }
             }else{
                 deleteCart(user.loggedIn,product.code)
                 .then((response) => {
@@ -180,7 +209,6 @@ function Product({product}) {
                         </div>
                         <div className='py-[10px]'>
                             <button type='button' onClick={handleClickCart} className="h-[50px] min-w-fit py-[10px] px-[20px] rounded-none bg-red text-white font-bold text-[14px] hover:bg-white hover:border-red hover:border-[2px] hover:border-solid hover:text-black">{textButton}</button>
-                            {/* <button type='button' className="h-[50px] ml-[20px] min-w-fit py-[10px] px-[20px] rounded-none bg-red text-white font-bold text-[14px] hover:bg-white hover:border-red hover:border-[2px] hover:border-solid hover:text-black">BUY NOW</button> */}
                         </div> 
                     </div>
                     <div className={`${themeBorder2} w-[100%] border-dashed border-b-[1px]`}></div>

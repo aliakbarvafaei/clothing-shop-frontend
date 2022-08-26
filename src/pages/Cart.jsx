@@ -52,13 +52,13 @@ function Cart(props) {
         return arr;
       }
     function handleQuantity(str,item){
-        const xxx= str==='-'? Number(item.quantity)-1:Number(item.quantity)+1;
-        if(xxx!==0){
+        const newQuantity= str==='-'? Number(item.quantity)-1:Number(item.quantity)+1;
+        if(newQuantity!==0){
             setToastState({
                 title: "3",
                 description: "",
                 })
-            updateCart(user.loggedIn,item.product.code,String(xxx))
+            updateCart(user.loggedIn,item.product.code,String(newQuantity))
             .then((response) => {
                 console.log(response.data);
                 setToastState({title: "1", description: "Product changed Successfully"})
@@ -66,7 +66,7 @@ function Cart(props) {
             .catch(err => {
                     console.error(err);
             });
-            setProductCart(old => (updateItemOne(old.slice(), item,String(xxx))));
+            setProductCart(old => (updateItemOne(old.slice(), item,String(newQuantity))));
         }
     }
 
@@ -79,7 +79,8 @@ function Cart(props) {
         <div>
             <TitlePages title="CART"/>
             <div className={`${themeClass} px-total py-[50px]`}>
-                <table className='w-[100%] table-fixed'>
+            {!(productCart.length===0 || !productCart) &&
+                <><table className='w-[100%] table-fixed'>
                     <thead className={`border-b-solid border-b-[.5px] ${themeBorder}`}>
                         <tr>
                             <th className='p-[12px]'>IMAGE</th>
@@ -132,9 +133,8 @@ function Cart(props) {
                             })
                         }
                     </tbody>
-                </table>
-                {(productCart.length===0 || !productCart) && <div className='w-[100%] text-center py-[30px] text-darkGray font-bold flex flex-col items-center gap-[20px]'><img src={emptyCart} alt="empty" />Your Cart is Empty</div>}
-                {!(productCart.length===0 || !productCart) &&
+                </table>  
+                
                 <div className='flex md:flex-col mdmin:flex-row justify-between items-center my-[20px] mr-[0px] w-[100%]'>
                     <div className='mdmin:w-[30%] md:w-[60%] flex flex-row justify-between items-center font-bold'>
                         <span className='text-[15px]'>Total Price:</span>   
@@ -144,8 +144,10 @@ function Cart(props) {
                         <button type='button'className="h-[50px] min-w-fit sm:p-[5px] smmin:p-[10px] rounded-none bg-red text-white font-bold sm:text-[11px] smmin:text-[14px] hover:bg-white hover:border-red hover:border-[2px] hover:border-solid hover:text-black">CONTINUE SHOPPING</button>
                         <button type='button'className="h-[50px] min-w-fit sm:p-[5px] smmin:p-[10px] sm:ml-[10px] smmin:ml-[20px] rounded-none bg-red text-white font-bold sm:text-[11px] smmin:text-[14px] hover:bg-white hover:border-red hover:border-[2px] hover:border-solid hover:text-black">CHECK OUT</button>
                     </div>
-                </div>
-                }
+                </div></>
+            }
+            
+            {(productCart.length===0 || !productCart) && <div className='w-[100%] text-center py-[30px] text-darkGray font-bold flex flex-col items-center gap-[20px]'><img src={emptyCart} alt="empty" />Your Cart is Empty</div>}
 
             </div>
         </div>
