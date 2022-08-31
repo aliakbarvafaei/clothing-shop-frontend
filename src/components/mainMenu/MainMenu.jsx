@@ -15,7 +15,7 @@ const titleMenus=[{title: "HOME", submenu:[{title:"New Demos", pathTo:"/"},{titl
 {title: "BLOGES", submenu:[{title:"Blog Left Sidebar", pathTo:"/"},{title:"Blog Right Sidebar", pathTo:"/"},{title:"No Sidebar", pathTo:"/"},{title:"Blog Detail", pathTo:"/"}]},
 ]
 const submenuSetting=[{title: "Language", pathTo:"/"}, {title:"Currency", pathTo: "/"}];
-const submenuCart=["Your cart is currently empty."];
+// const submenuCart=["Your cart is currently empty."];
 
 function MainMenu(props) {
     const {theme} = useTheme();
@@ -79,14 +79,14 @@ function MainMenu(props) {
             </li>
             <li className='group relative text-inherit pl-[12px]'>
               <i onClick={()=>history.push('/cart')} className="peer fa fa-shopping-cart text-[25px] px-[1px] py-[1px] cursor-pointer group-hover:text-red" aria-hidden="true"></i>          
-              <div className={`${themeClass} absolute hidden peer-hover:block hover:flex w-[800%] py-[10px] px-[20px] right-0
+              {/* <div className={`${themeClass} absolute hidden peer-hover:block hover:flex w-[800%] py-[10px] px-[20px] right-0
               flex-col drop-shadow-lg z-[22]`}>
                   {
                     submenuCart.map((item,index)=>{
                           return <Link className={classNames("text-left text-[14px] py-[12px] hoverItem")} to="/" key={index}>{item}</Link>
                       })    
                   }
-              </div>
+              </div> */}
             </li>
           </ul>
         </div>
