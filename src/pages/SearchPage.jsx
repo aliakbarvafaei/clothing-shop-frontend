@@ -11,6 +11,7 @@ const filtersOption = [{"title":"category","content": ["shoes", "watch", "dress"
 ] 
 
 function SearchPage(props) {
+    const [counterPage,setcounterPage] = useState(1);
     const [products, setProducts] = useState([]);
     const [filterProducts, setFilterProducts] = useState([]);
     const [priceRange, setPriceRange] = useState({"from": 0, "to": 1000});
@@ -84,6 +85,7 @@ function SearchPage(props) {
     }
     useEffect(()=>
     {
+        setcounterPage(1);
         setFilterProducts(products.filter(item=>{
             return ((item.code).includes(searchInput) || ((item.name).toLowerCase()).includes(searchInput.toLowerCase())) &&
             (color.length===0 || findItemArrayInArray(color,item.colors)) &&
@@ -156,10 +158,33 @@ function SearchPage(props) {
                     <div className={`flex flex-row flex-wrap w-[100%] py-[40px] px-[2%] gap-[1%] rounded-md border-solid border-[1px] ${themeBorder}`}>
                     {
                         filterProducts.length===0 ? <><i className="fa fa-exclamation-triangle text-red mt-[2px]" aria-hidden="true"></i><div className='text-red'>No product found</div></>:
-                        filterProducts.map((item,index)=>{
+                        filterProducts.slice((counterPage-1)*6,(counterPage-1)*6+6).map((item,index)=>{
                             return <div className='md:w-[48%] xl:w-[48%] xlmin:w-[32%]'><Card item={item}/></div>
                         })
                     }
+                        <div class="max-w-[100%] pt-[40px] container flex justify-center mx-auto">
+                            <div class="flex flex-row mx-auto">
+                                <button disabled={counterPage!==1 ? null:'disabled'} onClick={()=>setcounterPage(old=>old-1)} type="button" className="bg-darkGray text-lightGray rounded-l-md border-r border-lightGray py-2 hover:bg-red disabled:opacity-60 px-3">
+                                    <div class="flex flex-row align-middle">
+                                        <svg class="w-5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M7.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l2.293 2.293a1 1 0 010 1.414z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        <p class="ml-2">Prev</p>
+                                    </div>
+                                </button>
+                                <div className='bg-darkGray text-white border-r border-lightGray py-2 hover:bg-red px-3'>
+                                    {counterPage}
+                                </div>
+                                <button disabled={((counterPage)*6)<filterProducts.length ? null:'disabled'} onClick={()=>setcounterPage(old=>old+1)}type="button" className="bg-darkGray text-lightGray rounded-r-md py-2  hover:bg-red disabled:opacity-60 px-3">
+                                    <div class="flex flex-row align-middle">
+                                        <span class="mr-2">Next</span>
+                                        <svg class="w-5 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
