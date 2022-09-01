@@ -1,12 +1,12 @@
-import Axios from 'axios'
+import {axiosInstance} from '../../config'
 
 export const loginAPI = ( email, password ) =>
-  Axios.post('http://localhost:5000/login', {
+axiosInstance.post('/login', {
     email: email,
     password: password,
   })
 export const registerAPI = ( fname, lname, email, password ) =>
-  Axios.post('http://localhost:5000/register', {
+axiosInstance.post('/register', {
     fname: fname,
     lname: lname,
     email: email,
@@ -14,37 +14,37 @@ export const registerAPI = ( fname, lname, email, password ) =>
   })
 
 export const getProducts = () =>
-  Axios.get('http://localhost:5000/products')
+axiosInstance.get('/products')
 
 export const getProduct = (idProduct) =>
-  Axios.get(`http://localhost:5000/product/${idProduct}`)
+axiosInstance.get(`/product/${idProduct}`)
 
 export const getWishlist = (email) =>
-  Axios.get(`http://localhost:5000/wishlist/${email}`)
+axiosInstance.get(`/wishlist/${email}`)
 
 export const postWishlist = (email,code) =>
-  Axios.post(`http://localhost:5000/wishlist/${email}`, {
+axiosInstance.post(`/wishlist/${email}`, {
     code: code,
   })
 export const deleteWishlist = (email,code) =>
-  Axios.delete(`http://localhost:5000/wishlist/${email}!${code}`)
+axiosInstance.delete(`/wishlist/${email}!${code}`)
 
 export const getCart = (email) =>
-  Axios.get(`http://localhost:5000/cart/${email}`)
+axiosInstance.get(`/cart/${email}`)
 
 export const postCart = (email,code,quantity) =>
-  Axios.post(`http://localhost:5000/cart/${email}`, {
+axiosInstance.post(`/cart/${email}`, {
     code: code,
     quantity: quantity,
   })
 export const deleteCart = (email,code) =>
-  Axios.delete(`http://localhost:5000/cart/${email}!${code}`)
+axiosInstance.delete(`/cart/${email}!${code}`)
 
 export const updateCart = (email,code,quantity) =>
-  Axios.patch(`http://localhost:5000/cart/${email}!${code}`,{
+axiosInstance.patch(`/cart/${email}!${code}`,{
     quantity: quantity,
   })
 
 export const isInCart = (email,code) =>
-  Axios.get(`http://localhost:5000/isincart/${email}!${code}`)
+axiosInstance.get(`/isincart/${email}!${code}`)
 
