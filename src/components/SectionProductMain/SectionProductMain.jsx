@@ -3,12 +3,12 @@ import { useTheme } from '../../contexts/theme';
 import Card from '../Products/Card';
 import { getProducts } from "../../services/api/index.js";
 import Skeleton from '@mui/material/Skeleton';
-
+import {products as xxx} from "../../data";
 
 function SectionProductMain(props) {
     const {theme} = useTheme();
     const themeClass = theme.mode==="DARK" ? "bg-darkModeLightBlack text-white": "bg-white";
-    const [products, setProducts] = useState([]);
+    const [products, setProducts] = useState(xxx);
     useEffect(()=>{
         getProducts()
         .then((response) => {
