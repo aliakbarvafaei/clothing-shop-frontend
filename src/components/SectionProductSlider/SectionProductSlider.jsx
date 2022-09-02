@@ -5,7 +5,7 @@ import 'react-multi-carousel/lib/styles.css';
 import Card from '../Products/Card';
 import { getProducts } from "../../services/api/index.js";
 import Skeleton from '@mui/material/Skeleton';
-import {products as xxx} from "../../data";
+// import {products as xxx} from "../../data";
 
 // <div className='h-[300px] bg-red ml-[10px]' onMouseEnter={()=>setAutoPlay(false)} onMouseLeave={()=>setAutoPlay(true)}>{index}</div>
 
@@ -27,7 +27,8 @@ const responsive = {
 function SectionProductSlider(props) {
     const {theme} = useTheme();
     const themeClass = theme.mode==="DARK" ? "bg-darkModeLightBlack text-white": "bg-white";
-    const [products, setProducts] = useState(xxx);
+    const [products, setProducts] = useState([]);
+    // const [products, setProducts] = useState(xxx);
     useEffect(()=>{
         getProducts()
         .then((response) => {
