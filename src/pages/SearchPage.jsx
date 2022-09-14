@@ -4,8 +4,8 @@ import TitlePages from '../components/TitlePages/TitlePages';
 import { useTheme } from '../contexts/theme';
 import { getProducts } from '../services/api';
 
-const filtersOption = [{"title":"category","content": ["shoes", "watch", "dress", "toy"]},
-{"title":"gender","content": ["men", "women"]},
+const filtersOption = [{"title":"category","content": ["shoes", "watch", "dress", "toy","bag"]},
+{"title":"gender","content": ["men", "women","kids"]},
 {"title":"color","content":["black","white","yellow","olive","pink","blue","skyblue","green","gray","orange","red"]},
 {"title":"size","content":["xs","s","m","l","x","xl"]},
 ] 
