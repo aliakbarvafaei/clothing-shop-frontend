@@ -1,17 +1,18 @@
 import React, { useEffect } from 'react';
 import { useToast } from '../../contexts/ToastState';
 
-function Toast({ type, description}) {
+function Toast({ type, description, indexKey, destroyToast }) {
     const { setToastState } = useToast();
+    
     useEffect(() => {
         const timer= setTimeout(() => {
-            setToastState(false);
+            destroyToast(indexKey);
         }, 3000);
-        return () => clearTimeout(timer);
+        // return () => clearTimeout(timer);
     },[setToastState]);
 
     function handleClick(){
-        setToastState(false);
+        destroyToast(indexKey);
     }
 
     const toastObject = {
@@ -22,7 +23,7 @@ function Toast({ type, description}) {
     }
     return (
         <>
-            <div className={`fixed z-[40] top-[20px] right-[20px] p-[10px] flex flex-row items-center gap-[20px] rounded-[5px] shadow-[0_8px_18px_0_rgba(200,200,200)] ${toastObject.backgroundColor}`}>
+            <div className={`p-[10px] flex flex-row items-center gap-[20px] rounded-[5px] shadow-[0_8px_18px_0_rgba(200,200,200)] ${toastObject.backgroundColor}`}>
                 <div className="text-[30px]">
                     <i className={toastObject.icon} aria-hidden="true"></i>
                 </div>

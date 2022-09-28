@@ -18,7 +18,10 @@ function MobileMenu(props) {
     const history = useHistory();
     const {theme} = useTheme();
     const themeClass = theme.mode==="DARK" ? "bg-darkModeLightBlack text-darkModeGray": "bg-darkModeLightBlack";
-
+    function addItemOnce(arr, value) {
+        arr.push(value);
+        return arr;
+    }
 
     return (<>
         <div className="sm:fixed smmin:hidden sm:bottom-0 z-[25] flex flex-row justify-between items-center bg-darkModeLightBlack w-full h-16 text-darkGray text-[26px] px-[60px]">
@@ -38,7 +41,7 @@ function MobileMenu(props) {
                     myAccountDrop.map((item,index)=>{
                         if(user.loggedIn){
                             if(item.title==="Logout")
-                                return <Link className="text-left text-[14px] py-[12px] hoverItem font-font font-normal" onClick={()=>{toggleAuth();setToastState({title:"2",description:"Logout Successfully"});}} to={item.pathTo} key={index}>{item.title}</Link>
+                                return <Link className="text-left text-[14px] py-[12px] hoverItem font-font font-normal" onClick={()=>{toggleAuth();setToastState(old=>addItemOnce(old.slice(),{title:"2",description:"Logout Successfully", key:Math.random()}));}} to={item.pathTo} key={index}>{item.title}</Link>
                             else if(item.title==="Profile")
                                 return <Link className="text-left text-[14px] py-[12px] hoverItem font-font font-normal"  to={item.pathTo} key={index}>{item.title}</Link>
                         }else if(item.title!=="Logout" && item.title!=="Profile"){

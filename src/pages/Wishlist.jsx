@@ -25,16 +25,19 @@ function Wishlist(props) {
                 console.error(err);
         });        
     },[]);
-
+    function addItemOnce(arr, value) {
+        arr.push(value);
+        return arr;
+    }
     function handleremove(product){ 
-        setToastState({
-            title: "3",
-            description: "",
-            })
+        // setToastState(old=>addItemOnce(old.slice(),{
+        //     title: "3",
+        //     description: "", key:Math.random()
+        //     }))
         deleteWishlist(user.loggedIn,product.code)
         .then((response) => {
             console.log(response.data);
-            setToastState({title: "2", description: "Product Removed Successfully"})
+            setToastState(old=>addItemOnce(old.slice(),{title: "2", description: "Product Removed Successfully", key:Math.random()}))
         })
         .catch(err => {
                 console.error(err);

@@ -15,6 +15,10 @@ function Card({item}) {
         setImages(item.images);
     },[item.images])
     
+    function addItemOnce(arr, value) {
+        arr.push(value);
+        return arr;
+    }
 
     function handleBackground(e){
         e.preventDefault();
@@ -23,25 +27,25 @@ function Card({item}) {
     function handleClickCart(e){
         e.preventDefault();
         if(!user.loggedIn){
-            setToastState({ title: "2" , description: "First, log in to your account"});
+            setToastState(old=>addItemOnce(old.slice(),{ title: "2" , description: "First, log in to your account", key:Math.random()}));
             history.push('/login');
         }else{
-            setToastState({
-                title: "3",
-                description: "",
-                })
+            // setToastState(old=>addItemOnce(old.slice(),{
+            //     title: "3",
+            //     description: "", key:Math.random()
+            //     }))
             if(Number(item.stock)===0){
-                setToastState({ title: "2" , description: "Out Of Stock"});
+                setToastState(old=>addItemOnce(old.slice(),{ title: "2" , description: "Out Of Stock", key:Math.random()}));
             }
             else{
                 postCart(user.loggedIn,item.code,"1")
                 .then((response) => {
                     console.log(response.data);
-                    setToastState({title: "1",description: "Product Added Successfully",});
+                    setToastState(old=>addItemOnce(old.slice(),{title: "1",description: "Product Added Successfully", key:Math.random()}));
                 })
                 .catch(err => {
                     if(err.response.status===409){
-                        setToastState({title: "2",description: "This Product Already Added",});
+                        setToastState(old=>addItemOnce(old.slice(),{title: "2",description: "This Product Already Added", key:Math.random()}));
                     }else{
                         console.error(err);
                     }
@@ -52,21 +56,21 @@ function Card({item}) {
     function handleClickHeart(e){
         e.preventDefault();
         if(!user.loggedIn){
-            setToastState({ title: "2" , description: "First, log in to your account"});
+            setToastState(old=>addItemOnce(old.slice(),{ title: "2" , description: "First, log in to your account", key:Math.random()}));
             history.push('/login');
         }else{
-            setToastState({
-                title: "3",
-                description: "",
-                })
+            // setToastState(old=>addItemOnce(old.slice(),{
+            //     title: "3",
+            //     description: "", key:Math.random()
+            //     }))
             postWishlist(user.loggedIn,item.code)
             .then((response) => {
                 console.log(response.data);
-                setToastState({title: "1",description: "Product Added Successfully",});
+                setToastState(old=>addItemOnce(old.slice(),{title: "1",description: "Product Added Successfully", key:Math.random()}));
             })
             .catch(err => {
                 if(err.response.status===409){
-                    setToastState({title: "2",description: "This Product Already Added",});
+                    setToastState(old=>addItemOnce(old.slice(),{title: "2",description: "This Product Already Added", key:Math.random()}));
                 }else{
                     console.error(err);
                 }

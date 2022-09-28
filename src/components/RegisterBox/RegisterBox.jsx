@@ -23,12 +23,15 @@ function RegisterBox(props) {
         handleSubmit,
         formState: { errors },
     } = useForm()
-
+    function addItemOnce(arr, value) {
+        arr.push(value);
+        return arr;
+    }
     function formSubmit(){
-        setToastState({
-            title: "3",
-            description: "",
-            })
+        // setToastState(old=>addItemOnce(old.slice(),{
+        //     title: "3",
+        //     description: "", key:Math.random()
+        //     }))
 
         const fname=document.getElementById(fnameId).value;
         const lname=document.getElementById(lnameId).value;
@@ -43,25 +46,25 @@ function RegisterBox(props) {
         registerAPI(fname,lname,email,password)
         .then((response) => {
             if(response.status===201){
-                setToastState({
+                setToastState(old=>addItemOnce(old.slice(),{
                 title: "1",
-                description: "Registration was successful",
-                });
+                description: "Registration was successful", key:Math.random()
+                }));
                 history.push("/login");
             }
         })
         .catch(err => {
             if(err.response.status===409){
-                setToastState({
+                setToastState(old=>addItemOnce(old.slice(),{
                     title: "2",
-                    description: "The user has already registered",
-                    })
+                    description: "The user has already registered", key:Math.random()
+                    }))
             }
             else{
-                setToastState({
+                setToastState(old=>addItemOnce(old.slice(),{
                     title: "2",
-                    description: "The server is unavailable",
-                    })
+                    description: "The server is unavailable", key:Math.random()
+                    }))
                 console.error(err);
 
             }

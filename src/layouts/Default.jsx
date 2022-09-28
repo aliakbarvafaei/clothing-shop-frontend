@@ -1,6 +1,6 @@
 import Header from '../components/Header/Header'
 import MainMenu from '../components/mainMenu/MainMenu'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Route, Switch  } from 'react-router-dom'
 import AppRoutes from '../routes'
 import ProtectedRoute from '../components/ProtectedRoute'
@@ -11,8 +11,25 @@ import Toast from '../components/Toast/Toast'
 import { useToast } from '../contexts/ToastState'
 
 const DefaultLayout = (props) => {
-  const { toastState } = useToast();
-    
+  const { toastState, setToastState } = useToast();
+
+  function destroyToast(indexKey){
+    setToastState(old=>removeItemOnce(old.slice(),indexKey));
+  }
+  function removeItemOnce(arr, indexKey) {
+    var index=-1;
+    for(let i=0;i<arr.length;i++){
+      if(arr[i].key===indexKey){
+        index=i;
+        break;
+      }
+    }
+    if (index > -1) {
+      arr.splice(index, 1);
+    }
+    return arr;
+  }
+
   return (
     <div
       id="main-wrapper"
@@ -41,7 +58,11 @@ const DefaultLayout = (props) => {
         </div>
       </div>
       <Footer />
-      {toastState && <Toast type={toastState.title} description={toastState.description}/>}
+      <div className='fixed top-[20px] right-[20px] flex flex-col gap-[15px] z-[40]'>
+        {toastState.length>0 &&  toastState.map((item,index)=>{
+          return <Toast type={item.title} description={item.description} indexKey={item.key} destroyToast={destroyToast} key={index}/>
+        })}
+      </div>
     </div>
   )
 }

@@ -18,7 +18,10 @@ function LoginBox(props) {
     
     const emailId = useId();
     const passwordId = useId();
-
+    function addItemOnce(arr, value) {
+        arr.push(value);
+        return arr;
+    }
     window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
 
     useEffect(()=>{
@@ -36,10 +39,11 @@ function LoginBox(props) {
     }
     
     function formSubmit(){
-        setToastState({
-            title: "3",
-            description: "",
-            })
+        // setToastState(old=>addItemOnce(old.slice(),{
+        //     title: "3",
+        //     description: "",
+        //     key:Math.random()
+        //     }))
 
         const email=document.getElementById(emailId).value;
         const password=document.getElementById(passwordId).value;
@@ -50,33 +54,33 @@ function LoginBox(props) {
         loginAPI(email,password)
         .then((response) => {
             if(response.status===200){
-                setToastState({
+                setToastState(old=>addItemOnce(old.slice(),{
                 title: "1",
-                description: `Welcome dear ${response.data.fname}`,
-                });
+                description: `Welcome dear ${response.data.fname}`, key:Math.random()
+                }));
                 toggleAuth(response.data.email);
                 history.push("/home");
             }
         })
         .catch(err => {
             if(err.response.status===401){
-                setToastState({
+                setToastState(old=>addItemOnce(old.slice(),{
                     title: "2",
-                    description: "Password not correct",
-                    })
+                    description: "Password not correct", key:Math.random()
+                    }))
             }
             else if(err.response.status===404){
-                setToastState({
+                setToastState(old=>addItemOnce(old.slice(),{
                     title: "2",
-                    description: "User not fount please register first...",
-                    })
+                    description: "User not fount please register first...", key:Math.random()
+                    }))
             }
             else{
                 console.error(err);
-                setToastState({
+                setToastState(old=>addItemOnce(old.slice(),{
                     title: "2",
-                    description: "The server is unavailable",
-                    })
+                    description: "The server is unavailable", key:Math.random()
+                    }))
             }
         });
     }

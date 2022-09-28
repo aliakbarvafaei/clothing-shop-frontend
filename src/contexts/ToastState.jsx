@@ -4,7 +4,7 @@ const ToastStateContext = createContext(undefined)
 
 
 const ToastProvider = ({children}) => {
-  const [toastState, setToastState] = useState(false)
+  const [toastState, setToastState] = useState([])
 
   const value = useMemo(() => ({setToastState, toastState}), [toastState, setToastState])
 

@@ -31,7 +31,10 @@ function Product({product}) {
 
     const [firstLoad, setFirstLoad] = useState(1);
     const [doneRequest, setdoneRequest] = useState(0);
-
+    function addItemOnce(arr, value) {
+        arr.push(value);
+        return arr;
+    }
     useEffect(()=>{
         if(user.loggedIn){
             isInCart(user.loggedIn,product.code)
@@ -54,21 +57,21 @@ function Product({product}) {
     function handleClickHeart(e){
         e.preventDefault();
         if(!user.loggedIn){
-            setToastState({ title: "2" , description: "First, log in to your account"});
+            setToastState(old=>addItemOnce(old.slice(),{ title: "2" , description: "First, log in to your account", key:Math.random()}));
             history.push('/login');
         }else{
-            setToastState({
-                title: "3",
-                description: "",
-                })
+            // setToastState(old=>addItemOnce(old.slice(),{
+            //     title: "3",
+            //     description: "", key:Math.random()
+            //     }))
             postWishlist(user.loggedIn,product.code)
             .then((response) => {
                 console.log(response.data);
-                setToastState({title: "1",description: "Product Added Successfully",});
+                setToastState(old=>addItemOnce(old.slice(),{title: "1",description: "Product Added Successfully", key:Math.random()}));
             })
             .catch(err => {
                 if(err.response.status===409){
-                    setToastState({title: "2",description: "This Product Already Added",});
+                    setToastState(old=>addItemOnce(old.slice(),{title: "2",description: "This Product Already Added", key:Math.random()}));
                 }else{
                     console.error(err);
                 }
@@ -82,7 +85,7 @@ function Product({product}) {
             if(counter<Number(product.stock))
                 counter<10 ? setCounter(old=>old+1) : setCounter(old=>old);
             else{
-                setToastState({ title: "2" , description: "Your request is more than stock"});
+                setToastState(old=>addItemOnce(old.slice(),{ title: "2" , description: "Your request is more than stock", key:Math.random()}));
             }
         }        
     }
@@ -95,14 +98,14 @@ function Product({product}) {
     useEffect(()=>{
         if(firstLoad===0 && textButton==="REMOVE PRODUCT FROM CART")
         {
-            setToastState({
-                title: "3",
-                description: "",
-                })
+            // setToastState(old=>addItemOnce(old.slice(),{
+            //     title: "3",
+            //     description: "", key:Math.random()
+            //     }))
             updateCart(user.loggedIn,product.code,String(counter))
                 .then((response) => {
                     console.log(response.data);
-                    setToastState({title: "1",description: "Product changed Successfully",});
+                    setToastState(old=>addItemOnce(old.slice(),{title: "1",description: "Product changed Successfully", key:Math.random()}));
                 })
                 .catch(err => {
                         console.error(err);
@@ -113,21 +116,21 @@ function Product({product}) {
     function handleClickCart(e){
         e.preventDefault();
         if(!user.loggedIn){
-            setToastState({ title: "2" , description: "First, log in to your account"});
+            setToastState(old=>addItemOnce(old.slice(),{ title: "2" , description: "First, log in to your account", key:Math.random()}));
             history.push('/login');
         }else{
-            setToastState({
-                title: "3",
-                description: "",
-                })
+            // setToastState(old=>addItemOnce(old.slice(),{
+            //     title: "3",
+            //     description: "", key:Math.random()
+            //     }))
             if(textButton==="ADD TO CART"){
                 if(counter>Number(product.stock))
                 {
                     if(Number(product.stock)===0){
-                        setToastState({ title: "2" , description: "Out Of Stock"});
+                        setToastState(old=>addItemOnce(old.slice(),{ title: "2" , description: "Out Of Stock", key:Math.random()}));
                     }
                     else
-                        setToastState({ title: "2" , description: "Your request is more than stock"});
+                        setToastState(old=>addItemOnce(old.slice(),{ title: "2" , description: "Your request is more than stock", key:Math.random()}));
                 }
                 else{
                     postCart(user.loggedIn,product.code,String(counter))
@@ -135,11 +138,11 @@ function Product({product}) {
                         console.log(response.data);
                         setdoneRequest(1);
                         settextButton("REMOVE PRODUCT FROM CART");
-                        setToastState({title: "1",description: "Product Added Successfully",});
+                        setToastState(old=>addItemOnce(old.slice(),{title: "1",description: "Product Added Successfully", key:Math.random()}));
                     })
                     .catch(err => {
                         if(err.response.status===409){
-                            setToastState({title: "2",description: "This Product Already Added",});
+                            setToastState(old=>addItemOnce(old.slice(),{title: "2",description: "This Product Already Added", key:Math.random()}));
                         }else{
                             console.error(err);
                         }
@@ -151,7 +154,7 @@ function Product({product}) {
                     console.log(response.data);
                     settextButton("ADD TO CART");
                     setCounter(1);
-                    setToastState({title: "2", description: "Product Removed Successfully"})
+                    setToastState(old=>addItemOnce(old.slice(),{title: "2", description: "Product Removed Successfully", key:Math.random()}))
                 })
                 .catch(err => {
                         console.error(err);

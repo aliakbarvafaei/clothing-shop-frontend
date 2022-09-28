@@ -14,7 +14,10 @@ function Header(props) {
     
     const {setToastState} = useToast();
     const {user, toggleAuth} = useAuth();
-
+    function addItemOnce(arr, value) {
+      arr.push(value);
+      return arr;
+  }
     const information={
       welcome: "Welcome to Our store Multikart",
       call: "Call Us: 123 - 456 - 7890",
@@ -44,7 +47,7 @@ function Header(props) {
                       myAccountDrop.submenu.map((item,index)=>{
                         if(user.loggedIn){
                           if(item.title==="Logout")
-                            return <Link className="text-left text-[14px] py-[12px] hoverItem" onClick={()=>{toggleAuth();setToastState({title:"2",description:"Logout Successfully"});}} to={item.pathTo} key={index}>{item.title}</Link>
+                            return <Link className="text-left text-[14px] py-[12px] hoverItem" onClick={()=>{toggleAuth();setToastState(old => addItemOnce(old.slice(),{title:"2",description:"Logout Successfully", key:Math.random()}));}} to={item.pathTo} key={index}>{item.title}</Link>
                           else if(item.title==="Profile")
                             return <Link className="text-left text-[14px] py-[12px] hoverItem" to={item.pathTo} key={index}>{item.title}</Link>
                         }else if(item.title!=="Logout" && item.title!=="Profile"){
