@@ -105,14 +105,14 @@ function SearchPage(props) {
                     <h2 className='text-center mb-[20px]'>Filters</h2>
                     {
                         filtersOption.map((item,index)=>{
-                            return <details className='mb-[20px]'>
+                            return <details key={index} className='mb-[20px]'>
                                 <summary className={`text-[16px] list-none flex flex-row justify-between items-center pb-[8px] cursor-pointer border-b-solid border-b-[1px] ${themeBorder}`}>
                                     {item.title}<i className="fa fa-caret-down text-[16px]" aria-hidden="true"></i>
                                 </summary>
                                 <ul className='pl-[10px] text-[14px]'>
                                 {
                                     item.content.map((subItem,index)=>{
-                                        return <li className='flex flex-row items-center gap-[10px] pt-[10px]'>
+                                        return <li key={index} className='flex flex-row items-center gap-[10px] pt-[10px]'>
                                             <input type="checkbox" value={subItem} id={item.title+index} onClick={(e)=>handleClick(e,item.title)}/>
                                             <label className={`w-[100%] py-[8px] cursor-pointer border-b-solid border-b-[1px] ${themeBorder}`} for={item.title+index}>{subItem}</label>
                                         </li>
@@ -159,26 +159,26 @@ function SearchPage(props) {
                     {
                         filterProducts.length===0 ? <><i className="fa fa-exclamation-triangle text-red mt-[2px]" aria-hidden="true"></i><div className='text-red'>No product found</div></>:
                         filterProducts.slice((counterPage-1)*6,(counterPage-1)*6+6).map((item,index)=>{
-                            return <div className='md:w-[48%] xl:w-[48%] xlmin:w-[32%]'><Card item={item}/></div>
+                            return <div key={index} className='md:w-[48%] xl:w-[48%] xlmin:w-[32%]'><Card item={item}/></div>
                         })
                     }
-                        <div class="max-w-[100%] pt-[40px] container flex justify-center mx-auto">
-                            <div class="flex flex-row mx-auto">
+                        <div className="max-w-[100%] pt-[40px] container flex justify-center mx-auto">
+                            <div className="flex flex-row mx-auto">
                                 <button disabled={counterPage!==1 ? null:'disabled'} onClick={()=>setcounterPage(old=>old-1)} type="button" className="bg-darkGray text-lightGray rounded-l-md border-r border-lightGray py-2 hover:bg-red disabled:opacity-60 px-3">
-                                    <div class="flex flex-row align-middle">
-                                        <svg class="w-5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <div className="flex flex-row align-middle">
+                                        <svg className="w-5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" d="M7.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l2.293 2.293a1 1 0 010 1.414z" clip-rule="evenodd"></path>
                                         </svg>
-                                        <p class="ml-2">Prev</p>
+                                        <p className="ml-2">Prev</p>
                                     </div>
                                 </button>
                                 <div className='bg-darkGray text-white border-r border-lightGray py-2 hover:bg-red px-3'>
                                     {counterPage}
                                 </div>
                                 <button disabled={((counterPage)*6)<filterProducts.length ? null:'disabled'} onClick={()=>setcounterPage(old=>old+1)}type="button" className="bg-darkGray text-lightGray rounded-r-md py-2  hover:bg-red disabled:opacity-60 px-3">
-                                    <div class="flex flex-row align-middle">
-                                        <span class="mr-2">Next</span>
-                                        <svg class="w-5 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <div className="flex flex-row align-middle">
+                                        <span className="mr-2">Next</span>
+                                        <svg className="w-5 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                                         </svg>
                                     </div>

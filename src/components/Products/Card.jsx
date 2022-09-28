@@ -88,7 +88,7 @@ function Card({item}) {
                 <div className='absolute left-[2%] bottom-[5%] w-[12%] flex flex-col justify-center gap-[20px] text-darkGray text-[20px]'>
                     {
                         images.map((item,index)=>{
-                            return <img className={`${item===backgroundImage ? "opacity-100":"opacity-50"} cursor-pointer`} onClick={handleBackground} src={item} alt={index} />
+                            return <img className={`${item===backgroundImage ? "opacity-100":"opacity-50"} cursor-pointer`} onClick={handleBackground} src={item} key={index} alt={index} />
                         })
                     }
                 </div>
@@ -112,7 +112,7 @@ function Card({item}) {
             <div id='colors' className='flex flex-row gap-[2px] pt-[10px] pb-[20px]'>
             {
                 (item.colors).map((item,index)=>{
-                    return  <div on className={`border-solid border-black border-[1px] w-[16px] h-[16px] rounded-[50%]`} style={{backgroundColor: `${item}`}}></div>
+                    return  <div className={`border-solid border-black border-[1px] w-[16px] h-[16px] rounded-[50%]`} style={{backgroundColor: `${item}`}} key={index}></div>
                 })
             } 
             </div>

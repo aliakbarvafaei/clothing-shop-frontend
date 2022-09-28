@@ -28,7 +28,7 @@ function SectionProductMain(props) {
             <div className='flex flex-row flex-wrap w-[100%] gap-[1%]'>
                 {
                     (products.length===0 ? Array.from(new Array(8)) : products.slice(0,8)).map((item,index)=>{
-                        return <div className={`md:w-[48%] xl:w-[32%] xlmin:w-[23%]`}>
+                        return <div key={index} className={`md:w-[48%] xl:w-[32%] xlmin:w-[23%]`}>
                         {item ? <Card item={item}/>: <>
                         <Skeleton variant="rectangular" width={'100%'} height={'200px'} />
                         <div className='mt-[10px]'><Skeleton variant="rectangular" width={`50%`} height="15px"/></div>

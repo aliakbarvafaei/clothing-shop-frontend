@@ -49,8 +49,8 @@ function SectionProductSlider(props) {
                 <Carousel responsive={responsive} autoPlay={true} infinite={true} arrows={false}>
                 {
                     (products.length===0 ? Array.from(new Array(8)) : products).map((item,index)=>{
-                        return <>{item ? <Card item={item}/> :
-                        <div className='ml-[5px]'>
+                        return <>{item ? <Card key={index} item={item}/> :
+                        <div key={index} className='ml-[5px]'>
                             <Skeleton variant="rectangular" width={'100%'} height={'200px'} />
                             <div className='mt-[10px]'><Skeleton variant="rectangular" width={`50%`} height="15px"/></div>
                             <div className='mt-[5px]'><Skeleton variant="rectangular" width={`80%`} height="15px"/></div>

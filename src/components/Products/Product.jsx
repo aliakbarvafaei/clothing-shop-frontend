@@ -173,7 +173,7 @@ function Product({product}) {
                     <div className='flex flex-row justify-between w-[100%] gap-[4%]'>
                         {
                             product.images.map((item,index)=>{
-                                return <img className={`${item===backgroundImage ? "border-solid border-[2px]":""} ${themeBorder} min-w-[22%] cursor-pointer`} onClick={handleBackground} src={item} alt={index} />
+                                return <img key={index} className={`${item===backgroundImage ? "border-solid border-[2px]":""} ${themeBorder} min-w-[22%] cursor-pointer`} onClick={handleBackground} src={item} alt={index} />
                             })
                         }
                     </div>
@@ -194,7 +194,7 @@ function Product({product}) {
                         {textButton!=='' ? <div id='colors' className='flex flex-row gap-[5px] pt-[15px] pb-[10px] lg:justify-center'>
                             {
                                 (product.colors).map((item,index)=>{
-                                    return  <div on className={`${themeBorder2} border-solid border-[1px] w-[30px] h-[30px] rounded-[50%]`} style={{backgroundColor: `${item}`}}></div>
+                                    return  <div key={index} className={`${themeBorder2} border-solid border-[1px] w-[30px] h-[30px] rounded-[50%]`} style={{backgroundColor: `${item}`}}></div>
                                 })
                             } 
                         </div>
@@ -206,7 +206,7 @@ function Product({product}) {
                         <div id='colors' className='flex flex-row gap-[5px] pt-[15px] pb-[10px] lg:justify-center'>
                             {
                                 (product.size).map((item,index)=>{
-                                    return  <div on className={`${themeBorder2} border-solid border-[1px] w-[35px] h-[35px] rounded-[50%] flex items-center justify-center`}>{item}</div>
+                                    return  <div key={index} className={`${themeBorder2} border-solid border-[1px] w-[35px] h-[35px] rounded-[50%] flex items-center justify-center`}>{item}</div>
                                 })
                             } 
                         </div>

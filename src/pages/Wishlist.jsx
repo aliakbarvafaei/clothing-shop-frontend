@@ -69,21 +69,21 @@ function Wishlist(props) {
                     <tbody>
                         {
                             (productWishlist==='' ? Array.from(new Array(1)) : productWishlist).map((product,index)=>{
-                                return <>{product ? <tr className={`text-center border-b-solid border-b-[.5px] ${themeBorder}`}>
+                                return <>{product ? <tr key={index} className={`text-center border-b-solid border-b-[.5px] ${themeBorder}`}>
                                     <td className='p-[12px]'><Link to={'/product-details/'+String(product.code)+`-`+String((product.name).replace(/\s/g, '').toLowerCase())}><img className='mm:w-[60%] sm:w-[40%] smmin:w-[30%] ml-[35%]' src={product.images[0]} alt="" /></Link></td>
                                     <td className='md:hidden p-[12px] text-darkGray'><Link to={'/product-details/'+String(product.code)+`-`+String((product.name).replace(/\s/g, '').toLowerCase())}>{product.name}</Link></td>
                                     <td className='md:hidden p-[12px] text-[24px]'>{Number(product.price)*(100-Number(product.off))/100}</td>
                                     <td className='md:hidden p-[12px] text-darkGray'>{(product.stock)>0 ? "In Stock": "Out Of Stock"}</td>
-                                    <td className='md:hidden p-[12px] text-darkGray'><i class="fa fa-times cursor-pointer" onClick={()=>{handleremove(product)}} aria-hidden="true"></i></td>
+                                    <td className='md:hidden p-[12px] text-darkGray'><i className="fa fa-times cursor-pointer" onClick={()=>{handleremove(product)}} aria-hidden="true"></i></td>
                                     <td className='mdmin:hidden md:flex flex-col items-center justify-center gap-[20px] pt-[10%] text-[14px] w-[100%] h-[100%] p-[12px]'>
                                         <span className='w-[100%] text-darkGray'>{product.name}</span>
                                         <span className='flex smmin:flex-row sm:flex-col justify-between items-center flex-wrap w-[80%]'>
                                             <span className='text-darkGray'>{(product.stock)>0 ? "In Stock": "Out Of Stock"}</span>
                                             <span className='text-red text-[20px]'>{Number(product.price)*(100-Number(product.off))/100}</span>
-                                            <span className='text-darkGray'><i class="fa fa-times cursor-pointer" onClick={()=>{handleremove(product)}} aria-hidden="true"></i></span>
+                                            <span className='text-darkGray'><i className="fa fa-times cursor-pointer" onClick={()=>{handleremove(product)}} aria-hidden="true"></i></span>
                                         </span>
                                     </td>
-                                </tr> : <tr><td><Skeleton height={'150px'} width={'40%'} className='ml-[30%]' /></td><td><Skeleton height={'50px'}/></td><td className='md:hidden'><Skeleton height={'50px'}/></td><td className='md:hidden'><Skeleton height={'50px'}/></td><td className='md:hidden'><Skeleton height={'50px'}/></td></tr>}</>
+                                </tr> : <tr key={index}><td><Skeleton height={'150px'} width={'40%'} className='ml-[30%]' /></td><td><Skeleton height={'50px'}/></td><td className='md:hidden'><Skeleton height={'50px'}/></td><td className='md:hidden'><Skeleton height={'50px'}/></td><td className='md:hidden'><Skeleton height={'50px'}/></td></tr>}</>
                             })
                         }
                     </tbody>

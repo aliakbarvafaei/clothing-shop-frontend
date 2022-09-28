@@ -43,7 +43,7 @@ const responsive = {
                 <Carousel responsive={responsive} autoPlay={true} infinite={true} arrows={true}>
                 {
                     items.map((item,index)=>{
-                        return <Item item={item}/>
+                        return <Item item={item} key={index}/>
                     })
                 }
                 </Carousel>
