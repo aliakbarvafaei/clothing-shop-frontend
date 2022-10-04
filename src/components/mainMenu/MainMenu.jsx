@@ -29,7 +29,7 @@ function MainMenu(props) {
     {
       setIsOpen(old => !old);
     }
-    const stickyClass = sticky ? "fixed top-0 z-[20] w-[100%]":"";
+    const stickyClass = sticky ? "fixed top-0 z-[1001] w-[100%]":"";
   
     return (
     <>

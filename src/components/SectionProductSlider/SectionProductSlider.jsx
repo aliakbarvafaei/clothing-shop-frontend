@@ -1,9 +1,8 @@
-import React, { useState, useEffect} from 'react';
+import React from 'react';
 import { useTheme } from '../../contexts/theme';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import Card from '../Products/Card';
-import { getProducts } from "../../services/api/index.js";
 import Skeleton from '@mui/material/Skeleton';
 // import {products as xxx} from "../../data";
 
@@ -24,20 +23,10 @@ const responsive = {
       items: 2
     }
   };
-function SectionProductSlider(props) {
+function SectionProductSlider({products}) {
     const {theme} = useTheme();
     const themeClass = theme.mode==="DARK" ? "bg-darkModeLightBlack text-white": "bg-white";
-    const [products, setProducts] = useState([]);
     // const [products, setProducts] = useState(xxx);
-    useEffect(()=>{
-        getProducts()
-        .then((response) => {
-            setProducts(response.data);
-        })
-        .catch(err => {
-                console.error(err);
-        });
-    },[])
     return (
         <div className={`${themeClass} flex flex-col items-center pb-[50px] px-total`}>
             <h4 className='text-[18px] text-red'>Special Offer</h4>

@@ -17,6 +17,7 @@ function SearchPage(props) {
     const [priceRange, setPriceRange] = useState({"from": 0, "to": 1000});
     const searchRef = useRef(null);
     const [searchInput, setSearchInput] = useState('');
+    const [loading, setLoading] = useState(true);
 
     const [color, setColor] = useState([]);
     const [size, setSize] = useState([]);
@@ -36,6 +37,7 @@ function SearchPage(props) {
         .then((response) => {
             setProducts(response.data);
             setFilterProducts(response.data);
+            setLoading(false);
         })
         .catch(err => {
             console.error(err);
@@ -155,6 +157,8 @@ function SearchPage(props) {
                         <i className="fa fa-search text-[25px] cursor-pointer absolute top-[15%] left-[3%]"  aria-hidden="true"></i>
                         <input ref={searchRef} value={searchInput} onChange={handleChange} type="text" placeholder='Search Name or Code a Product' className={`w-[100%] mb-[20px] py-[10px] px-[10%] rounded-md border-solid border-[1px] ${themeBorder} ${themeClass}`}/>
                     </div>
+                    { loading && <div className='text-center pt-[20px]'><i className='fa fa-spinner fa-spin text-[50px]' aria-hidden="true"></i></div>}
+                    {!loading &&
                     <div className={`flex flex-row flex-wrap w-[100%] py-[40px] px-[2%] gap-[1%] rounded-md border-solid border-[1px] ${themeBorder}`}>
                     {
                         filterProducts.length===0 ? <><i className="fa fa-exclamation-triangle text-red mt-[2px]" aria-hidden="true"></i><div className='text-red'>No product found</div></>:
@@ -186,6 +190,7 @@ function SearchPage(props) {
                             </div>
                         </div>
                     </div>
+                    }
                 </div>
                 
             </div>

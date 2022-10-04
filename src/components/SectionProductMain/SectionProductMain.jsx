@@ -1,24 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useTheme } from '../../contexts/theme';
 import Card from '../Products/Card';
-import { getProducts } from "../../services/api/index.js";
 import Skeleton from '@mui/material/Skeleton';
 // import {products as xxx} from "../../data";
 
-function SectionProductMain(props) {
+function SectionProductMain({products}) {
     const {theme} = useTheme();
     const themeClass = theme.mode==="DARK" ? "bg-darkModeLightBlack text-white": "bg-white";
-    const [products, setProducts] = useState([]);
     // const [products, setProducts] = useState(xxx);
-    useEffect(()=>{
-        getProducts()
-        .then((response) => {
-            setProducts(response.data);
-        })
-        .catch(err => {
-                console.error(err);
-        });        
-    },[])
+
     return (
         <div className={`${themeClass} flex flex-col items-center py-[50px] px-total`}>
             <h2 className='sm:text-[24px] smmin:text-[32px] font-bold'>SPECIAL PRODUCTS</h2>
@@ -27,7 +17,7 @@ function SectionProductMain(props) {
             Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
             <div className='flex flex-row flex-wrap w-[100%] gap-[1%]'>
                 {
-                    (products.length===0 ? Array.from(new Array(8)) : products.slice(0,8)).map((item,index)=>{
+                    (products.length===0 ? Array.from(new Array(8)) : products).map((item,index)=>{
                         return <div key={index} className={`md:w-[48%] xl:w-[32%] xlmin:w-[23%]`}>
                         {item ? <Card item={item}/>: <>
                         <Skeleton variant="rectangular" width={'100%'} height={'200px'} />
