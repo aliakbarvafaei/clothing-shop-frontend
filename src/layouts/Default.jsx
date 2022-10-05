@@ -1,6 +1,6 @@
 import Header from '../components/Header/Header'
 import MainMenu from '../components/mainMenu/MainMenu'
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Route, Switch  } from 'react-router-dom'
 import AppRoutes from '../routes'
 import ProtectedRoute from '../components/ProtectedRoute'
@@ -58,7 +58,7 @@ const DefaultLayout = (props) => {
         </div>
       </div>
       <Footer />
-      <div className='fixed top-[20px] right-[20px] flex flex-col gap-[15px] z-[40]'>
+      <div className='fixed top-[20px] right-[20px] flex flex-col gap-[15px] z-[1002]'>
         {toastState.length>0 &&  toastState.map((item,index)=>{
           return <Toast type={item.title} description={item.description} indexKey={item.key} destroyToast={destroyToast} key={index}/>
         })}

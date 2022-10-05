@@ -16,6 +16,13 @@ axiosInstance.post('/register', {
 export const getProducts = () =>
 axiosInstance.get('/products')
 
+export const getProductsWithPage = (pageNumber,pageSize,filters) =>
+axiosInstance.post('/productsFilter',{
+  pageNumber: pageNumber,
+  pageSize: pageSize,
+  filters: filters
+})
+
 export const getProduct = (idProduct) =>
 axiosInstance.get(`/product/${idProduct}`)
 

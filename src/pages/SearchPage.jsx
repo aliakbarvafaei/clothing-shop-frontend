@@ -2,12 +2,12 @@ import React, { useEffect, useRef, useState } from 'react';
 import Card from '../components/Products/Card';
 import TitlePages from '../components/TitlePages/TitlePages';
 import { useTheme } from '../contexts/theme';
-import { getProducts } from '../services/api';
+import { getProductsWithPage } from '../services/api';
 
 const filtersOption = [{"title":"category","content": ["shoes", "watch", "dress", "toy","bag"]},
 {"title":"gender","content": ["men", "women","kids"]},
 {"title":"color","content":["black","white","yellow","olive","pink","blue","skyblue","green","gray","orange","red"]},
-{"title":"size","content":["xs","s","m","l","x","xl"]},
+{"title":"size","content":["xs","s","m","l","x","xl","35","36","37","38","39","40"]},
 ] 
 
 function SearchPage(props) {
@@ -29,11 +29,20 @@ function SearchPage(props) {
     const themeClass = theme.mode==="DARK" ? "bg-darkModeLightBlack text-white": "bg-white";
     const themeBorder = theme.mode==="DARK" ? "border-lightestBlack": "border-darkModeGray";
 
-
     useEffect(()=>{
+
+        const filters = {
+            searchInput: searchInput==='' ? '' : searchInput,
+            color: color.length===0 ? filtersOption[2].content : color,
+            size: size.length===0 ? filtersOption[3].content : size,
+            gender: gender.length===0 ? filtersOption[1].content : gender,
+            category: category.length===0 ? filtersOption[0].content : category,
+            priceRange: priceRange,
+            inStock: inStock
+        }
         window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
-        searchRef.current.focus();
-        getProducts()
+        setLoading(true);
+        getProductsWithPage(counterPage,6,filters)
         .then((response) => {
             setProducts(response.data);
             setFilterProducts(response.data);
@@ -42,10 +51,11 @@ function SearchPage(props) {
         .catch(err => {
             console.error(err);
         });
-    },[]);
+    },[counterPage,searchInput,color,size,gender,category,priceRange,inStock]);
 
     function handleChange(e){
         setSearchInput(e.target.value);
+        setcounterPage(1);
     }
 
     function removeItemOnce(arr, value) {
@@ -59,19 +69,23 @@ function SearchPage(props) {
         switch (filterName) {
             case "color":
                 (e.target.checked && setColor(old => [...old, e.target.value])) ||
-                (!e.target.checked && setColor(old => removeItemOnce(old.slice(), e.target.value)))
+                (!e.target.checked && setColor(old => removeItemOnce(old.slice(), e.target.value)));
+                setcounterPage(1);
                 break;
             case "size":
                 (e.target.checked && setSize(old => [...old, e.target.value])) ||
-                (!e.target.checked && setSize(old => removeItemOnce(old.slice(), e.target.value)))
+                (!e.target.checked && setSize(old => removeItemOnce(old.slice(), e.target.value)));
+                setcounterPage(1);
                 break;
             case "gender":
                 (e.target.checked && setGender(old => [...old, e.target.value])) ||
-                (!e.target.checked && setGender(old => removeItemOnce(old.slice(), e.target.value)))
+                (!e.target.checked && setGender(old => removeItemOnce(old.slice(), e.target.value)));
+                setcounterPage(1);
                 break;
             case "category":
                 (e.target.checked && setCategory(old => [...old, e.target.value])) ||
-                (!e.target.checked && setCategory(old => removeItemOnce(old.slice(), e.target.value)))
+                (!e.target.checked && setCategory(old => removeItemOnce(old.slice(), e.target.value)));
+                setcounterPage(1);
                 break;
             default:
                 break;
@@ -85,19 +99,19 @@ function SearchPage(props) {
         }
         return false;
     }
-    useEffect(()=>
-    {
-        setcounterPage(1);
-        setFilterProducts(products.filter(item=>{
-            return ((item.code).includes(searchInput) || ((item.name).toLowerCase()).includes(searchInput.toLowerCase())) &&
-            (color.length===0 || findItemArrayInArray(color,item.colors)) &&
-            (size.length===0 || findItemArrayInArray(size,item.size)) &&
-            (gender.length===0 || gender.indexOf(item.gender)>-1) &&
-            (category.length===0 || category.indexOf(item.category)>-1) &&
-            ((Number(item.price)*(100-Number(item.off))/100) >= priceRange.from && (Number(item.price)*(100-Number(item.off))/100) <= priceRange.to) &&
-            (!inStock || Number(item.stock)>0)
-        }))
-    },[searchInput,color,size,gender,category,priceRange,inStock])
+    // useEffect(()=>
+    // {
+    //     setcounterPage(1);
+    //     setFilterProducts(products.filter(item=>{
+    //         return ((item.code).includes(searchInput) || ((item.name).toLowerCase()).includes(searchInput.toLowerCase())) &&
+    //         (color.length===0 || findItemArrayInArray(color,item.colors)) &&
+    //         (size.length===0 || findItemArrayInArray(size,item.size)) &&
+    //         (gender.length===0 || gender.indexOf(item.gender)>-1) &&
+    //         (category.length===0 || category.indexOf(item.category)>-1) &&
+    //         ((Number(item.price)*(100-Number(item.off))/100) >= priceRange.from && (Number(item.price)*(100-Number(item.off))/100) <= priceRange.to) &&
+    //         (!inStock || Number(item.stock)>0)
+    //     }))
+    // },[searchInput,color,size,gender,category,priceRange,inStock])
 
     return (
         <div>
@@ -131,11 +145,11 @@ function SearchPage(props) {
                         <ul className='pl-[10px] text-[14px]'>
                             <li className='flex flex-col gap-[5px] pt-[10px]'>
                                 From : ${priceRange.from}
-                                <input type="range" min={0} max={1000} step={10} value={priceRange.from} onChange={(e)=> setPriceRange(old=> ({ ...old ,"from": e.target.value }))} className='w-[100%]'/>
+                                <input type="range" min={0} max={1000} step={10} value={priceRange.from} onChange={(e)=> {setPriceRange(old=> ({ ...old ,"from": parseInt(e.target.value) }));setcounterPage(1);}} className='w-[100%]'/>
                             </li>
                             <li className='flex flex-col gap-[5px] pt-[10px]'>
                                 To : ${priceRange.to}
-                                <input type="range" min={0} max={1000} step={10} value={priceRange.to} onChange={(e)=> setPriceRange(old=> ({ ...old ,"to": e.target.value }))} className='w-[100%]'/>
+                                <input type="range" min={0} max={1000} step={10} value={priceRange.to} onChange={(e)=> {setPriceRange(old=> ({ ...old ,"to": parseInt(e.target.value) }));setcounterPage(1);}} className='w-[100%]'/>
                             </li>
                         </ul>
                     </details>
@@ -162,7 +176,7 @@ function SearchPage(props) {
                     <div className={`flex flex-row flex-wrap w-[100%] py-[40px] px-[2%] gap-[1%] rounded-md border-solid border-[1px] ${themeBorder}`}>
                     {
                         filterProducts.length===0 ? <><i className="fa fa-exclamation-triangle text-red mt-[2px]" aria-hidden="true"></i><div className='text-red'>No product found</div></>:
-                        filterProducts.slice((counterPage-1)*6,(counterPage-1)*6+6).map((item,index)=>{
+                        filterProducts.map((item,index)=>{
                             return <div key={index} className='md:w-[48%] xl:w-[48%] xlmin:w-[32%]'><Card item={item}/></div>
                         })
                     }
@@ -179,7 +193,7 @@ function SearchPage(props) {
                                 <div className='bg-darkGray text-white border-r border-lightGray py-2 hover:bg-red px-3'>
                                     {counterPage}
                                 </div>
-                                <button disabled={((counterPage)*6)<filterProducts.length ? null:'disabled'} onClick={()=>setcounterPage(old=>old+1)}type="button" className="bg-darkGray text-lightGray rounded-r-md py-2  hover:bg-red disabled:opacity-60 px-3">
+                                <button disabled={6<=filterProducts.length ? null:'disabled'} onClick={()=>setcounterPage(old=>old+1)}type="button" className="bg-darkGray text-lightGray rounded-r-md py-2  hover:bg-red disabled:opacity-60 px-3">
                                     <div className="flex flex-row align-middle">
                                         <span className="mr-2">Next</span>
                                         <svg className="w-5 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">

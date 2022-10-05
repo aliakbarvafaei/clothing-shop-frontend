@@ -48,6 +48,9 @@ function Product({product}) {
                 console.error(err);
             });            
         }
+        else{
+            settextButton("ADD TO CART");
+        }
     },[])
 
     function handleBackground(e){
