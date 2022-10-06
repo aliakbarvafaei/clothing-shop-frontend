@@ -7,6 +7,7 @@ import Home from '../pages/Home'
 import LoginPage from '../pages/Login'
 import NotFound from '../pages/NotFound'
 import ProductDetail from '../pages/ProductDetail'
+import Profile from '../pages/Profile'
 import RegisterPage from '../pages/Register'
 import SearchPage from '../pages/SearchPage'
 import Wishlist from '../pages/Wishlist'
@@ -53,6 +54,14 @@ const AppRoutes = [
     name: 'cart',
     icon: 'fa fa-list',
     component: Cart,
+    showInNav: false,
+    private: true,
+  },
+  {
+    path: '/profile',
+    name: 'profile',
+    icon: 'fa fa-list',
+    component: Profile,
     showInNav: false,
     private: true,
   },

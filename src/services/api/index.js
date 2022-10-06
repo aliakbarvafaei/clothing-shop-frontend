@@ -26,6 +26,9 @@ axiosInstance.post('/productsFilter',{
 export const getProduct = (idProduct) =>
 axiosInstance.get(`/product/${idProduct}`)
 
+export const getUser = (email) =>
+axiosInstance.get(`/user/${email}`)
+
 export const getWishlist = (email) =>
 axiosInstance.get(`/wishlist/${email}`)
 
