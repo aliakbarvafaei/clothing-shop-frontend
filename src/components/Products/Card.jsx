@@ -11,8 +11,8 @@ function Card({item}) {
     const { setToastState } = useToast();
     const [images, setImages] = useState([]);
     useEffect(()=>{
-        setBackgroundImage(item.images[0]);
-        setImages(item.images);
+        setBackgroundImage(item.images.split(',')[0]);
+        setImages(item.images.split(','));
     },[item.images])
     
     function addItemOnce(arr, value) {
@@ -111,7 +111,7 @@ function Card({item}) {
             </div>
             <div id='colors' className='flex flex-row gap-[2px] pt-[10px] pb-[20px]'>
             {
-                (item.colors).map((item,index)=>{
+                (item.colors).split(',').map((item,index)=>{
                     return  <div className={`border-solid border-black border-[1px] w-[16px] h-[16px] rounded-[50%]`} style={{backgroundColor: `${item}`}} key={index}></div>
                 })
             } 

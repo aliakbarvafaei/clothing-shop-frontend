@@ -27,7 +27,7 @@ function Product({product}) {
     const [counter, setCounter] = useState(1);
     const [textButton,settextButton] = useState("");
 
-    const [backgroundImage, setBackgroundImage] = useState(product.images[0]);
+    const [backgroundImage, setBackgroundImage] = useState(product.images.split(',')[0]);
 
     const [firstLoad, setFirstLoad] = useState(1);
     const [doneRequest, setdoneRequest] = useState(0);
@@ -175,7 +175,7 @@ function Product({product}) {
                     </div>
                     <div className='flex flex-row justify-between w-[100%] gap-[4%]'>
                         {
-                            product.images.map((item,index)=>{
+                            product.images.split(',').map((item,index)=>{
                                 return <img key={index} className={`${item===backgroundImage ? "border-solid border-[2px]":""} ${themeBorder} min-w-[22%] cursor-pointer`} onClick={handleBackground} src={item} alt={index} />
                             })
                         }
@@ -196,7 +196,7 @@ function Product({product}) {
                         : <div className='w-[100%] mt-[10px] ml-[10%]'><Skeleton variant="rectangular" width={'80%'} height={'40px'} /></div>}
                         {textButton!=='' ? <div id='colors' className='flex flex-row gap-[5px] pt-[15px] pb-[10px] lg:justify-center'>
                             {
-                                (product.colors).map((item,index)=>{
+                                (product.colors).split(',').map((item,index)=>{
                                     return  <div key={index} className={`${themeBorder2} border-solid border-[1px] w-[30px] h-[30px] rounded-[50%]`} style={{backgroundColor: `${item}`}}></div>
                                 })
                             } 
@@ -208,7 +208,7 @@ function Product({product}) {
                         <h2 className='text-[14px] font-bold '>Select Size</h2>
                         <div id='colors' className='flex flex-row gap-[5px] pt-[15px] pb-[10px] lg:justify-center'>
                             {
-                                (product.size).map((item,index)=>{
+                                (product.size).split(',').map((item,index)=>{
                                     return  <div key={index} className={`${themeBorder2} border-solid border-[1px] w-[35px] h-[35px] rounded-[50%] flex items-center justify-center`}>{item}</div>
                                 })
                             } 

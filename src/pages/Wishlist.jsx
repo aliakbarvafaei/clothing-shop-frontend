@@ -70,7 +70,7 @@ function Wishlist(props) {
                         {
                             (productWishlist==='' ? Array.from(new Array(1)) : productWishlist).map((product,index)=>{
                                 return <>{product ? <tr key={index} className={`text-center border-b-solid border-b-[.5px] ${themeBorder}`}>
-                                    <td className='p-[12px]'><Link to={'/product-details/'+String(product.code)+`-`+String((product.name).replace(/\s/g, '').toLowerCase())}><img className='mm:w-[60%] sm:w-[40%] smmin:w-[30%] ml-[35%]' src={product.images[0]} alt="" /></Link></td>
+                                    <td className='p-[12px]'><Link to={'/product-details/'+String(product.code)+`-`+String((product.name).replace(/\s/g, '').toLowerCase())}><img className='mm:w-[60%] sm:w-[40%] smmin:w-[30%] ml-[35%]' src={product.images.split(',')[0]} alt="" /></Link></td>
                                     <td className='md:hidden p-[12px] text-darkGray'><Link to={'/product-details/'+String(product.code)+`-`+String((product.name).replace(/\s/g, '').toLowerCase())}>{product.name}</Link></td>
                                     <td className='md:hidden p-[12px] text-[24px]'>{Number(product.price)*(100-Number(product.off))/100}</td>
                                     <td className='md:hidden p-[12px] text-darkGray'>{(product.stock)>0 ? "In Stock": "Out Of Stock"}</td>

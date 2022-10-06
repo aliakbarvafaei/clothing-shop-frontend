@@ -37,7 +37,7 @@ function Cart(props) {
         //     title: "3",
         //     description: "", key:Math.random()
         //     }))
-        deleteCart(user.loggedIn,item.product.code)
+        deleteCart(user.loggedIn,item.code)
         .then((response) => {
             console.log(response.data);
             setToastState(old=>addItemOnce(old.slice(),{title: "2", description: "Product Removed Successfully", key:Math.random()}))
@@ -61,7 +61,7 @@ function Cart(props) {
             //     title: "3",
             //     description: "", key:Math.random()
             //     }))
-            updateCart(user.loggedIn,item.product.code,String(newQuantity))
+            updateCart(user.loggedIn,item.code,String(newQuantity))
             .then((response) => {
                 console.log(response.data);
                 setToastState(old=>addItemOnce(old.slice(),{title: "1", description: "Product changed Successfully", key:Math.random()}))
@@ -97,11 +97,11 @@ function Cart(props) {
                     <tbody>
                         {
                             (productCart==='' ? Array.from(new Array(1)) : productCart).map((item,index)=>{
-                                item ? totalPrice+=Number(item.quantity)*(Number(item.product.price)*(100-Number(item.product.off))/100):totalPrice+=0;
+                                item ? totalPrice+=Number(item.quantity)*(Number(item.price)*(100-Number(item.off))/100):totalPrice+=0;
                                 return <>{item ? <tr key={index} className={`text-center border-b-solid border-b-[.5px] ${themeBorder}`}>
-                                    <td className='p-[12px]'><Link to={'/product-details/'+String(item.product.code)+`-`+String((item.product.name).replace(/\s/g, '').toLowerCase())}><img className='mm:w-[60%] sm:w-[40%] smmin:w-[30%] ml-[35%]' src={item.product.images[0]} alt="" /></Link></td>
-                                    <td className='md:hidden p-[12px] text-darkGray'><Link to={'/product-details/'+String(item.product.code)+`-`+String((item.product.name).replace(/\s/g, '').toLowerCase())}>{item.product.name}</Link></td>
-                                    <td className='md:hidden p-[12px] text-[24px]'>${Number(item.product.price)*(100-Number(item.product.off))/100}</td>
+                                    <td className='p-[12px]'><Link to={'/product-details/'+String(item.code)+`-`+String((item.name).replace(/\s/g, '').toLowerCase())}><img className='mm:w-[60%] sm:w-[40%] smmin:w-[30%] ml-[35%]' src={item.images.split(',')[0]} alt="" /></Link></td>
+                                    <td className='md:hidden p-[12px] text-darkGray'><Link to={'/product-details/'+String(item.code)+`-`+String((item.name).replace(/\s/g, '').toLowerCase())}>{item.name}</Link></td>
+                                    <td className='md:hidden p-[12px] text-[24px]'>${Number(item.price)*(100-Number(item.off))/100}</td>
                                     <td className='md:hidden p-[25px] text-darkGray flex flex-col gap-[5px] items-center justify-center'>
                                         <div className='flex lg:justify-center'>
                                             <div className={`mt-[10px] flex flex-row items-center justify-between border-[1px] border-solid w-[100px] ${themeBorder}`}>
@@ -110,12 +110,12 @@ function Cart(props) {
                                                 <div className='cursor-pointer' onClick={()=>handleQuantity("+",item)}><i className={`fa fa-caret-right p-[8px] border-l-[1px] ${themeBorder}`} aria-hidden="true"></i></div>
                                             </div>
                                         </div>
-                                        {Number(item.product.stock)>=Number(item.quantity) ? "In Stock": "Out Of Stock"}
+                                        {Number(item.stock)>=Number(item.quantity) ? "In Stock": "Out Of Stock"}
                                     </td>
                                     <td className='md:hidden p-[12px] text-darkGray'><i className="fa fa-times cursor-pointer" onClick={()=>{handleremove(item)}} aria-hidden="true"></i></td>
-                                    <td className='md:hidden p-[12px] text-darkGray'>${Number(item.quantity)*(Number(item.product.price)*(100-Number(item.product.off))/100)}</td>
+                                    <td className='md:hidden p-[12px] text-darkGray'>${Number(item.quantity)*(Number(item.price)*(100-Number(item.off))/100)}</td>
                                     <td className='mdmin:hidden md:flex flex-col items-center justify-center gap-[20px] pt-[10%] text-[14px] w-[100%] h-[100%] p-[12px]'>
-                                        <span className='w-[100%] text-darkGray'>{item.product.name}</span>
+                                        <span className='w-[100%] text-darkGray'>{item.name}</span>
                                         <span className='flex smmin:flex-row sm:flex-col justify-between items-center flex-wrap w-[80%]'>
                                             <span className='text-darkGray flex flex-col items-center w-[100%] gap-[5px]'>
                                                 <div className='flex lg:justify-center'>
@@ -125,11 +125,11 @@ function Cart(props) {
                                                         <div className='cursor-pointer' onClick={()=>handleQuantity("+",item)}><i className={`fa fa-caret-right p-[8px] border-l-[1px] ${themeBorder}`} aria-hidden="true"></i></div>
                                                     </div>
                                                 </div>
-                                                {Number(item.product.stock)>=Number(item.quantity) ? "In Stock": "Out Of Stock"}
+                                                {Number(item.stock)>=Number(item.quantity) ? "In Stock": "Out Of Stock"}
                                             </span>
-                                            <span className='text-red text-[20px]'>${Number(item.product.price)*(100-Number(item.product.off))/100}</span>
+                                            <span className='text-red text-[20px]'>${Number(item.price)*(100-Number(item.off))/100}</span>
                                             <span className='text-darkGray'><i className="fa fa-times cursor-pointer" onClick={()=>{handleremove(item)}} aria-hidden="true"></i></span>
-                                            <span className='text-darkGray'>${Number(item.quantity)*(Number(item.product.price)*(100-Number(item.product.off))/100)}</span>
+                                            <span className='text-darkGray'>${Number(item.quantity)*(Number(item.price)*(100-Number(item.off))/100)}</span>
                                         </span>
                                     </td>
                                 </tr> : <tr key={index}><td><Skeleton height={'150px'} width={'40%'} className='ml-[30%]' /></td><td><Skeleton height={'50px'}/></td><td className='md:hidden'><Skeleton height={'50px'}/></td><td className='md:hidden'><Skeleton height={'50px'}/></td><td className='md:hidden'><Skeleton height={'50px'}/></td><td className='md:hidden'><Skeleton height={'50px'}/></td></tr>}</>
