@@ -35,7 +35,7 @@ function MainMenu(props) {
     <>
     <div ref={stickyRef} className={`${stickyClass} ${themeClass} flex flex-row items-center justify-between py-[40px] px-total shadow-[0_2px_4px_0_rgba(200,200,200)] box-border`} >
         <div className="flex flex-row justify-between items-center gap-[30px]">
-          <i className="fa fa-bars text-[25px] cursor-pointer" aria-hidden="true"></i>
+          <i style={{fontSize: "25px"}} className="fa fa-bars cursor-pointer" aria-hidden="true"></i>
           <span><Link to="/home"><img className="w-[100%] cursor-pointer sm:w-[40%] sm:absolute sm:left-[30%] sm:mt-[-4%]" src={logo} alt="title" /></Link></span>
         </div>
         <div className="flex flex-row items-center justify-between gap-[30px]">
@@ -58,16 +58,16 @@ function MainMenu(props) {
             }
           </ul>
           <div className="xl:inline xlmin:hidden text-red curser-pointer">
-            <i className="fa fa-bars text-[25px] cursor-pointer" aria-hidden="true"  onClick={handeHamburger}></i>
+            <i style={{fontSize: "25px"}} className="fa fa-bars cursor-pointer" aria-hidden="true"  onClick={handeHamburger}></i>
               <Hamburger isOpen={isOpen} handeHamburger={handeHamburger} items={titleMenus} />
           </div>
 
           <ul className="sm:hidden smmin:flex flex-row m-0 items-center list-none">
             <li className='group text-inherit pl-[12px]'>
-              <i onClick={()=>history.push('/search')} className="peer fa fa-search text-[25px] cursor-pointer group-hover:text-red" aria-hidden="true"></i>
+              <i style={{fontSize: "25px"}} onClick={()=>history.push('/search')} className="peer fa fa-search cursor-pointer group-hover:text-red" aria-hidden="true"></i>
             </li>
             <li className='group relative text-inherit pl-[12px]'>
-              <i className="peer fa fa-cog text-[25px] px-[1px] py-[1px] cursor-pointer group-hover:text-red" aria-hidden="true"></i>          
+              <i style={{fontSize: "25px"}} className="peer fa fa-cog px-[1px] py-[1px] cursor-pointer group-hover:text-red" aria-hidden="true"></i>          
               <div className={`${themeClass} absolute hidden peer-hover:block hover:flex w-[200px] py-[10px] px-[20px] right-0
               flex-col drop-shadow-lg z-[22]`}>
                   {
@@ -78,7 +78,7 @@ function MainMenu(props) {
               </div>
             </li>
             <li className='group relative text-inherit pl-[12px]'>
-              <i onClick={()=>history.push('/cart')} className="peer fa fa-shopping-cart text-[25px] px-[1px] py-[1px] cursor-pointer group-hover:text-red" aria-hidden="true"></i>          
+              <i style={{fontSize: "25px"}} onClick={()=>history.push('/cart')} className="peer fa fa-shopping-cart px-[1px] py-[1px] cursor-pointer group-hover:text-red" aria-hidden="true"></i>          
               {/* <div className={`${themeClass} absolute hidden peer-hover:block hover:flex w-[800%] py-[10px] px-[20px] right-0
               flex-col drop-shadow-lg z-[22]`}>
                   {

@@ -17,7 +17,7 @@ function Hamburger({isOpen, items, handeHamburger}) {
                         <li className="w-[100%] pr-[8%] h-[80px] flex justify-end items-center border-b-solid border-b-[1px] border-b-darkModeGray" onClick={()=>{handeHamburger()}}>
                         <Link to="#" className=" ml-[2rem] text-[2rem] no-underline">
                             <p className='text-[18px] font-bold text-right inline'>BACK NAVBAR </p>
-                            <i className="fa fa-angle-right text-[20px]" aria-hidden="true"></i>
+                            <i style={{fontSize: "20px"}} className="fa fa-angle-right" aria-hidden="true"></i>
                         </Link>
                         </li>
 

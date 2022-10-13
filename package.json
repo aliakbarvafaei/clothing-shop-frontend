@@ -1,7 +1,7 @@
 {
   "name": "clothing-shop",
   "version": "0.1.0",
-  "homepage": "https://client.clothing-shopping.ir",
+  "homepage": ".",
   "dependencies": {
     "@react-icons/all-files": "^4.1.0",
     "@testing-library/jest-dom": "^5.16.5",
