@@ -13,6 +13,15 @@ axiosInstance.post('/register', {
     password: password,
   })
 
+export const getUser = (email) =>
+axiosInstance.get(`/user/${email}`)
+
+export const updatePassword = (email,LastPassword,NewPassword) =>
+axiosInstance.patch(`/user/${email}`,{
+    LastPassword: LastPassword,
+    NewPassword: NewPassword
+  })
+
 export const getProducts = () =>
 axiosInstance.get('/products')
 
@@ -25,9 +34,6 @@ axiosInstance.post('/productsFilter',{
 
 export const getProduct = (idProduct) =>
 axiosInstance.get(`/product/${idProduct}`)
-
-export const getUser = (email) =>
-axiosInstance.get(`/user/${email}`)
 
 export const getWishlist = (email) =>
 axiosInstance.get(`/wishlist/${email}`)

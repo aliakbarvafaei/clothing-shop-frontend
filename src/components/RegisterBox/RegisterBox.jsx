@@ -155,10 +155,11 @@ function RegisterBox(props) {
                                     message: 'At least 8 characters...',
                                 },
                                 })}
-                            /><i className={`fa ${iconPassword} absolute right-[2%] bottom-[20px] cursor-pointer`} onClick={handlePassword} aria-hidden="true"></i>
-                            {errors.password && (
+                            />{!errors.password && <i className={`fa ${iconPassword} absolute right-[2%] bottom-[20px] cursor-pointer`} onClick={handlePassword} aria-hidden="true"></i>}
+                            {errors.password && <>
+                                <i className={`fa ${iconPassword} absolute right-[2%] bottom-[48px] cursor-pointer`} onClick={handlePassword} aria-hidden="true"></i>
                                 <div className="text-red pt-[5px]"><i className="fa fa-exclamation-triangle" aria-hidden="true"></i><span className='pl-[5px]'>{errors.password.message}</span></div>
-                            )}
+                                </>}
                         </div>
                         <button type='submit' className="h-[50px] min-w-[150px] rounded-none bg-red text-white font-bold text-[14px] hover:bg-white hover:border-red hover:border-[2px] hover:border-solid hover:text-black">CREATE ACCOUNT</button>
                     </form>
