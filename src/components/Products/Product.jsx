@@ -4,11 +4,11 @@ import { FaGooglePlusG } from "@react-icons/all-files/fa/FaGooglePlusG";
 import { FaInstagram } from "@react-icons/all-files/fa/FaInstagram";
 import { FaTwitter } from "@react-icons/all-files/fa/FaTwitter";
 import { FaFacebookF } from "@react-icons/all-files/fa/FaFacebookF";
-import { useAuth } from '../../contexts/Auth';
 import { useToast } from '../../contexts/ToastState';
 import { useHistory } from 'react-router-dom';
 import { deleteCart, isInCart, postCart, postWishlist, updateCart } from '../../services/api';
 import Skeleton from '@mui/material/Skeleton';
+import { useSelector } from 'react-redux';
 
 function Product({product}) {
     const history = useHistory();
@@ -19,8 +19,11 @@ function Product({product}) {
 
     const {setToastState} = useToast();
 
-    const {user} = useAuth();
-    
+    // const {user} = useAuth();
+    const { user } = useSelector(
+        (state) => state.userAuth
+      )
+
     const [showMenu, setShowMenu] = useState("description");
     const styleSelectedMenu = "text-red border-red border-b-solid border-b-[2px]";
 
@@ -36,8 +39,8 @@ function Product({product}) {
         return arr;
     }
     useEffect(()=>{
-        if(user.loggedIn){
-            isInCart(user.loggedIn,product.code)
+        if(user){
+            isInCart(user,product.code)
             .then((response) => {
                 setCounter(Number(response.data));
                 settextButton("REMOVE PRODUCT FROM CART");
@@ -59,7 +62,7 @@ function Product({product}) {
 
     function handleClickHeart(e){
         e.preventDefault();
-        if(!user.loggedIn){
+        if(!user){
             setToastState(old=>addItemOnce(old.slice(),{ title: "2" , description: "First, log in to your account", key:Math.random()}));
             history.push('/login');
         }else{
@@ -67,7 +70,7 @@ function Product({product}) {
             //     title: "3",
             //     description: "", key:Math.random()
             //     }))
-            postWishlist(user.loggedIn,product.code)
+            postWishlist(user,product.code)
             .then((response) => {
                 console.log(response.data);
                 setToastState(old=>addItemOnce(old.slice(),{title: "1",description: "Product Added Successfully", key:Math.random()}));
@@ -105,7 +108,7 @@ function Product({product}) {
             //     title: "3",
             //     description: "", key:Math.random()
             //     }))
-            updateCart(user.loggedIn,product.code,String(counter))
+            updateCart(user,product.code,String(counter))
                 .then((response) => {
                     console.log(response.data);
                     setToastState(old=>addItemOnce(old.slice(),{title: "1",description: "Product changed Successfully", key:Math.random()}));
@@ -118,7 +121,7 @@ function Product({product}) {
 
     function handleClickCart(e){
         e.preventDefault();
-        if(!user.loggedIn){
+        if(!user){
             setToastState(old=>addItemOnce(old.slice(),{ title: "2" , description: "First, log in to your account", key:Math.random()}));
             history.push('/login');
         }else{
@@ -136,7 +139,7 @@ function Product({product}) {
                         setToastState(old=>addItemOnce(old.slice(),{ title: "2" , description: "Your request is more than stock", key:Math.random()}));
                 }
                 else{
-                    postCart(user.loggedIn,product.code,String(counter))
+                    postCart(user,product.code,String(counter))
                     .then((response) => {
                         console.log(response.data);
                         setdoneRequest(1);
@@ -152,7 +155,7 @@ function Product({product}) {
                     });
                 }
             }else{
-                deleteCart(user.loggedIn,product.code)
+                deleteCart(user,product.code)
                 .then((response) => {
                     console.log(response.data);
                     settextButton("ADD TO CART");

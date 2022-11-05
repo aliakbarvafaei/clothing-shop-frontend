@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Link, useHistory } from "react-router-dom";
-import { useAuth } from '../../contexts/Auth';
 import { useToast } from '../../contexts/ToastState';
 import { postCart, postWishlist } from '../../services/api';
 
 function Card({item}) {
     const history = useHistory();
-    const {user} = useAuth();
+    // const {user} = useAuth();
+    const { user } = useSelector(
+        (state) => state.userAuth
+      )
     const [backgroundImage, setBackgroundImage] = useState('');
     const { setToastState } = useToast();
     const [images, setImages] = useState([]);
@@ -26,7 +29,7 @@ function Card({item}) {
     }
     function handleClickCart(e){
         e.preventDefault();
-        if(!user.loggedIn){
+        if(!user){
             setToastState(old=>addItemOnce(old.slice(),{ title: "2" , description: "First, log in to your account", key:Math.random()}));
             history.push('/login');
         }else{
@@ -38,7 +41,7 @@ function Card({item}) {
                 setToastState(old=>addItemOnce(old.slice(),{ title: "2" , description: "Out Of Stock", key:Math.random()}));
             }
             else{
-                postCart(user.loggedIn,item.code,"1")
+                postCart(user,item.code,"1")
                 .then((response) => {
                     console.log(response.data);
                     setToastState(old=>addItemOnce(old.slice(),{title: "1",description: "Product Added Successfully", key:Math.random()}));
@@ -55,7 +58,7 @@ function Card({item}) {
     }
     function handleClickHeart(e){
         e.preventDefault();
-        if(!user.loggedIn){
+        if(!user){
             setToastState(old=>addItemOnce(old.slice(),{ title: "2" , description: "First, log in to your account", key:Math.random()}));
             history.push('/login');
         }else{
@@ -63,7 +66,7 @@ function Card({item}) {
             //     title: "3",
             //     description: "", key:Math.random()
             //     }))
-            postWishlist(user.loggedIn,item.code)
+            postWishlist(user,item.code)
             .then((response) => {
                 console.log(response.data);
                 setToastState(old=>addItemOnce(old.slice(),{title: "1",description: "Product Added Successfully", key:Math.random()}));

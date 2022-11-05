@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import TitlePages from '../components/TitlePages/TitlePages';
-import { useAuth } from '../contexts/Auth';
 import { useTheme } from '../contexts/theme';
 import { useToast } from '../contexts/ToastState';
 import { deleteWishlist, getWishlist } from '../services/api';
 import Skeleton from '@mui/material/Skeleton';
+import { useSelector } from 'react-redux';
 
 function Wishlist(props) {
     const {theme} = useTheme();
@@ -14,10 +14,14 @@ function Wishlist(props) {
     const [productWishlist, setProductWishlist] = useState('');
     const { setToastState } = useToast();
     
-    const {user} = useAuth()
+    // const {user} = useAuth()
+
+    const { user } = useSelector(
+        (state) => state.userAuth
+      )
 
     useEffect(()=>{
-        getWishlist(user.loggedIn)
+        getWishlist(user)
         .then((response) => {
             setProductWishlist(response.data);
         })
@@ -34,7 +38,7 @@ function Wishlist(props) {
         //     title: "3",
         //     description: "", key:Math.random()
         //     }))
-        deleteWishlist(user.loggedIn,product.code)
+        deleteWishlist(user,product.code)
         .then((response) => {
             console.log(response.data);
             setToastState(old=>addItemOnce(old.slice(),{title: "2", description: "Product Removed Successfully", key:Math.random()}))

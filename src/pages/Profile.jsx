@@ -1,7 +1,7 @@
 import React, { useEffect, useId, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useSelector } from 'react-redux';
 import TitlePages from '../components/TitlePages/TitlePages';
-import { useAuth } from '../contexts/Auth';
 import { useTheme } from '../contexts/theme';
 import { useToast } from '../contexts/ToastState';
 import { getUser, updatePassword } from '../services/api';
@@ -16,7 +16,10 @@ function Profile(props) {
 
     const [showMenu, setShowMenu] = useState("information");
     const styleSelectedMenu = "text-red border-red border-b-solid border-b-[2px]";
-    const {user} = useAuth();
+    // const {user} = useAuth();
+    const { user } = useSelector(
+        (state) => state.userAuth
+      )
     const [userInformation, setUserInformation] = useState(false);
     const [loading, setLoading] = useState(true);
 
@@ -50,7 +53,7 @@ function Profile(props) {
         document.getElementById(passwordId).value='';
         document.getElementById(passwordConfirm).value='';
 
-        updatePassword(user.loggedIn,LastPassword,NewPassword)
+        updatePassword(user,LastPassword,NewPassword)
         .then((response) => {
             if(response.status===200){
                 setToastState(old=>addItemOnce(old.slice(),{
@@ -82,7 +85,7 @@ function Profile(props) {
         });
     }
     useEffect(()=>{
-        getUser(user.loggedIn)
+        getUser(user)
             .then((response) => {
                 setLoading(false);
                 setUserInformation(response.data);
@@ -203,7 +206,7 @@ function Profile(props) {
                                     message: 'At least 8 characters...',
                                 },
                                 validate: (val) => {
-                                    if (document.getElementById(passwordId).value != val) {
+                                    if (document.getElementById(passwordId).value !== val) {
                                     return "Your passwords do not the same";
                                     }
                                 },

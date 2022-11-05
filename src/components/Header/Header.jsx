@@ -1,8 +1,8 @@
 import React from 'react';
 import { useTheme } from '../../contexts/theme';
 import { Link } from 'react-router-dom';
-import { useAuth } from '../../contexts/Auth';
 import { useToast } from '../../contexts/ToastState';
+import { useDispatch, useSelector } from 'react-redux';
 
 const myAccountDrop={title: "My Account", submenu:[{title: "Login", pathTo: "/login"},
 {title: "Register", pathTo: "/register"},{title: "Profile", pathTo: "/profile"},{title: "Logout", pathTo: "/"}]}
@@ -11,9 +11,12 @@ function Header(props) {
     const {theme} = useTheme();
     const themeClass = theme.mode==="DARK" ? "bg-black text-lightGray": "bg-lightGray";
     const themeAccount = theme.mode==="DARK" ? "bg-darkModeLightBlack text-darkModeGray": "bg-white text-black";
-    
     const {setToastState} = useToast();
-    const {user, toggleAuth} = useAuth();
+
+    const dispatch = useDispatch();
+    const {user} = useSelector(
+      (state) => state.userAuth
+      );
     function addItemOnce(arr, value) {
       arr.push(value);
       return arr;
@@ -45,9 +48,9 @@ function Header(props) {
                 flex-col drop-shadow-lg z-[22]`}>
                     {
                       myAccountDrop.submenu.map((item,index)=>{
-                        if(user.loggedIn){
+                        if(user){
                           if(item.title==="Logout")
-                            return <Link className="text-left text-[14px] py-[12px] hoverItem" onClick={()=>{toggleAuth();setToastState(old => addItemOnce(old.slice(),{title:"2",description:"Logout Successfully", key:Math.random()}));}} to={item.pathTo} key={index}>{item.title}</Link>
+                            return <Link className="text-left text-[14px] py-[12px] hoverItem" onClick={()=>{dispatch({ type: 'logout' });localStorage.setItem('token_user', JSON.stringify(''));setToastState(old => addItemOnce(old.slice(),{title:"2",description:"Logout Successfully", key:Math.random()}));}} to={item.pathTo} key={index}>{item.title}</Link>
                           else if(item.title==="Profile")
                             return <Link className="text-left text-[14px] py-[12px] hoverItem" to={item.pathTo} key={index}>{item.title}</Link>
                         }else if(item.title!=="Logout" && item.title!=="Profile"){

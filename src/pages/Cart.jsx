@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import TitlePages from '../components/TitlePages/TitlePages';
-import { useAuth } from '../contexts/Auth';
 import { useTheme } from '../contexts/theme';
 import { useToast } from '../contexts/ToastState';
 import { deleteCart, getCart, updateCart } from '../services/api';
 import emptyCart from "../assets/images/emptyCart.png";
 import { Link } from 'react-router-dom';
 import Skeleton from '@mui/material/Skeleton';
+import { useSelector } from 'react-redux';
 
 function Cart(props) {
     const {theme} = useTheme();
@@ -16,11 +16,13 @@ function Cart(props) {
     const {setToastState} = useToast();
 
     var totalPrice=0;
-    const {user} = useAuth();
+    const { user } = useSelector(
+        (state) => state.userAuth
+      )
     const [productCart, setProductCart] = useState('');
 
     useEffect(()=>{
-        getCart(user.loggedIn)
+        getCart(user)
         .then((response) => {
             setProductCart(response.data);
         })
@@ -37,7 +39,7 @@ function Cart(props) {
         //     title: "3",
         //     description: "", key:Math.random()
         //     }))
-        deleteCart(user.loggedIn,item.code)
+        deleteCart(user,item.code)
         .then((response) => {
             console.log(response.data);
             setToastState(old=>addItemOnce(old.slice(),{title: "2", description: "Product Removed Successfully", key:Math.random()}))
@@ -61,7 +63,7 @@ function Cart(props) {
             //     title: "3",
             //     description: "", key:Math.random()
             //     }))
-            updateCart(user.loggedIn,item.code,String(newQuantity))
+            updateCart(user,item.code,String(newQuantity))
             .then((response) => {
                 console.log(response.data);
                 setToastState(old=>addItemOnce(old.slice(),{title: "1", description: "Product changed Successfully", key:Math.random()}))

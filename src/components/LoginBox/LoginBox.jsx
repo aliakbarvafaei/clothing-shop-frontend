@@ -4,12 +4,12 @@ import { useForm } from 'react-hook-form';
 import { useTheme } from '../../contexts/theme';
 import { useToast } from '../../contexts/ToastState';
 import { loginAPI } from "../../services/api/index.js";
-import { useAuth } from '../../contexts/Auth';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 function LoginBox(props) {
     const { setToastState } = useToast();
-    const {toggleAuth, user} = useAuth();
+    const dispatch = useDispatch();
     const history = useHistory();
 
     const {theme} = useTheme();
@@ -25,7 +25,12 @@ function LoginBox(props) {
     window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
 
     useEffect(()=>{
-        toggleAuth();
+        dispatch({ type: 'logout' });
+        try {
+            localStorage.setItem('token_user', JSON.stringify(''))
+          } catch (e) {
+            console.error({ e })
+        }
     },[])
     
     const {
@@ -56,9 +61,15 @@ function LoginBox(props) {
             if(response.status===200){
                 setToastState(old=>addItemOnce(old.slice(),{
                 title: "1",
-                description: `Welcome dear ${response.data.fname}`, key:Math.random()
+                description: `Welcome dear ${response.data.data.fname}`, key:Math.random()
                 }));
-                toggleAuth(response.data.email);
+                // toggleAuth(response.data.data.email,response.data.token);
+                dispatch({ type: 'login',payload: [response.data.data.email,response.data.token]});
+                try {
+                    localStorage.setItem('token_user', JSON.stringify(response.data.token))
+                  } catch (e) {
+                    console.error({ e })
+                }
                 history.push("/home");
             }
         })

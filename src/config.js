@@ -18,3 +18,9 @@ export const axiosInstance = axios.create({
     // withCredentials: true,
     baseURL : API_URL
 })
+
+export const configToken = {
+    headers: {
+      token : JSON.parse(localStorage.getItem("token_user"))
+      }
+    }

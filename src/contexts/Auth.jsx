@@ -1,4 +1,5 @@
-import { createContext, useContext, useEffect, useState } from 'react'
+import { createContext, useContext, useState } from 'react'
+import { getUser } from '../services/api'
 
 const AuthContext = createContext(undefined)
 
@@ -11,27 +12,37 @@ const setLocalStorage = (key, value) => {
 }
 
 const getLocalStorage = (key, initialValue) => {
-  try {
     const value = localStorage.getItem(key)
-    return value ? JSON.parse(value) : initialValue
-  } catch (e) {
-    return initialValue
-  }
+    // console.log(JSON.parse(value))
+    if(value){
+      getUser()
+        .then((response) => {
+          return { loggedIn: response.data.email, token: JSON.parse(value)};
+        })
+        .catch(err => {
+          return { loggedIn: false, token: ''};
+        });
+    }
+    else
+      return initialValue
 }
 
 const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(() =>
-    getLocalStorage('user', { loggedIn: false }),
-  )
-  useEffect(() => {
-    setLocalStorage('user', user)
-  }, [user])
+  const [user, setUser] = useState(()=>getLocalStorage('token_user', { loggedIn: false, token: ''}));
+  // setUser(getLocalStorage('token_user', { loggedIn: false, token: ''}))
+  // console.log("3",user)
+  // useEffect(() => {
+  //   setLocalStorage('token_user', user.token)
+  // }, [user])
+  setInterval(()=>{console.log(user)},5000)
 
-  const toggleAuth = (email=false) => {
+  const toggleAuth = (email=false,token='') => {
     setUser((prev) => ({
       ...prev,
       loggedIn: email,
+      token: token
     }))
+    setLocalStorage('token_user', token);
   }
 
   const value = { toggleAuth: toggleAuth, user }
