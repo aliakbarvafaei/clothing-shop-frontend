@@ -1,10 +1,10 @@
-@import '../fonts/font.css';
+@import "../fonts/font.css";
 
-@import 'all/icons/font-awesome/css/fontawesome-all.css';
+@import "all/icons/font-awesome/css/fontawesome-all.css";
 
-body{
+body {
   direction: ltr !important;
-  font-family: Lato,sans-serif !important;
+  font-family: Lato, sans-serif !important;
   box-sizing: border-box !important;
   letter-spacing: 0.8px;
   background-image: url("https://multikart-react.vercel.app/assets/images/parallax/1.jpg");
@@ -15,20 +15,20 @@ body{
   background-size: cover;
 }
 
-.css-jcn4dz-MuiBadge-badge{
+.css-jcn4dz-MuiBadge-badge {
   background-color: #ff4c3b !important;
 }
 .css-1m9128y {
   display: none;
 }
 
-.hoverItem{
+.hoverItem {
   display: block;
   position: relative;
 }
-      
+
 .hoverItem:after {
-  content: '';
+  content: "";
   position: absolute;
   width: 100%;
   transform: scaleX(0);
@@ -37,14 +37,10 @@ body{
   left: 0;
   background-color: var(--red);
   transform-origin: bottom right;
-  transition: transform 0.40s ease-out;
+  transition: transform 0.4s ease-out;
 }
 
 .hoverItem:hover:after {
   transform: scaleX(1);
   transform-origin: bottom left;
 }
-// input:checked ~ .dot {
-//   transform: translateX(100%);
-//   background-color: blue;
-// }

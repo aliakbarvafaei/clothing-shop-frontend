@@ -1,54 +1,54 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./src/**/*.{html,jsx}'],
+  content: ["./src/**/*.{html,jsx}"],
   theme: {
     extend: {
       padding: {
-        'total': '5%',
-      }
+        total: "5%",
+      },
     },
     fontFamily: {
-      'font': ['Lato','sans-serif'],
+      font: ["Lato", "sans-serif"],
     },
     screens: {
-      xl: {max: '1279px'},
-      xlmin: {min: '1279px'},
-      
-      lg: {max: '1023px'},
-      lgmin: {min: '1023px'},
+      xl: { max: "1279px" },
+      xlmin: { min: "1279px" },
 
-      md: {max: '767px'},
-      mdmin: {min: '767px'},
+      lg: { max: "1023px" },
+      lgmin: { min: "1023px" },
 
-      sm: {max: '576px'},
-      smmin: {min: '576px'},
+      md: { max: "767px" },
+      mdmin: { min: "767px" },
 
-      mm: {max: '420px'},
-      mmmin: {min: '420px'},
+      sm: { max: "576px" },
+      smmin: { min: "576px" },
 
-      '2xl': '1536px',
+      mm: { max: "420px" },
+      mmmin: { min: "420px" },
+
+      "2xl": "1536px",
     },
     colors: {
-      'lightGray': '#f9f9f9',
-      'darkGray': '#999999',
-      'white': '#ffffff',
-      'red': '#ff4c3b',
-      'green': '#228B22',
-      'black': '#222222',
-      'darkModeBlack': '#232323',
-      'darkModeLightBlack': '#2b2b2b',
-      'lightestBlack': '#3a3a3a',
-      'darkModeGray': '#cfd4da',
-      'lightestBlack': '#3a3a3a',
+      lightGray: "#f9f9f9",
+      darkGray: "#999999",
+      white: "#ffffff",
+      red: "#ff4c3b",
+      green: "#228B22",
+      black: "#222222",
+      darkModeBlack: "#232323",
+      darkModeLightBlack: "#2b2b2b",
+      lightestBlack: "#3a3a3a",
+      darkModeGray: "#cfd4da",
+      lightestBlack: "#3a3a3a",
 
-      'skyblue': '#57d7f7',
-      'navy': '#021840',
-      'olive': '#bab789',
-      'pink': '#ffc0cb',
-      'yellow': '#fdf791',
-      'gray': '#bababa',
+      skyblue: "#57d7f7",
+      navy: "#021840",
+      olive: "#bab789",
+      pink: "#ffc0cb",
+      yellow: "#fdf791",
+      gray: "#bababa",
     },
   },
-    
+
   plugins: [],
-}
+};

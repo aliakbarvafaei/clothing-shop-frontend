@@ -1,105 +1,105 @@
 @import "../../assets/css/constants.css";
 
-.paper{
-    height: 75vh ;
-    background-color: var(--white) !important;
-    background-position: 50%;
-    background-repeat: no-repeat;
-    background-size: cover;
-    padding: 0 var(--paddingTotal);
+.paper {
+  height: 75vh;
+  background-color: var(--white) !important;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 0 var(--paddingTotal);
 }
-.textPaper{
-    width: 50%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    p{
-        font-size: 18px;
-        color: var(--darkGray);
-        letter-spacing: 10px;
-        font-weight: bolder;
-    }
-    h1{
-        font-size: 60px;
-        font-weight: bold;
-        color: var(--black);
-    }
-    .shopButton{
-        margin-top: 10px;
-        padding: 12px 30px !important;
-        border-radius: 0 !important;
-        background-color: var(--red) !important;
-        color: var(--white) !important;
-        font-weight: bold;
-    }
-    .shopButton:hover{
-        background-color: var(--white) !important;
-        color: var(--black) !important;
-        border: 2px var(--red) solid;
-    }
+.textPaper {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  p {
+    font-size: 18px;
+    color: var(--darkGray);
+    letter-spacing: 10px;
+    font-weight: bolder;
+  }
+  h1 {
+    font-size: 60px;
+    font-weight: bold;
+    color: var(--black);
+  }
+  .shopButton {
+    margin-top: 10px;
+    padding: 12px 30px !important;
+    border-radius: 0 !important;
+    background-color: var(--red) !important;
+    color: var(--white) !important;
+    font-weight: bold;
+  }
+  .shopButton:hover {
+    background-color: var(--white) !important;
+    color: var(--black) !important;
+    border: 2px var(--red) solid;
+  }
 }
 
-@media (max-width : 1200px){
-    .paper{
-        height: 70vh !important;
+@media (max-width: 1200px) {
+  .paper {
+    height: 70vh !important;
+  }
+  .textPaper {
+    h1 {
+      font-size: 50px !important;
     }
-    .textPaper{
-        h1{
-            font-size:50px !important;
-        }
-    }
+  }
 }
-@media (max-width : 991px){
-    .paper{
-        height: 65vh !important;
+@media (max-width: 991px) {
+  .paper {
+    height: 65vh !important;
+  }
+  .textPaper {
+    p {
+      font-size: 16px !important;
+      letter-spacing: 6px !important;
     }
-    .textPaper{
-        p{
-            font-size: 16px !important;
-            letter-spacing: 6px !important;
-        }
-        h1{
-            font-size:34px !important;
-        }
+    h1 {
+      font-size: 34px !important;
     }
+  }
 }
-@media (max-width : 767px){
-    .paper{
-        height: 60vh !important;
-    }
+@media (max-width: 767px) {
+  .paper {
+    height: 60vh !important;
+  }
 }
-@media (max-width : 576px){
-    .paper{
-        height: 58vh !important;
+@media (max-width: 576px) {
+  .paper {
+    height: 58vh !important;
+  }
+  .textPaper {
+    p {
+      font-size: 15px !important;
+      letter-spacing: 4px !important;
     }
-    .textPaper{
-        p{
-            font-size: 15px !important;
-            letter-spacing: 4px !important;
-        }
-        h1{
-            font-size:30px !important;
-        }
+    h1 {
+      font-size: 30px !important;
     }
+  }
 }
-@media (max-width : 420px){
-    .paper{
-        height: 55vh !important;
+@media (max-width: 420px) {
+  .paper {
+    height: 55vh !important;
+  }
+  .textPaper {
+    p {
+      font-size: 14px !important;
+      letter-spacing: 3px !important;
     }
-    .textPaper{
-        p{
-            font-size: 14px !important;
-            letter-spacing: 3px !important;
-        }
-        h1{
-            font-size:25px !important;
-        }
-        .shopButton{
-            font-size: 10px;
-            padding: 5px 15px !important;
-        }
+    h1 {
+      font-size: 25px !important;
     }
+    .shopButton {
+      font-size: 10px;
+      padding: 5px 15px !important;
+    }
+  }
 }
